@@ -1,0 +1,9 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+   rules:
+    prefer_single_quotes: true
+    prefer_relative_imports: true
+    use_key_in_widget_constructors: true
+    prefer_const_constructors: true
+    avoid_dynamic_calls: true
