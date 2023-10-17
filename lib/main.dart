@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'config/theme/app_theme.dart';
 import 'presentation/screens/dream_diary/dream_diary_screen.dart';
 
 void main() {
@@ -13,10 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Dream Diary App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: const DreamDiary(),
     );
   }
