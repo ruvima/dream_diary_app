@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   cupertino_icons: ^1.0.2
 
@@ -26,6 +28,9 @@ flutter:
 
   # assets:
   #   - images/a_dot_burr.jpeg
+flutter_intl:
+  main_locale: es
+  enabled: true
   
 
   
