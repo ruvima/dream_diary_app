@@ -6,10 +6,11 @@ class _BottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<nav.NavigationBloc, nav.State>(
+      buildWhen: (_, state) => state is nav.NavigationState,
       builder: (context, state) {
         final model = state.model;
         return _NavigationContainer(
-          onChanged: (i) => _onTap(i),
+          onChanged: (i) => _onTap(i, model.currentIndex),
           items: [
             _NavigationItem(
               activeIcon: Icons.home,
@@ -42,17 +43,19 @@ class _BottomNavigationBar extends StatelessWidget {
     );
   }
 
-  void _onTap(int index) {
-    if (index == nav.NavigationAction.home.index) {
-      print('home');
-    } else if (index == nav.NavigationAction.analysis.index) {
-      print('analysis');
-    } else if (index == nav.NavigationAction.add.index) {
-      print('add');
-    } else if (index == nav.NavigationAction.search.index) {
-      print('search');
-    } else if (index == nav.NavigationAction.tools.index) {
-      print('tools');
+  void _onTap(int nextIndex, int currentIndex) {
+    final Map<int, String> routes = {
+      nav.NavigationAction.home.index: Routes.home,
+      nav.NavigationAction.analysis.index: Routes.analysis,
+      // nav.NavigationAction.add.index: Routes.add,
+      nav.NavigationAction.search.index: Routes.search,
+      nav.NavigationAction.tools.index: Routes.tools,
+    };
+
+    final String? nextRoute = routes[nextIndex];
+
+    if (nextRoute != null && nextIndex != currentIndex) {
+      Modular.to.navigate(nextRoute);
     }
   }
 }
@@ -137,9 +140,9 @@ class _NavigationContainer extends StatelessWidget {
           child: Container(
             height: 2,
             width: width / items.length,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: const BorderRadius.all(
                 Radius.circular(12),
               ),
             ),

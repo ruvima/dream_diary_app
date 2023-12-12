@@ -5,4 +5,7 @@ class Routes {
   static const auth = '/auth/';
 
   static const String home = '/home/home/';
+  static const String analysis = '/home/analysis/';
+  static const String search = '/home/search/';
+  static const String tools = '/home/tools/';
 }
