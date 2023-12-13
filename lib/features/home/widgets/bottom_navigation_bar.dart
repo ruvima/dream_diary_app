@@ -76,13 +76,14 @@ class _NavigationContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final color = Theme.of(context).colorScheme;
     return Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             border: Border(
               top: BorderSide(
-                color: Colors.white24,
+                color: color.surface,
               ),
             ),
           ),
@@ -91,10 +92,9 @@ class _NavigationContainer extends StatelessWidget {
             children: List.generate(
               items.length,
               (index) {
-                final label = items[index].label;
-                final activeIcon = items[index].activeIcon;
-                final inactiveIcon = items[index].inactiveIcon;
-
+                final navItem = items[index];
+                final bool isActive = currentIndex == index &&
+                    index != nav.NavigationAction.add.index;
                 return Expanded(
                   child: SizedBox(
                     height: 50,
@@ -104,24 +104,14 @@ class _NavigationContainer extends StatelessWidget {
                               nav.ChangeIndexEvent(currentIndex: index),
                             );
                         onChanged(index);
+                        // print(currentIndex == index);
+                        // print(index != previousIndex);
                       },
                       child: Material(
                         color: Colors.transparent,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              currentIndex == index
-                                  ? activeIcon
-                                  : inactiveIcon ?? activeIcon,
-                              size: label != null ? 27 : 40,
-                            ),
-                            if (label != null)
-                              Text(
-                                label,
-                                style: Theme.of(context).textTheme.labelSmall,
-                              ),
-                          ],
+                        child: _NavIcon(
+                          navItem: navItem,
+                          isActive: isActive,
                         ),
                       ),
                     ),
@@ -141,13 +131,48 @@ class _NavigationContainer extends StatelessWidget {
             height: 2,
             width: width / items.length,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
+              color: color.primary,
               borderRadius: const BorderRadius.all(
                 Radius.circular(12),
               ),
             ),
           ),
         ),
+      ],
+    );
+  }
+}
+
+class _NavIcon extends StatelessWidget {
+  const _NavIcon({
+    required this.navItem,
+    required this.isActive,
+  });
+
+  final _NavigationItem navItem;
+  final bool isActive;
+
+  @override
+  Widget build(BuildContext context) {
+    final primary = Theme.of(context).colorScheme.primary;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Opacity(
+          opacity: isActive ? 1 : 0.6,
+          child: Icon(
+            isActive
+                ? navItem.activeIcon
+                : navItem.inactiveIcon ?? navItem.activeIcon,
+            color: isActive ? primary : Colors.black,
+            size: navItem.label != null ? 27 : 40,
+          ),
+        ),
+        if (navItem.label != null)
+          KTextSmall(
+            navItem.label ?? '',
+            color: isActive ? primary : Colors.black,
+          ),
       ],
     );
   }

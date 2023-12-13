@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart'
     hide ModularWatchExtension;
 
 import '../../../core/core.dart';
+import '../../../core/widgets/text_widgets.dart';
 import '../blocs/navigation/bloc.dart' as nav;
 
 part '../widgets/bottom_navigation_bar.dart';
