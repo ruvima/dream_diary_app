@@ -1,222 +1,288 @@
 import 'package:flutter/material.dart';
 
-import '../core.dart';
-
-/// headline1: This is the largest text style and is used for very large headings.
-///   - Font size: 96.0
-///   - Font weight: Normal (700)
-///   - Letter spacing: -1.5
-class Headline1Text extends StatelessWidget {
-  final String text;
-
-  const Headline1Text(this.text, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.displayLarge,
-    );
-  }
-}
-
-/// headline2: This style is used for headings larger than headline3.
-///   - Font size: 60.0
-///   - Font weight: Normal (700)
-///   - Letter spacing: -0.5
-class Headline2Text extends StatelessWidget {
-  final String text;
-
-  const Headline2Text(this.text, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.displayMedium,
-    );
-  }
-}
-
-/// headline3: Used for large headings.
-///   - Font size: 48.0
-///   - Font weight: Normal (700)
-///   - Letter spacing: 0.0
-class Headline3Text extends StatelessWidget {
-  final String text;
-
-  const Headline3Text(this.text, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.displaySmall,
-    );
-  }
-}
-
-/// headline4: Used for moderately sized headings.
-///   - Font size: 34.0
-///   - Font weight: Normal (700)
-///   - Letter spacing: 0.25
-class Headline4Text extends StatelessWidget {
-  final String text;
-
-  const Headline4Text(this.text, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.headlineMedium,
-    );
-  }
-}
-
-/// headline5: A smaller text style than headline4 suitable for less prominent headings.
-///   - Font size: 24.0
-///   - Font weight: Normal (700)
-///   - Letter spacing: 0.0
-class Headline5Text extends StatelessWidget {
-  final String text;
-
-  const Headline5Text(this.text, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.headlineSmall,
-    );
-  }
-}
-
-/// headline6: This style is used for headings smaller than headline5.
-///   - Font size: 20.0
-///   - Font weight: Normal (700)
-///   - Letter spacing: 0.15
-class Headline6Text extends StatelessWidget {
-  final String text;
-
-  const Headline6Text(this.text, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.titleLarge,
-    );
-  }
-}
-
-/// subtitle1: Commonly used for subtitles and secondary text in the UI.
-///   - Font size: 16.0
-///   - Font weight: Normal (400)
-///   - Letter spacing: 0.15
-class Subtitle1Text extends StatelessWidget {
-  final String text;
-
-  const Subtitle1Text(this.text, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.titleMedium,
-    );
-  }
-}
-
-/// subtitle2: Similar to subtitle1 but with slightly smaller font size.
-///   - Font size: 14.0
-///   - Font weight: Normal (400)
-///   - Letter spacing: 0.1
-class Subtitle2Text extends StatelessWidget {
-  final String text;
-
-  const Subtitle2Text(this.text, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.titleSmall,
-    );
-  }
-}
-
-/// bodyText1: Text style for the main content of body text.
-///   - Font size: 16.0
-///   - Font weight: Normal (400)
-///   - Letter spacing: 0.5
-class BodyText1Text extends StatelessWidget {
-  final String text;
-  final int maxLines;
-
-  const BodyText1Text(
+/// 96px - Light weight
+class KHeadline1 extends StatelessWidget {
+  const KHeadline1(
     this.text, {
     super.key,
-    this.maxLines = 1,
+    this.color,
+    this.maxLines,
+    this.textAlign,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.bodyLarge,
-      maxLines: maxLines,
-    );
-  }
-}
-
-/// bodyText2: Similar to bodyText1 but with slightly smaller letter spacing.
-///   - Font size: 14.0
-///   - Font weight: Normal (400)
-///   - Letter spacing: 0.25
-class BodyText2Text extends StatelessWidget {
+  final Color? color;
+  final int? maxLines;
   final String text;
+  final TextAlign? textAlign;
 
-  const BodyText2Text(this.text, {super.key});
+  @override
+  Widget build(BuildContext context) {
+    return _KGenericText(
+      text,
+      color: color,
+      fontSize: 96,
+      fontWeight: FontWeight.w300,
+      maxLines: maxLines,
+      textAlign: textAlign,
+    );
+  }
+}
+
+/// 60px - Light weight
+class KHeadline2 extends StatelessWidget {
+  const KHeadline2(
+    this.text, {
+    super.key,
+    this.color,
+    this.maxLines,
+    this.textAlign,
+  });
+
+  final Color? color;
+  final int? maxLines;
+  final String text;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return _KGenericText(
+      text,
+      color: color,
+      fontSize: 60,
+      fontWeight: FontWeight.w300,
+      maxLines: maxLines,
+      textAlign: textAlign,
+    );
+  }
+}
+
+/// 48px - Normal weight
+class KHeadline3 extends StatelessWidget {
+  const KHeadline3(
+    this.text, {
+    super.key,
+    this.color,
+    this.maxLines,
+    this.textAlign,
+  });
+
+  final Color? color;
+  final int? maxLines;
+  final String text;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return _KGenericText(
+      text,
+      color: color,
+      fontSize: 48,
+      fontWeight: FontWeight.w400,
+      maxLines: maxLines,
+      textAlign: textAlign,
+    );
+  }
+}
+
+/// 34px - Normal weight
+class KHeadline4 extends StatelessWidget {
+  const KHeadline4(
+    this.text, {
+    super.key,
+    this.color,
+    this.maxLines,
+    this.textAlign,
+  });
+
+  final Color? color;
+  final int? maxLines;
+  final String text;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return _KGenericText(
+      text,
+      color: color,
+      fontSize: 34,
+      fontWeight: FontWeight.w400,
+      maxLines: maxLines,
+      textAlign: textAlign,
+    );
+  }
+}
+
+/// 24px - Normal weight
+class KHeadline5 extends StatelessWidget {
+  const KHeadline5(
+    this.text, {
+    super.key,
+    this.color,
+    this.maxLines,
+    this.textAlign,
+  });
+
+  final Color? color;
+  final int? maxLines;
+  final String text;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return _KGenericText(
+      text,
+      color: color,
+      fontSize: 24,
+      fontWeight: FontWeight.w400,
+      maxLines: maxLines,
+      textAlign: textAlign,
+    );
+  }
+}
+
+/// 20px - Medium weight
+class KHeadline6 extends StatelessWidget {
+  const KHeadline6(
+    this.text, {
+    super.key,
+    this.color,
+    this.maxLines,
+    this.textAlign,
+  });
+
+  final Color? color;
+  final int? maxLines;
+  final String text;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return _KGenericText(
+      text,
+      color: color,
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      maxLines: maxLines,
+      textAlign: textAlign,
+    );
+  }
+}
+
+/// 12px - Normal weight
+class KTextSmall extends StatelessWidget {
+  const KTextSmall(
+    this.text, {
+    super.key,
+    this.color,
+    this.maxLines,
+    this.textAlign,
+  });
+
+  final Color? color;
+  final int? maxLines;
+  final String text;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return _KGenericText(
+      text,
+      color: color,
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      maxLines: maxLines,
+      textAlign: textAlign,
+    );
+  }
+}
+
+/// 16px - Normal weight
+class KTextMedium extends StatelessWidget {
+  const KTextMedium(
+    this.text, {
+    super.key,
+    this.color,
+    this.maxLines,
+    this.textAlign,
+  });
+
+  final Color? color;
+  final int? maxLines;
+  final String text;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return _KGenericText(
+      text,
+      color: color,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      maxLines: maxLines,
+      textAlign: textAlign,
+    );
+  }
+}
+
+/// 22px - Normal weight
+class KTextLarge extends StatelessWidget {
+  const KTextLarge(
+    this.text, {
+    super.key,
+    this.color,
+    this.maxLines,
+    this.textAlign,
+  });
+
+  final Color? color;
+  final int? maxLines;
+  final String text;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return _KGenericText(
+      text,
+      color: color,
+      fontSize: 22,
+      fontWeight: FontWeight.w400,
+      maxLines: maxLines,
+      textAlign: textAlign,
+    );
+  }
+}
+
+/// Generic text widget with shared configuration
+class _KGenericText extends StatelessWidget {
+  const _KGenericText(
+    this.text, {
+    required this.fontSize,
+    this.color,
+    this.fontWeight,
+    this.maxLines,
+    this.textAlign,
+  });
+
+  final Color? color;
+  final double fontSize;
+  final FontWeight? fontWeight;
+  final int? maxLines;
+  final String text;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme.of(context).textTheme.bodyMedium,
-    );
-  }
-}
-
-class AppTextStyles {
-  static Widget title(String text, {Color color = Colors.white}) {
-    return Text(
-      text,
       style: TextStyle(
-        fontSize: TextSize.s20,
-        fontWeight: FontWeight.w700,
         color: color,
+        fontFamily: 'Roboto',
+        fontSize: fontSize,
+        fontWeight: fontWeight ?? FontWeight.normal,
+        overflow: TextOverflow.ellipsis,
       ),
-    );
-  }
-
-  static Widget body(String text, {Color color = Colors.white}) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: TextSize.s16,
-        color: color,
-      ),
-    );
-  }
-
-  static Widget smallText(String text, {Color color = Colors.white}) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: TextSize.s12,
-        color: color,
-      ),
+      maxLines: maxLines,
+      textAlign: textAlign ?? TextAlign.start,
     );
   }
 }

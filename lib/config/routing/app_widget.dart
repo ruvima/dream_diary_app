@@ -14,6 +14,7 @@ class AppWidget extends StatelessWidget {
       title: 'Dream Diary App',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.light,
       routerConfig: Modular.routerConfig,
       supportedLocales: S.delegate.supportedLocales,
       debugShowCheckedModeBanner: false,
