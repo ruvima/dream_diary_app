@@ -15,8 +15,6 @@ class KCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: alignment,
-      padding: const EdgeInsets.all(KSizes.p12),
-      margin: const EdgeInsets.all(KSizes.p12),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
         borderRadius: const BorderRadius.all(
