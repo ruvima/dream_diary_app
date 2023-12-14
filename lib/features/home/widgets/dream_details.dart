@@ -67,11 +67,6 @@ class _DreamDetails extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          color: AppColors.darkOnSecondary,
-          height: 100,
-          width: double.infinity,
-        )
       ],
     );
   }

@@ -23,7 +23,7 @@ class _BottomNavigationBar extends StatelessWidget {
               label: 'Analisis',
             ),
             _NavigationItem(
-              activeIcon: Icons.add_circle_outline_sharp,
+              activeIcon: Icons.add_circle_outline_outlined,
             ),
             _NavigationItem(
               activeIcon: Icons.find_in_page,
