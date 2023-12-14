@@ -8,13 +8,14 @@ class KHeadline1 extends StatelessWidget {
     this.color,
     this.maxLines,
     this.textAlign,
+    this.overflow,
   });
 
   final Color? color;
   final int? maxLines;
   final String text;
   final TextAlign? textAlign;
-
+  final TextOverflow? overflow;
   @override
   Widget build(BuildContext context) {
     return _KGenericText(
@@ -23,6 +24,7 @@ class KHeadline1 extends StatelessWidget {
       fontSize: 96,
       fontWeight: FontWeight.w300,
       maxLines: maxLines,
+      overflow: overflow,
       textAlign: textAlign,
     );
   }
@@ -36,13 +38,14 @@ class KHeadline2 extends StatelessWidget {
     this.color,
     this.maxLines,
     this.textAlign,
+    this.overflow,
   });
 
   final Color? color;
   final int? maxLines;
   final String text;
   final TextAlign? textAlign;
-
+  final TextOverflow? overflow;
   @override
   Widget build(BuildContext context) {
     return _KGenericText(
@@ -51,6 +54,7 @@ class KHeadline2 extends StatelessWidget {
       fontSize: 60,
       fontWeight: FontWeight.w300,
       maxLines: maxLines,
+      overflow: overflow,
       textAlign: textAlign,
     );
   }
@@ -64,13 +68,14 @@ class KHeadline3 extends StatelessWidget {
     this.color,
     this.maxLines,
     this.textAlign,
+    this.overflow,
   });
 
   final Color? color;
   final int? maxLines;
   final String text;
   final TextAlign? textAlign;
-
+  final TextOverflow? overflow;
   @override
   Widget build(BuildContext context) {
     return _KGenericText(
@@ -79,6 +84,7 @@ class KHeadline3 extends StatelessWidget {
       fontSize: 48,
       fontWeight: FontWeight.w400,
       maxLines: maxLines,
+      overflow: overflow,
       textAlign: textAlign,
     );
   }
@@ -92,13 +98,14 @@ class KHeadline4 extends StatelessWidget {
     this.color,
     this.maxLines,
     this.textAlign,
+    this.overflow,
   });
 
   final Color? color;
   final int? maxLines;
   final String text;
   final TextAlign? textAlign;
-
+  final TextOverflow? overflow;
   @override
   Widget build(BuildContext context) {
     return _KGenericText(
@@ -107,6 +114,7 @@ class KHeadline4 extends StatelessWidget {
       fontSize: 34,
       fontWeight: FontWeight.w400,
       maxLines: maxLines,
+      overflow: overflow,
       textAlign: textAlign,
     );
   }
@@ -120,13 +128,14 @@ class KHeadline5 extends StatelessWidget {
     this.color,
     this.maxLines,
     this.textAlign,
+    this.overflow,
   });
 
   final Color? color;
   final int? maxLines;
   final String text;
   final TextAlign? textAlign;
-
+  final TextOverflow? overflow;
   @override
   Widget build(BuildContext context) {
     return _KGenericText(
@@ -135,6 +144,7 @@ class KHeadline5 extends StatelessWidget {
       fontSize: 24,
       fontWeight: FontWeight.w400,
       maxLines: maxLines,
+      overflow: overflow,
       textAlign: textAlign,
     );
   }
@@ -148,13 +158,16 @@ class KHeadline6 extends StatelessWidget {
     this.color,
     this.maxLines,
     this.textAlign,
+    this.overflow,
+    this.fontWeight,
   });
 
   final Color? color;
   final int? maxLines;
   final String text;
   final TextAlign? textAlign;
-
+  final TextOverflow? overflow;
+  final FontWeight? fontWeight;
   @override
   Widget build(BuildContext context) {
     return _KGenericText(
@@ -163,6 +176,7 @@ class KHeadline6 extends StatelessWidget {
       fontSize: 20,
       fontWeight: FontWeight.w500,
       maxLines: maxLines,
+      overflow: overflow,
       textAlign: textAlign,
     );
   }
@@ -174,23 +188,27 @@ class KTextSmall extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
+    this.fontWeight,
     this.maxLines,
     this.textAlign,
+    this.overflow,
   });
 
   final Color? color;
+  final FontWeight? fontWeight;
   final int? maxLines;
   final String text;
   final TextAlign? textAlign;
-
+  final TextOverflow? overflow;
   @override
   Widget build(BuildContext context) {
     return _KGenericText(
       text,
       color: color,
       fontSize: 12,
-      fontWeight: FontWeight.w400,
+      fontWeight: fontWeight ?? FontWeight.w400,
       maxLines: maxLines,
+      overflow: overflow,
       textAlign: textAlign,
     );
   }
@@ -204,13 +222,14 @@ class KTextMedium extends StatelessWidget {
     this.color,
     this.maxLines,
     this.textAlign,
+    this.overflow,
   });
 
   final Color? color;
   final int? maxLines;
   final String text;
   final TextAlign? textAlign;
-
+  final TextOverflow? overflow;
   @override
   Widget build(BuildContext context) {
     return _KGenericText(
@@ -219,6 +238,7 @@ class KTextMedium extends StatelessWidget {
       fontSize: 16,
       fontWeight: FontWeight.w400,
       maxLines: maxLines,
+      overflow: overflow,
       textAlign: textAlign,
     );
   }
@@ -232,13 +252,14 @@ class KTextLarge extends StatelessWidget {
     this.color,
     this.maxLines,
     this.textAlign,
+    this.overflow,
   });
 
   final Color? color;
   final int? maxLines;
   final String text;
   final TextAlign? textAlign;
-
+  final TextOverflow? overflow;
   @override
   Widget build(BuildContext context) {
     return _KGenericText(
@@ -247,6 +268,7 @@ class KTextLarge extends StatelessWidget {
       fontSize: 22,
       fontWeight: FontWeight.w400,
       maxLines: maxLines,
+      overflow: overflow,
       textAlign: textAlign,
     );
   }
@@ -261,6 +283,7 @@ class _KGenericText extends StatelessWidget {
     this.fontWeight,
     this.maxLines,
     this.textAlign,
+    this.overflow,
   });
 
   final Color? color;
@@ -269,6 +292,7 @@ class _KGenericText extends StatelessWidget {
   final int? maxLines;
   final String text;
   final TextAlign? textAlign;
+  final TextOverflow? overflow;
 
   @override
   Widget build(BuildContext context) {
@@ -279,7 +303,7 @@ class _KGenericText extends StatelessWidget {
         fontFamily: 'Roboto',
         fontSize: fontSize,
         fontWeight: fontWeight ?? FontWeight.normal,
-        overflow: TextOverflow.ellipsis,
+        overflow: overflow,
       ),
       maxLines: maxLines,
       textAlign: textAlign ?? TextAlign.start,
