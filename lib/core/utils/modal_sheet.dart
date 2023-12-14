@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../widgets/k_modal.dart';
+import '../widgets/k_modal_container.dart';
 
 abstract class VisorModal {
   static Future<T> show<T>({
