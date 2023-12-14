@@ -69,7 +69,7 @@ class _Emotion extends StatelessWidget {
       opacity: 0.5,
       child: RotatedBox(
         quarterTurns: 3,
-        child: KTextMedium(emotion.name),
+        child: KTextMedium(emotion.emotionName),
       ),
     );
   }

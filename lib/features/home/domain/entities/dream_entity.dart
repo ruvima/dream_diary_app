@@ -22,8 +22,35 @@ class DreamEntity {
   });
 }
 
-enum Emotion { unknown, verySad, sad, neutral, happy, veryHappy }
+enum Emotion {
+  unknown('Desconocido'),
+  verySad('Muy Triste'),
+  sad('Triste'),
+  neutral('Neutral'),
+  happy('Feliz'),
+  veryHappy('Muy Feliz');
 
-enum DreamType { unknown, nightmare, recurring, lucid, prophetic, symbolic }
+  const Emotion(this.emotionName);
+  final String emotionName;
+}
 
-enum DreamClarity { unclear, somewhatClear, veryClear }
+enum DreamType {
+  unknown('Desconocido'),
+  nightmare('Pesadilla'),
+  recurring('Recurrente'),
+  lucid('Lúcido'),
+  prophetic('Profético'),
+  symbolic('Simbólico');
+
+  const DreamType(this.dreamTypeName);
+  final String dreamTypeName;
+}
+
+enum DreamClarity {
+  unclear('Poco claro'),
+  somewhatClear('Algo claro'),
+  veryClear('Muy claro');
+
+  const DreamClarity(this.dreamClarityName);
+  final String dreamClarityName;
+}
