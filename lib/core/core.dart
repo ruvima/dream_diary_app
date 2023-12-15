@@ -7,4 +7,5 @@ export 'utils/k_bottomsheet.dart';
 export 'widgets/k_bottomsheet_container.dart';
 export 'widgets/k_card.dart';
 export 'widgets/k_divider.dart';
+export 'widgets/k_skeleton.dart';
 export 'widgets/text_widgets.dart';

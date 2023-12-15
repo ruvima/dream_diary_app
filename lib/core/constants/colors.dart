@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  //------------------------------------------------------
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color elegantBlue = Color(0xFFB0C4DE);
+
+  static const Color shimmerBaseColor = Color(0xFFEAEAEA);
+  static const Color shimerSecondColor = Color(0xFFECECEC);
+
   // Light Colors -------------------------------------------
   /// Color: Dodger Blue
   static const Color lightPrimary = Color(0xFF1C6DD0);
