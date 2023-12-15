@@ -8,6 +8,7 @@ import '../blocs/dream/bloc.dart' as dream_bloc;
 import '../domain/domain.dart';
 
 part '../widgets/dream_card.dart';
+part '../widgets/dream_card_skeleton.dart';
 part '../widgets/dream_details.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -45,9 +46,7 @@ class _DreamsView extends StatelessWidget {
           );
         }
         if (state is dream_bloc.LoadingState) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const _DreamCardSkeleton();
         }
         return CustomScrollView(
           slivers: [

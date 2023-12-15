@@ -21,8 +21,7 @@ class KModalContainer extends StatelessWidget {
         topLeft: Radius.circular(14.0),
         topRight: Radius.circular(14.0),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(KSizes.p12),
+      child: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,11 +33,13 @@ class KModalContainer extends StatelessWidget {
                 Modular.to.pop();
               },
             ),
-            SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(
-                horizontal: KSizes.p16,
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: KSizes.p16,
+                ),
+                child: child,
               ),
-              child: child,
             ),
           ],
         ),

@@ -19,7 +19,7 @@ class KBottomSheetContainer extends StatelessWidget {
         const SizedBox(height: 0.3),
         KDivider(
           length: 100,
-          color: Theme.of(context).colorScheme.onSurface,
+          color: Theme.of(context).colorScheme.primary,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

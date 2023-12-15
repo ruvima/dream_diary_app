@@ -3,9 +3,9 @@ part of 'bloc.dart';
 enum NavigationAction {
   home(0),
   analysis(1),
-  add(3),
-  search(4),
-  tools(5);
+  add(2),
+  search(3),
+  tools(4);
 
   const NavigationAction(this.position);
 

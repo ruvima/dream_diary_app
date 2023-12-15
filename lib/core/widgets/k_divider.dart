@@ -24,9 +24,11 @@ class KDivider extends StatelessWidget {
       width: vertical ? thickness : length ?? double.infinity,
       height: vertical ? length ?? 100 : thickness,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(2),
         border: Border.all(
           width: 1.3,
           color: color ?? Theme.of(context).colorScheme.surface,
+          strokeAlign: BorderSide.strokeAlignCenter,
         ),
       ),
     );
