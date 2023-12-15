@@ -47,15 +47,21 @@ class _BottomNavigationBar extends StatelessWidget {
     final Map<int, String> routes = {
       nav.NavigationAction.home.index: Routes.home,
       nav.NavigationAction.analysis.index: Routes.analysis,
-      // nav.NavigationAction.add.index: Routes.add,
+      nav.NavigationAction.add.index: Routes.newDream,
       nav.NavigationAction.search.index: Routes.search,
       nav.NavigationAction.tools.index: Routes.tools,
     };
 
     final String? nextRoute = routes[nextIndex];
 
-    if (nextRoute != null && nextIndex != currentIndex) {
+    if (nextRoute != null &&
+        nextIndex != currentIndex &&
+        nextRoute != Routes.newDream) {
       Modular.to.navigate(nextRoute);
+    } else if (nextRoute == Routes.newDream) {
+      VisorModal.show(
+        child: const NewDreamScreen(),
+      );
     }
   }
 }
@@ -93,8 +99,13 @@ class _NavigationContainer extends StatelessWidget {
               items.length,
               (index) {
                 final navItem = items[index];
-                final bool isActive = currentIndex == index &&
-                    index != nav.NavigationAction.add.index;
+
+                final bool isActive =
+                    currentIndex != nav.NavigationAction.add.index
+                        ? index == currentIndex
+                        : previousIndex == index &&
+                            index != nav.NavigationAction.add.index;
+
                 return Expanded(
                   child: SizedBox(
                     height: 50,
@@ -104,8 +115,6 @@ class _NavigationContainer extends StatelessWidget {
                               nav.ChangeIndexEvent(currentIndex: index),
                             );
                         onChanged(index);
-                        // print(currentIndex == index);
-                        // print(index != previousIndex);
                       },
                       child: Material(
                         color: Colors.transparent,
@@ -164,14 +173,14 @@ class _NavIcon extends StatelessWidget {
             isActive
                 ? navItem.activeIcon
                 : navItem.inactiveIcon ?? navItem.activeIcon,
-            color: isActive ? primary : Colors.black,
+            color: primary,
             size: navItem.label != null ? 27 : 40,
           ),
         ),
         if (navItem.label != null)
           KTextSmall(
             navItem.label ?? '',
-            color: isActive ? primary : Colors.black,
+            color: primary,
           ),
       ],
     );
