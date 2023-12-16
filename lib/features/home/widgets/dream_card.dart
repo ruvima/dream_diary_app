@@ -23,22 +23,22 @@ class DreamCard extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: KSizes.p4),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      KHeadline6(dream.title),
-                      gapH8,
-                      KTextMedium(
-                        dream.description,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      gapH4,
-                      _Tags(tags: dream.tags)
-                    ],
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    KTextLarge(
+                      dream.title,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    gapH8,
+                    KTextMedium(
+                      dream.description,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    gapH4,
+                    _Tags(tags: dream.tags)
+                  ],
                 ),
               ),
               if (dream.emotion != Emotion.unknown) ...[
@@ -97,29 +97,6 @@ class _Tags extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-}
-
-class KInkwell extends StatelessWidget {
-  final VoidCallback onTap;
-  final Widget child;
-  final double borderRadius;
-  const KInkwell({
-    super.key,
-    required this.onTap,
-    required this.child,
-    this.borderRadius = 12,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(borderRadius),
-      splashColor: Theme.of(context).colorScheme.error,
-      highlightColor: Theme.of(context).colorScheme.error,
-      onTap: onTap,
-      child: child,
     );
   }
 }

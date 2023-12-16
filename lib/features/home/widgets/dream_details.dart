@@ -12,8 +12,8 @@ class _DreamDetails extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         gapH4,
-        const KTextSmall('Descripcion:'),
-        KTextMedium(
+        const KTextMedium('Descripcion:'),
+        KTextLarge(
           dream.description,
         ),
         gapH4,
@@ -26,7 +26,7 @@ class _DreamDetails extends StatelessWidget {
           ],
         ),
         gapH4,
-        const KTextSmall('Tipo de sueño:'),
+        const KTextMedium('Tipo de sueño:'),
         KWrap(
           alignment: WrapAlignment.start,
           children: List.generate(
@@ -38,13 +38,13 @@ class _DreamDetails extends StatelessWidget {
           ),
         ),
         gapH4,
-        const KTextSmall('Emocion:'),
-        KTextMedium(dream.emotion.emotionName),
+        const KTextMedium('Emocion:'),
+        KTextLarge(dream.emotion.emotionName),
         gapH4,
-        const KTextSmall('Clarity:'),
-        KTextMedium(dream.clarity.dreamClarityName),
+        const KTextMedium('Clarity:'),
+        DreamClarityWidget(clarity: dream.clarity),
         gapH4,
-        const KTextSmall('Pesonas en el sueño:'),
+        const KTextMedium('Pesonas en el sueño:'),
         KWrap(
           alignment: WrapAlignment.start,
           children: List.generate(
@@ -69,5 +69,32 @@ class _DreamDetails extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+// TODO: MOVE AND FINISH
+class DreamClarityWidget extends StatelessWidget {
+  final double clarity;
+
+  const DreamClarityWidget({
+    Key? key,
+    required this.clarity,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: RadialGradient(
+              colors: clarity < 0.5
+                  ? [Colors.blue, Colors.white]
+                  : [Colors.white, Colors.blue],
+            )),
+        child: Center(
+          child: KTextMedium('${(clarity * 100)}%'),
+        ));
   }
 }

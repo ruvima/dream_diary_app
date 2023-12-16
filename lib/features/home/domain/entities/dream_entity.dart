@@ -1,14 +1,4 @@
 class DreamEntity {
-  final DateTime date;
-  final DreamClarity clarity;
-  final Emotion emotion;
-  final List<DreamType> dreamTypes;
-  final List<String> people;
-  final List<String> tags;
-  final String description;
-  final String id;
-  final String title;
-
   DreamEntity({
     required this.clarity,
     required this.date,
@@ -20,6 +10,16 @@ class DreamEntity {
     required this.tags,
     required this.title,
   });
+
+  final DateTime date;
+  final double clarity;
+  final Emotion emotion;
+  final List<DreamType> dreamTypes;
+  final List<String> people;
+  final List<String> tags;
+  final String description;
+  final String id;
+  final String title;
 }
 
 enum Emotion {
@@ -35,22 +35,13 @@ enum Emotion {
 }
 
 enum DreamType {
-  unknown('Desconocido'),
-  nightmare('Pesadilla'),
+  normal('Normal'),
   recurring('Recurrente'),
+  nightmare('Pesadilla'),
   lucid('Lúcido'),
   prophetic('Profético'),
   symbolic('Simbólico');
 
   const DreamType(this.dreamTypeName);
   final String dreamTypeName;
-}
-
-enum DreamClarity {
-  unclear('Poco claro'),
-  somewhatClear('Algo claro'),
-  veryClear('Muy claro');
-
-  const DreamClarity(this.dreamClarityName);
-  final String dreamClarityName;
 }
