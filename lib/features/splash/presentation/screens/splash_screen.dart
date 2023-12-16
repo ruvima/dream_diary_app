@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
 
     Modular.to.pushNamedAndRemoveUntil(
-      Routes.tutorial,
+      Routes.auth,
       (p0) => false,
     );
   }
