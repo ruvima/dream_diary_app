@@ -214,18 +214,20 @@ class KTextSmall extends StatelessWidget {
   }
 }
 
-/// 16px - Normal weight
+/// 14px - Normal weight
 class KTextMedium extends StatelessWidget {
   const KTextMedium(
     this.text, {
     super.key,
     this.color,
+    this.fontWeight = FontWeight.w400,
     this.maxLines,
-    this.textAlign,
     this.overflow,
+    this.textAlign,
   });
 
   final Color? color;
+  final FontWeight fontWeight;
   final int? maxLines;
   final String text;
   final TextAlign? textAlign;
@@ -235,8 +237,8 @@ class KTextMedium extends StatelessWidget {
     return _KGenericText(
       text,
       color: color,
-      fontSize: 16,
-      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      fontWeight: fontWeight,
       maxLines: maxLines,
       overflow: overflow,
       textAlign: textAlign,
@@ -244,7 +246,7 @@ class KTextMedium extends StatelessWidget {
   }
 }
 
-/// 22px - Normal weight
+/// 16px - Normal weight
 class KTextLarge extends StatelessWidget {
   const KTextLarge(
     this.text, {
@@ -253,6 +255,7 @@ class KTextLarge extends StatelessWidget {
     this.maxLines,
     this.textAlign,
     this.overflow,
+    this.fontWeight = FontWeight.w400,
   });
 
   final Color? color;
@@ -260,13 +263,14 @@ class KTextLarge extends StatelessWidget {
   final String text;
   final TextAlign? textAlign;
   final TextOverflow? overflow;
+  final FontWeight fontWeight;
   @override
   Widget build(BuildContext context) {
     return _KGenericText(
       text,
       color: color,
-      fontSize: 22,
-      fontWeight: FontWeight.w400,
+      fontSize: 16,
+      fontWeight: fontWeight,
       maxLines: maxLines,
       overflow: overflow,
       textAlign: textAlign,

@@ -28,17 +28,15 @@ class KBottomSheetContainer extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  IconButton(
+                  KIconButton(
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    icon: const Icon(
-                      Icons.arrow_back,
-                    ),
+                    icon: Icons.arrow_back,
                   ),
                   gapW4,
                   Expanded(
-                    child: KHeadline6(
+                    child: KTextLarge(
                       label ?? 'Laberinto Enigmatico',
                       fontWeight: FontWeight.bold,
                     ),

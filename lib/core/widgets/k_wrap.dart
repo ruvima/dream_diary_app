@@ -8,14 +8,13 @@ class KWrap extends StatelessWidget {
   const KWrap({
     super.key,
     required this.children,
-    this.alignment = WrapAlignment.spaceEvenly,
+    this.alignment = WrapAlignment.start,
   });
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.start,
       spacing: KSizes.p8,
-      runSpacing: KSizes.p8,
       alignment: alignment,
       children: children,
     );

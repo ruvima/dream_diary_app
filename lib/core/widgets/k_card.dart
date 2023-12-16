@@ -13,13 +13,10 @@ class KCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: alignment,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(KSizes.p12),
-        ),
+    return Material(
+      color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
+      borderRadius: const BorderRadius.all(
+        Radius.circular(KSizes.p12),
       ),
       child: child,
     );

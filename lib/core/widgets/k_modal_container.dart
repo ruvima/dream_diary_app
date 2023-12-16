@@ -7,16 +7,18 @@ class KModalContainer extends StatelessWidget {
   const KModalContainer({
     super.key,
     required this.child,
+    this.topWidget,
   });
 
   final Widget child;
+  final Widget? topWidget;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Material(
-      color: theme.colorScheme.surface,
+      color: theme.colorScheme.background,
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(14.0),
         topRight: Radius.circular(14.0),
@@ -26,12 +28,22 @@ class KModalContainer extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconButton(
-              padding: EdgeInsets.zero,
-              icon: const Icon(Icons.close),
-              onPressed: () {
-                Modular.to.pop();
-              },
+            Row(
+              children: [
+                KIconButton(
+                  icon: Icons.close,
+                  onPressed: () {
+                    Modular.to.pop();
+                  },
+                ),
+                if (topWidget != null)
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: KSizes.p16),
+                      child: topWidget ?? const SizedBox.shrink(),
+                    ),
+                  )
+              ],
             ),
             Expanded(
               child: SingleChildScrollView(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../widgets/k_modal_container.dart';
-
 abstract class VisorModal {
   static Future<T> show<T>({
     required Widget child,
@@ -26,7 +24,7 @@ class _ModalSheet extends ModalRoute {
   final Widget child;
 
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 250);
+  Duration get transitionDuration => const Duration(milliseconds: 400);
 
   @override
   bool get opaque => false;
@@ -58,7 +56,7 @@ class _ModalSheet extends ModalRoute {
         alignment: Alignment.bottomCenter,
         child: SizedBox(
           width: double.infinity,
-          child: KModalContainer(child: child),
+          child: child,
         ),
       ),
     );
