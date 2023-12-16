@@ -13,7 +13,7 @@ class _DreamCardSkeleton extends StatelessWidget {
           itemBuilder: (_, i) {
             return Container(
               margin: const EdgeInsets.all(KSizes.p12),
-              padding: const EdgeInsets.all(KSizes.p16),
+              padding: const EdgeInsets.all(KSizes.p12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -26,25 +26,29 @@ class _DreamCardSkeleton extends StatelessWidget {
                           height: 20,
                           width: 200,
                         ),
-                        gapH12,
+                        gapH16,
                         ...List.generate(
                           3,
-                          (index) => const KSkeleton(
-                            topPadding: 8,
-                            height: 16,
-                            width: double.infinity,
+                          (index) => const Column(
+                            children: [
+                              KSkeleton(
+                                height: 16,
+                                width: double.infinity,
+                              ),
+                              gapH4,
+                            ],
                           ),
                         ),
-                        gapH16,
+                        gapH8,
                         KWrap(
                           children: List.generate(
                             4,
                             (index) => const KSkeleton(
-                              height: 16,
-                              width: 60,
+                              height: 23,
+                              width: 62.6,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
