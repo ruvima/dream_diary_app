@@ -47,7 +47,7 @@ class _BottomNavigationBar extends StatelessWidget {
     final Map<int, String> routes = {
       nav.NavigationAction.home.index: Routes.home,
       nav.NavigationAction.analysis.index: Routes.analysis,
-      nav.NavigationAction.add.index: Routes.newDream,
+      nav.NavigationAction.form.index: Routes.newDream,
       nav.NavigationAction.search.index: Routes.search,
       nav.NavigationAction.tools.index: Routes.tools,
     };
@@ -60,7 +60,7 @@ class _BottomNavigationBar extends StatelessWidget {
       Modular.to.navigate(nextRoute);
     } else if (nextRoute == Routes.newDream) {
       VisorModal.show(
-        child: const NewDreamScreen(),
+        child: const DreamFormScreen(),
       );
     }
   }
@@ -83,71 +83,74 @@ class _NavigationContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final color = Theme.of(context).colorScheme;
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            border: Border(
-              top: BorderSide(
-                color: color.surface,
+    return Material(
+      color: color.background,
+      child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(
+                  color: color.surface,
+                ),
               ),
             ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(
-              items.length,
-              (index) {
-                final navItem = items[index];
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(
+                items.length,
+                (index) {
+                  final navItem = items[index];
 
-                final bool isActive =
-                    currentIndex != nav.NavigationAction.add.index
-                        ? index == currentIndex
-                        : previousIndex == index &&
-                            index != nav.NavigationAction.add.index;
+                  final bool isActive =
+                      currentIndex != nav.NavigationAction.form.index
+                          ? index == currentIndex
+                          : previousIndex == index &&
+                              index != nav.NavigationAction.form.index;
 
-                return Expanded(
-                  child: SizedBox(
-                    height: 50,
-                    child: InkWell(
-                      onTap: () {
-                        context.read<nav.NavigationBloc>().add(
-                              nav.ChangeIndexEvent(currentIndex: index),
-                            );
-                        onChanged(index);
-                      },
-                      child: Material(
-                        color: Colors.transparent,
-                        child: _NavIcon(
-                          navItem: navItem,
-                          isActive: isActive,
+                  return Expanded(
+                    child: SizedBox(
+                      height: 50,
+                      child: InkWell(
+                        onTap: () {
+                          context.read<nav.NavigationBloc>().add(
+                                nav.ChangeIndexEvent(currentIndex: index),
+                              );
+                          onChanged(index);
+                        },
+                        child: Material(
+                          color: Colors.transparent,
+                          child: _NavIcon(
+                            navItem: navItem,
+                            isActive: isActive,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
-        AnimatedPositioned(
-          left: currentIndex != 2
-              ? (width / items.length) * currentIndex
-              : (width / items.length) * previousIndex,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-          child: Container(
-            height: 2,
-            width: width / items.length,
-            decoration: BoxDecoration(
-              color: color.primary,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(12),
+                  );
+                },
               ),
             ),
           ),
-        ),
-      ],
+          AnimatedPositioned(
+            left: currentIndex != 2
+                ? (width / items.length) * currentIndex
+                : (width / items.length) * previousIndex,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeOut,
+            child: Container(
+              height: 2,
+              width: width / items.length,
+              decoration: BoxDecoration(
+                color: color.primary,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(12),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

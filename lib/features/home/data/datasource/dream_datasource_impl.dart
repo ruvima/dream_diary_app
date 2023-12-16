@@ -7,7 +7,7 @@ class DreamDatasourceImpl extends DreamDatasource {
     await Future.delayed(const Duration(seconds: 1));
     return [
       DreamEntity(
-        clarity: DreamClarity.veryClear,
+        clarity: 0.8,
         date: DateTime(2023, 3, 15),
         description:
             'Exploré un mundo mágico junto a mis amigos y familia. La claridad del sueño era asombrosa, cada detalle era nítido. La felicidad llenaba cada rincón de esta aventura única. Una experiencia inolvidable.',
@@ -30,7 +30,7 @@ class DreamDatasourceImpl extends DreamDatasource {
         title: 'Aventura Mágica',
       ),
       DreamEntity(
-        clarity: DreamClarity.unclear,
+        clarity: 0.6,
         date: DateTime(2023, 4, 2),
         description:
             'Me encontré en un laberinto surrealista con desconocidos y símbolos enigmáticos. La claridad del sueño era escasa, pero la neutralidad de la emoción prevaleció. Una experiencia confusa pero intrigante.',
@@ -45,7 +45,7 @@ class DreamDatasourceImpl extends DreamDatasource {
         title: 'Laberinto Enigmático',
       ),
       DreamEntity(
-        clarity: DreamClarity.somewhatClear,
+        clarity: 0.4,
         date: DateTime(2023, 5, 10),
         description:
             'Reviví una vez más la pérdida de una relación pasada en un sueño recurrente. La claridad no era total, pero la tristeza inundó mi ser. Una experiencia nostálgica y emotiva.',
@@ -57,7 +57,7 @@ class DreamDatasourceImpl extends DreamDatasource {
         title: 'Sueño Recurrente',
       ),
       DreamEntity(
-        clarity: DreamClarity.veryClear,
+        clarity: 0.8,
         date: DateTime(2023, 6, 20),
         description:
             'Experimenté una visión lúcida de un futuro exitoso. La claridad del sueño era extraordinaria, y la felicidad abrumadora. Interactué con futuros hijos en este sueño profético lleno de logros y éxito.',
@@ -69,11 +69,11 @@ class DreamDatasourceImpl extends DreamDatasource {
         title: 'Visión Lúcida',
       ),
       DreamEntity(
-        clarity: DreamClarity.unclear,
+        clarity: 0.2,
         date: DateTime(2023, 7, 8),
         description:
             'Fragmentos de sueños sin emociones claras ni personas identificables. La claridad del sueño era baja, dejando un misterioso rastro de imágenes efímeras. Una experiencia desconocida y enigmática.',
-        dreamTypes: [DreamType.unknown],
+        dreamTypes: [DreamType.normal],
         emotion: Emotion.unknown,
         id: '5',
         people: ['Desconocido'],

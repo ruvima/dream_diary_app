@@ -15,7 +15,7 @@ class NavigationBloc extends Bloc<Event, State> {
   FutureOr<void> _onChangedIndexEvent(ChangeIndexEvent event, Emitter emit) {
     emit(LoadingState(model: state.model));
 
-    if (state.model.currentIndex != NavigationAction.add.index) {
+    if (state.model.currentIndex != NavigationAction.form.index) {
       emit(
         NavigationState(
           model: state.model.copyWith(

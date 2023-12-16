@@ -3,7 +3,7 @@ part of 'bloc.dart';
 enum NavigationAction {
   home(0),
   analysis(1),
-  add(2),
+  form(2),
   search(3),
   tools(4);
 

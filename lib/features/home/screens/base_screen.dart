@@ -6,7 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart'
 import '../../../core/core.dart';
 import '../../../core/utils/modal_sheet.dart';
 import '../blocs/navigation/bloc.dart' as nav;
-import 'new_dream_screen.dart';
+import 'dream_form_screen.dart';
 
 part '../widgets/bottom_navigation_bar.dart';
 

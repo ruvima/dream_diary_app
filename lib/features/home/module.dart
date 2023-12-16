@@ -22,22 +22,22 @@ class HomeModule extends Module {
       children: [
         ModuleRoute(
           '/home',
-          transition: TransitionType.noTransition,
+          transition: TransitionType.downToUp,
           module: _HomeModule(),
         ),
         ModuleRoute(
           '/analysis',
-          transition: TransitionType.noTransition,
+          transition: TransitionType.downToUp,
           module: AnalysisModule(),
         ),
         ModuleRoute(
           '/search',
-          transition: TransitionType.noTransition,
+          transition: TransitionType.downToUp,
           module: SearchModule(),
         ),
         ModuleRoute(
           '/tools',
-          transition: TransitionType.noTransition,
+          transition: TransitionType.downToUp,
           module: ToolsModule(),
         ),
       ],
