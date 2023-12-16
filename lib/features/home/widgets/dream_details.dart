@@ -39,7 +39,7 @@ class _DreamDetails extends StatelessWidget {
         ),
         gapH4,
         const KTextMedium('Emocion:'),
-        KTextLarge(dream.emotion.emotionName),
+        KTextLarge(dream.emotions.first),
         gapH4,
         const KTextMedium('Clarity:'),
         DreamClarityWidget(clarity: dream.clarity),

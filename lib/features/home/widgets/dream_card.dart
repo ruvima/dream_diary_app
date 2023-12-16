@@ -41,12 +41,12 @@ class DreamCard extends StatelessWidget {
                   ],
                 ),
               ),
-              if (dream.emotion != Emotion.unknown) ...[
+              if (dream.emotions != Emotion.unknown) ...[
                 const KDivider(
                   vertical: true,
                 ),
                 gapW4,
-                _Emotion(emotion: dream.emotion),
+                _Emotion(emotion: dream.emotions.first),
               ],
             ],
           ),
@@ -61,7 +61,7 @@ class _Emotion extends StatelessWidget {
     required this.emotion,
   });
 
-  final Emotion emotion;
+  final String emotion;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class _Emotion extends StatelessWidget {
       opacity: 0.5,
       child: RotatedBox(
         quarterTurns: 3,
-        child: KTextMedium(emotion.emotionName),
+        child: KTextMedium(emotion),
       ),
     );
   }

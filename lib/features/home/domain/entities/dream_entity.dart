@@ -4,7 +4,7 @@ class DreamEntity {
     required this.date,
     required this.description,
     required this.dreamTypes,
-    required this.emotion,
+    required this.emotions,
     required this.id,
     required this.people,
     required this.tags,
@@ -13,8 +13,8 @@ class DreamEntity {
 
   final DateTime date;
   final double clarity;
-  final Emotion emotion;
   final List<DreamType> dreamTypes;
+  final List<String> emotions;
   final List<String> people;
   final List<String> tags;
   final String description;
