@@ -12,11 +12,9 @@ class DreamCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return KCard(
       child: KInkwell(
-        onTap: () => KModalBottomSheet.show(
-          context,
-          child: KBottomSheetContainer(
-            child: _DreamDetails(dream),
-          ),
+        onTap: () => Modular.to.pushNamed(
+          Routes.dreamDetails,
+          arguments: dream,
         ),
         child: Padding(
           padding: const EdgeInsets.all(KSizes.p12),
@@ -41,12 +39,15 @@ class DreamCard extends StatelessWidget {
                   ],
                 ),
               ),
-              if (dream.emotions != Emotion.unknown) ...[
+              ...[
                 const KDivider(
                   vertical: true,
                 ),
-                gapW4,
-                _Emotion(emotion: dream.emotions.first),
+                gapH12,
+                _Emotion(
+                    emotion: dream.emotions.isEmpty
+                        ? 'empty'.hardcoded
+                        : dream.emotions.first),
               ],
             ],
           ),

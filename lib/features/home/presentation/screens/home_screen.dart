@@ -2,32 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../core/core.dart';
-import '../../../core/widgets/k_chip.dart';
-import '../blocs/dream/bloc.dart' as dream_bloc;
-import '../domain/domain.dart';
+import '../../../../../core/shared/domain/domain.dart';
+import '../../../../core/core.dart';
+import '../../../../l10n/string_hardcoded.dart';
+import '../../blocs/dream/bloc.dart' as dream_bloc;
 
 part '../widgets/dream_card.dart';
 part '../widgets/dream_card_skeleton.dart';
-part '../widgets/dream_details.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final dreamRepository = Modular.get<DreamRepository>();
-
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => dream_bloc.DreamBloc(
-            dreamRepository: dreamRepository,
-          )..add(dream_bloc.LoadDreamsEvent()),
-        ),
-      ],
-      child: const _DreamsView(),
-    );
+    // final localStorageRepository = Modular.get<LocalStorageRepository>();
+    return const _DreamsView();
   }
 }
 
@@ -37,6 +26,7 @@ class _DreamsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<dream_bloc.DreamBloc, dream_bloc.State>(
+      bloc: Modular.get<dream_bloc.DreamBloc>(),
       builder: (context, state) {
         final model = state.model;
 
@@ -77,11 +67,15 @@ class _Appbar extends StatelessWidget {
     return SliverAppBar.medium(
       backgroundColor: Theme.of(context).colorScheme.background,
       centerTitle: true,
-      title: const Text('My Dreams'),
+      title: Text(UiValues.myDreams),
       actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.search),
+        KIconButton(
+          onPressed: () {
+            Modular.get<dream_bloc.DreamBloc>().add(
+              dream_bloc.LoadDreamsEvent(),
+            );
+          },
+          icon: Icons.search,
         ),
       ],
     );

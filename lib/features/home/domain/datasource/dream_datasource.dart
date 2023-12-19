@@ -1,5 +1,5 @@
-import '../domain.dart';
+// import '../domain.dart';
 
-abstract class DreamDatasource {
-  Future<List<DreamEntity>> fetchDreams();
-}
+// abstract class DreamDatasource {
+//   Future<List<DreamEntity>> fetchDreams();
+// }

@@ -1,8 +1,8 @@
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../../../core/shared/domain/domain.dart';
 import '../../domain/datasource/local_storage_datasource.dart';
-import '../../domain/entities/dream_entity.dart';
 
 class IsarDatasource extends LocalStorageDatasource {
   IsarDatasource() {
@@ -27,7 +27,7 @@ class IsarDatasource extends LocalStorageDatasource {
   Future<List<DreamEntity>> getDreams() async {
     final isar = await _db;
 
-    return isar.dreamEntitys.where().findAll();
+    return isar.dreamEntitys.where().sortByDateDesc().findAll();
   }
 
   @override

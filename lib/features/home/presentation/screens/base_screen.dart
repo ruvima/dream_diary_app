@@ -3,10 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart'
     hide ModularWatchExtension;
 
-import '../../../core/core.dart';
-import '../../../core/utils/modal_sheet.dart';
-import '../blocs/navigation/bloc.dart' as nav;
-import 'dream_form_screen.dart';
+import '../../../../core/core.dart';
+import '../../blocs/navigation/bloc.dart' as nav;
 
 part '../widgets/bottom_navigation_bar.dart';
 

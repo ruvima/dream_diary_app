@@ -1,3 +1,4 @@
+import '../../../../core/shared/domain/domain.dart';
 import '../../domain/domain.dart';
 import '../datasource/isar_datasource.dart';
 

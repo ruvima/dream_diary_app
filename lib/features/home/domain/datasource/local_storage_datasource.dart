@@ -1,4 +1,4 @@
-import '../domain.dart';
+import '../../../../core/shared/domain/domain.dart';
 
 abstract class LocalStorageDatasource {
   Future<List<DreamEntity>> getDreams();

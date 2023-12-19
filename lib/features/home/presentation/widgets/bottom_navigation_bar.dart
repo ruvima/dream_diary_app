@@ -15,12 +15,12 @@ class _BottomNavigationBar extends StatelessWidget {
             _NavigationItem(
               activeIcon: Icons.home,
               inactiveIcon: Icons.home_outlined,
-              label: 'Inicio',
+              label: UiValues.homeLabel,
             ),
             _NavigationItem(
               activeIcon: Icons.insert_chart,
               inactiveIcon: Icons.insert_chart_outlined_outlined,
-              label: 'Analisis',
+              label: UiValues.analysisLabel,
             ),
             _NavigationItem(
               activeIcon: Icons.add_circle_outline_outlined,
@@ -28,12 +28,12 @@ class _BottomNavigationBar extends StatelessWidget {
             _NavigationItem(
               activeIcon: Icons.find_in_page,
               inactiveIcon: Icons.find_in_page_outlined,
-              label: 'Busqueda',
+              label: UiValues.searchLabel,
             ),
             _NavigationItem(
               activeIcon: Icons.build,
               inactiveIcon: Icons.build_outlined,
-              label: 'Ajustes',
+              label: UiValues.searchLabel,
             ),
           ],
           currentIndex: model.currentIndex,
@@ -47,21 +47,26 @@ class _BottomNavigationBar extends StatelessWidget {
     final Map<int, String> routes = {
       nav.NavigationAction.home.index: Routes.home,
       nav.NavigationAction.analysis.index: Routes.analysis,
-      nav.NavigationAction.form.index: Routes.newDream,
+      nav.NavigationAction.form.index: Routes.form,
       nav.NavigationAction.search.index: Routes.search,
       nav.NavigationAction.tools.index: Routes.tools,
     };
 
     final String? nextRoute = routes[nextIndex];
 
+    // if (nextRoute != null) {
+    //   Modular.to.navigate(nextRoute);
+    // }
+
     if (nextRoute != null &&
         nextIndex != currentIndex &&
-        nextRoute != Routes.newDream) {
+        nextRoute != Routes.form) {
       Modular.to.navigate(nextRoute);
-    } else if (nextRoute == Routes.newDream) {
-      VisorModal.show(
-        child: const DreamFormScreen(),
-      );
+    } else if (nextRoute == Routes.form) {
+      Modular.to.pushNamed(nextRoute!);
+      // VisorModal.show(
+      //   child: const DreamFormScreen(),
+      // );
     }
   }
 }
@@ -172,11 +177,10 @@ class _NavIcon extends StatelessWidget {
       children: [
         Opacity(
           opacity: isActive ? 1 : 0.6,
-          child: Icon(
-            isActive
+          child: KIcon(
+            icon: isActive
                 ? navItem.activeIcon
                 : navItem.inactiveIcon ?? navItem.activeIcon,
-            color: primary,
             size: navItem.label != null ? 27 : 40,
           ),
         ),
