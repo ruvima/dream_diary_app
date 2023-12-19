@@ -8,8 +8,9 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: colors.background,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: KSizes.p12),
@@ -17,40 +18,50 @@ class AuthScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 200,
+              gapH32,
+              const Center(
+                child: KLogo(),
               ),
-              const KTextSmall('Correo electrónico: '),
+              gapH24,
+              KTextSmall(
+                UiValues.emailLabel,
+                fontWeight: FontWeight.w600,
+              ),
               gapH4,
-              const KTextFormField(
-                hint: 'Ingresa tu correo electrónico',
+              KTextFormField(
+                hint: UiValues.enterEmailHint,
               ),
               gapH16,
-              const KTextSmall('Contraseña: '),
+              KTextSmall(
+                UiValues.passwordLabel,
+                fontWeight: FontWeight.w600,
+              ),
               gapH4,
-              const KTextFormField(hint: 'Ingresa tu contraseña'),
+              KTextFormField(hint: UiValues.enterPasswordHint),
               gapH32,
               KPrimaryButton(
                 onPressed: () {
                   Modular.to.pushReplacementNamed(Routes.home);
                 },
                 width: double.infinity,
-                text: 'Iniciar Sesión',
+                text: UiValues.signIn,
               ),
-              gapH64,
-              const KTextMedium('Iniciar sesión con: '),
+              gapH48,
+              KTextMedium(
+                UiValues.signInWith,
+                fontWeight: FontWeight.w600,
+              ),
               gapH16,
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  2,
-                  (index) => Container(
-                    margin: const EdgeInsets.symmetric(horizontal: KSizes.p12),
-                    color: Colors.amber,
-                    height: 50,
-                    width: 50,
+                children: [
+                  _RegisterIcon(
+                    logo: KAssets.googleLogo,
                   ),
-                ),
+                  _RegisterIcon(
+                    logo: KAssets.facebookLogo,
+                  ),
+                ],
               ),
               gapH12,
               const Center(
@@ -58,25 +69,65 @@ class AuthScreen extends StatelessWidget {
                   length: 150,
                 ),
               ),
-              gapH32,
-              TextButton(
-                onPressed: () {},
-                child:
-                    const Text('¿No tienes una cuenta aún? ¡Regístrate ahora!'),
-              ),
-              Center(
-                child: KDivider(
-                  color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-                  thickness: 0.2,
-                  length: 150,
+              gapH48,
+              SizedBox(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: KTextSmall(
+                        UiValues.registerNow,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    KDivider(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withOpacity(0.5),
+                      thickness: 0.2,
+                      length: 150,
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: KTextSmall(
+                        UiValues.forgotPassword,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text('¿Olvidaste tu contraseña?'),
-              ),
+              )
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _RegisterIcon extends StatelessWidget {
+  const _RegisterIcon({
+    required this.logo,
+  });
+  final String logo;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: KSizes.p12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(KSizes.p12),
+        color: colors.surface,
+      ),
+      width: 50,
+      height: 50,
+      child: Padding(
+        padding: const EdgeInsets.all(KSizes.p8),
+        child: Image.asset(
+          logo,
         ),
       ),
     );
