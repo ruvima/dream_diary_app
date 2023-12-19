@@ -18,6 +18,7 @@ class AppWidget extends StatelessWidget {
       routerConfig: Modular.routerConfig,
       supportedLocales: S.delegate.supportedLocales,
       debugShowCheckedModeBanner: false,
+      locale: const Locale('es'),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
