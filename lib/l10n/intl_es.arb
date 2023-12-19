@@ -28,5 +28,8 @@
   "addPersonHint": "Agrega una persona",
   "addTagHint": "Agrega un tag",
   "delete": "Eliminar",
-  "edit": "Editar"
+  "edit": "Editar",
+  "cancel": "Cancelar",
+  "deleteDreamTitle": "Borrar sueño",
+  "deleteDreamContent": "¿Estás seguro de que deseas eliminar permanentemente este sueño? Esta acción no se puede deshacer."
 }

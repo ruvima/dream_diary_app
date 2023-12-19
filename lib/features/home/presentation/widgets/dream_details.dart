@@ -122,14 +122,15 @@ class _MenuButton extends StatelessWidget {
   Future<void> _showDeleteDialog(BuildContext context) {
     return KShowDialog.alertDialog(
       context,
-      title: 'Borrar Sueño',
-      content: 'Estas seguro?',
+      title: UiValues.deleteDreamTitle,
+      content: UiValues.deleteDreamContent,
       onCancel: () => Navigator.pop(context),
-      textOnCancel: 'Cancelar',
+      textOnCancel: UiValues.cancel,
       onAcept: () {
         Navigator.pop(context);
+        // Código para eliminar el sueño
       },
-      textOnAcept: 'Borrar',
+      textOnAcept: UiValues.delete,
     );
   }
 }

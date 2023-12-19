@@ -28,6 +28,9 @@ class UiValues {
   static final String emotionLabel = S.current.emotionLabel;
   static final String delete = S.current.delete;
   static final String edit = S.current.edit;
+  static final String cancel = S.current.cancel;
+  static final String deleteDreamTitle = S.current.deleteDreamTitle;
+  static final String deleteDreamContent = S.current.deleteDreamContent;
 
   static final String dreamTitleHint = S.current.dreamTitleHint;
   static final String dreamDescriptionHint = S.current.dreamDescriptionHint;

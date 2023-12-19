@@ -349,6 +349,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Dream`
+  String get deleteDreamTitle {
+    return Intl.message(
+      'Delete Dream',
+      name: 'deleteDreamTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to permanently delete this dream? This action cannot be undone.`
+  String get deleteDreamContent {
+    return Intl.message(
+      'Are you sure you want to permanently delete this dream? This action cannot be undone.',
+      name: 'deleteDreamContent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

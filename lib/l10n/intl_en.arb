@@ -28,5 +28,8 @@
   "addPersonHint": "Add a person",
   "addTagHint": "Add a tag",
   "delete": "Delete",
-  "edit": "Edit"
+  "edit": "Edit",
+  "cancel": "Cancel",
+  "deleteDreamTitle": "Delete Dream",
+  "deleteDreamContent": "Are you sure you want to permanently delete this dream? This action cannot be undone."
 }

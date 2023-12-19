@@ -26,7 +26,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Agrega una persona"),
         "addTagHint": MessageLookupByLibrary.simpleMessage("Agrega un tag"),
         "analysisLabel": MessageLookupByLibrary.simpleMessage("Análisis"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "delete": MessageLookupByLibrary.simpleMessage("Eliminar"),
+        "deleteDreamContent": MessageLookupByLibrary.simpleMessage(
+            "¿Estás seguro de que deseas eliminar permanentemente este sueño? Esta acción no se puede deshacer."),
+        "deleteDreamTitle":
+            MessageLookupByLibrary.simpleMessage("Borrar sueño"),
         "dreamClarityLabel": MessageLookupByLibrary.simpleMessage("Claridad:"),
         "dreamDescriptionHint":
             MessageLookupByLibrary.simpleMessage("¿De qué trata tu sueño?"),
