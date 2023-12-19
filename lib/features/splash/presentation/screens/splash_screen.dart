@@ -40,21 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const SizedBox.shrink(),
-              SizedBox(
-                height: 220,
-                child: Container(
-                  padding: const EdgeInsets.all(TextSize.s32),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Image.asset(
-                    UiValues.logo,
-                    fit: BoxFit.cover,
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
-                ),
-              ),
+              const KLogo(),
               Text(
                 'v1.0.0'.hardcoded,
                 style: Theme.of(context).textTheme.titleMedium,
