@@ -1,16 +1,39 @@
-# dream_diary_app
+# Dream Diary
+Mobile app to keep a dream journal using Flutter
 
-A new Flutter project.
+## Description
+This app allows users to record and organize their dreams. Users can create entries with dream details, categorize them, search by keyword, and view insights.  
 
-## Getting Started
+## Technical Aspects
 
-This project is a starting point for a Flutter application.
+* Flutter with Dart
 
-A few resources to get you started if this is your first Flutter project:
+* State Management: Flutter Bloc  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* Routing and Dependency Injection: flutter_modular
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Architecture: Clean Architecture   
+
+* Local database: Isar 
+
+* Dependencies: flutter_bloc, flutter_modular, equatable, isar
+
+## Features  
+
+* Dream register and management  
+
+* Advanced search in diary by multiple criteria
+
+* Categorization and tagging   
+
+* Statistical analysis on dreams  
+
+* User and authentication system
+
+## Usage
+To run locally:
+```
+flutter pub get
+flutter pub run build_runner build
+flutter run
+```
