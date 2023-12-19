@@ -29,7 +29,12 @@ class _FormView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<form_bloc.FormBloc, form_bloc.State>(
+    return BlocConsumer<form_bloc.FormBloc, form_bloc.State>(
+      listener: (context, state) {
+        if (state is form_bloc.FormSavedState) {
+          Modular.to.pop();
+        }
+      },
       bloc: Modular.get<form_bloc.FormBloc>(),
       builder: (_, state) {
         final model = state.model;
@@ -39,7 +44,9 @@ class _FormView extends StatelessWidget {
             children: [
               _Date(model.date),
               const Spacer(),
-              const _SaveButton(),
+              _SaveButton(
+                isLoading: state is! form_bloc.FormChangedState,
+              ),
             ],
           ),
           child: Column(
@@ -140,18 +147,20 @@ class _Date extends StatelessWidget {
 }
 
 class _SaveButton extends StatelessWidget {
-  const _SaveButton();
-
+  const _SaveButton({required this.isLoading});
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return KPrimaryButton(
       isSmall: true,
-      onPressed: () {
-        if (Form.of(context).validate()) {
-          Modular.get<form_bloc.FormBloc>().add(form_bloc.FormSavedEvent());
-          Modular.to.pop();
-        }
-      },
+      onPressed: isLoading
+          ? null
+          : () {
+              if (Form.of(context).validate()) {
+                Modular.get<form_bloc.FormBloc>()
+                    .add(form_bloc.FormSavedEvent());
+              }
+            },
       height: 30,
       text: 'Guardar',
     );

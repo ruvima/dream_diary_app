@@ -13,6 +13,14 @@ class InitialState extends State {
   const InitialState(super.model);
 }
 
+class LoadingState extends State {
+  const LoadingState(super.model);
+}
+
+class FormSavedState extends State {
+  const FormSavedState(super.model);
+}
+
 class FormChangedState extends State {
   const FormChangedState(Model model) : super(model);
 }

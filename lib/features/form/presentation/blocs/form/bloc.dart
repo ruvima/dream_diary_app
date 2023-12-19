@@ -33,12 +33,16 @@ class FormBloc extends Bloc<Event, State> {
     on<TitleChangedEvent>(_onTitleChanged);
   }
 
-  void _formSavedEvent(FormSavedEvent event, Emitter<State> emit) {
+  Future<void> _formSavedEvent(
+      FormSavedEvent event, Emitter<State> emit) async {
+    emit(LoadingState(state.model));
+
     final dreamEntity = state.model.toEntity();
 
     _dreamBloc.add(
       dream_bloc.AddDreamEvent(dreamEntity: dreamEntity),
     );
+    emit(FormSavedState(state.model));
   }
 
   void _onDateChanged(DateChangedEvent event, Emitter<State> emit) {
