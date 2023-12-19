@@ -50,21 +50,281 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `es`
-  String get es {
+  /// `Email:`
+  String get emailLabel {
     return Intl.message(
-      'es',
-      name: 'es',
+      'Email:',
+      name: 'emailLabel',
       desc: '',
       args: [],
     );
   }
 
-  /// `en`
-  String get en {
+  /// `Enter your email`
+  String get enterEmailHint {
     return Intl.message(
-      'en',
-      name: 'en',
+      'Enter your email',
+      name: 'enterEmailHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password:`
+  String get passwordLabel {
+    return Intl.message(
+      'Password:',
+      name: 'passwordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your password`
+  String get enterPasswordHint {
+    return Intl.message(
+      'Enter your password',
+      name: 'enterPasswordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get signIn {
+    return Intl.message(
+      'Sign In',
+      name: 'signIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in with:`
+  String get signInWith {
+    return Intl.message(
+      'Sign in with:',
+      name: 'signInWith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't have an account yet? Register now!`
+  String get registerNow {
+    return Intl.message(
+      'Don\'t have an account yet? Register now!',
+      name: 'registerNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot your password?`
+  String get forgotPassword {
+    return Intl.message(
+      'Forgot your password?',
+      name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Dreams`
+  String get myDreams {
+    return Intl.message(
+      'My Dreams',
+      name: 'myDreams',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get homeLabel {
+    return Intl.message(
+      'Home',
+      name: 'homeLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Analysis`
+  String get analysisLabel {
+    return Intl.message(
+      'Analysis',
+      name: 'analysisLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get searchLabel {
+    return Intl.message(
+      'Search',
+      name: 'searchLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settingsLabel {
+    return Intl.message(
+      'Settings',
+      name: 'settingsLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title:`
+  String get dreamTitleLabel {
+    return Intl.message(
+      'Title:',
+      name: 'dreamTitleLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description:`
+  String get dreamDescriptionLabel {
+    return Intl.message(
+      'Description:',
+      name: 'dreamDescriptionLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clarity:`
+  String get dreamClarityLabel {
+    return Intl.message(
+      'Clarity:',
+      name: 'dreamClarityLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dream Type:`
+  String get dreamTypeLabel {
+    return Intl.message(
+      'Dream Type:',
+      name: 'dreamTypeLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `People in the Dream:`
+  String get peopleInDreamLabel {
+    return Intl.message(
+      'People in the Dream:',
+      name: 'peopleInDreamLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tags:`
+  String get tagsLabel {
+    return Intl.message(
+      'Tags:',
+      name: 'tagsLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Emotion:`
+  String get emotionLabel {
+    return Intl.message(
+      'Emotion:',
+      name: 'emotionLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Give a title to your dream`
+  String get dreamTitleHint {
+    return Intl.message(
+      'Give a title to your dream',
+      name: 'dreamTitleHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What's your dream about?`
+  String get dreamDescriptionHint {
+    return Intl.message(
+      'What\'s your dream about?',
+      name: 'dreamDescriptionHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dream Details`
+  String get dreamDetailsTitle {
+    return Intl.message(
+      'Dream Details',
+      name: 'dreamDetailsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Emotions:`
+  String get yourEmotionsLabel {
+    return Intl.message(
+      'Your Emotions:',
+      name: 'yourEmotionsLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suggestions:`
+  String get suggestionsLabel {
+    return Intl.message(
+      'Suggestions:',
+      name: 'suggestionsLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How are you feeling?`
+  String get feelingsHint {
+    return Intl.message(
+      'How are you feeling?',
+      name: 'feelingsHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add a person`
+  String get addPersonHint {
+    return Intl.message(
+      'Add a person',
+      name: 'addPersonHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add a tag`
+  String get addTagHint {
+    return Intl.message(
+      'Add a tag',
+      name: 'addTagHint',
       desc: '',
       args: [],
     );
@@ -76,6 +336,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
+      Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'es'),
     ];
   }

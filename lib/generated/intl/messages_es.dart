@@ -22,7 +22,48 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "en": MessageLookupByLibrary.simpleMessage("en"),
-        "es": MessageLookupByLibrary.simpleMessage("es")
+        "addPersonHint":
+            MessageLookupByLibrary.simpleMessage("Agrega una persona"),
+        "addTagHint": MessageLookupByLibrary.simpleMessage("Agrega un tag"),
+        "analysisLabel": MessageLookupByLibrary.simpleMessage("Análisis"),
+        "dreamClarityLabel": MessageLookupByLibrary.simpleMessage("Claridad:"),
+        "dreamDescriptionHint":
+            MessageLookupByLibrary.simpleMessage("¿De qué trata tu sueño?"),
+        "dreamDescriptionLabel":
+            MessageLookupByLibrary.simpleMessage("Descripción:"),
+        "dreamDetailsTitle":
+            MessageLookupByLibrary.simpleMessage("Detalles de tu sueño"),
+        "dreamTitleHint":
+            MessageLookupByLibrary.simpleMessage("Dale un título a tu sueño"),
+        "dreamTitleLabel": MessageLookupByLibrary.simpleMessage("Título:"),
+        "dreamTypeLabel":
+            MessageLookupByLibrary.simpleMessage("Tipo de sueño:"),
+        "emailLabel":
+            MessageLookupByLibrary.simpleMessage("Correo electrónico:"),
+        "emotionLabel": MessageLookupByLibrary.simpleMessage("Emoción:"),
+        "enterEmailHint": MessageLookupByLibrary.simpleMessage(
+            "Ingresa tu correo electrónico"),
+        "enterPasswordHint":
+            MessageLookupByLibrary.simpleMessage("Ingresa tu contraseña"),
+        "feelingsHint":
+            MessageLookupByLibrary.simpleMessage("¿Cómo te sientes?"),
+        "forgotPassword":
+            MessageLookupByLibrary.simpleMessage("¿Olvidaste tu contraseña?"),
+        "homeLabel": MessageLookupByLibrary.simpleMessage("Inicio"),
+        "myDreams": MessageLookupByLibrary.simpleMessage("Mis sueños"),
+        "passwordLabel": MessageLookupByLibrary.simpleMessage("Contraseña:"),
+        "peopleInDreamLabel":
+            MessageLookupByLibrary.simpleMessage("Personas en el sueño:"),
+        "registerNow": MessageLookupByLibrary.simpleMessage(
+            "¿No tienes una cuenta aún? ¡Regístrate ahora!"),
+        "searchLabel": MessageLookupByLibrary.simpleMessage("Búsqueda"),
+        "settingsLabel": MessageLookupByLibrary.simpleMessage("Ajustes"),
+        "signIn": MessageLookupByLibrary.simpleMessage("Iniciar Sesión"),
+        "signInWith":
+            MessageLookupByLibrary.simpleMessage("Iniciar sesión con:"),
+        "suggestionsLabel":
+            MessageLookupByLibrary.simpleMessage("Sugerencias:"),
+        "tagsLabel": MessageLookupByLibrary.simpleMessage("Tags:"),
+        "yourEmotionsLabel": MessageLookupByLibrary.simpleMessage("Emociones:")
       };
 }
