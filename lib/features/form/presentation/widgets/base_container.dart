@@ -27,6 +27,11 @@ class _BaseContainer extends StatelessWidget {
             Row(
               children: [
                 KIconButton(
+                  compact: true,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: KSizes.p8,
+                  ),
+                  size: 28,
                   icon: Icons.close,
                   onPressed: () {
                     Modular.to.pop();
