@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../core/core.dart';
 import '../../../../core/shared/domain/domain.dart';
+import '../../blocs/dream/bloc.dart' as dream_bloc;
 
 class DreamDetailsScreen extends StatelessWidget {
   const DreamDetailsScreen({
@@ -18,8 +20,8 @@ class DreamDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: colors.background,
         title: Text(UiValues.dreamDetailsTitle),
-        actions: const [
-          _MenuButton(),
+        actions: [
+          _MenuButton(dreamId: dream.isarId),
         ],
       ),
       body: SingleChildScrollView(
@@ -86,7 +88,9 @@ class DreamDetailsScreen extends StatelessWidget {
 }
 
 class _MenuButton extends StatelessWidget {
-  const _MenuButton();
+  const _MenuButton({required this.dreamId});
+
+  final int dreamId;
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +108,7 @@ class _MenuButton extends StatelessWidget {
       onSelected: (menuOption) {
         if (menuOption == MenuOption.edit) {
         } else if (menuOption == MenuOption.delete) {
-          _showDeleteDialog(context);
+          _showDeleteDialog(context, dreamId: dreamId);
         }
       },
       itemBuilder: (_) => List.generate(
@@ -112,14 +116,19 @@ class _MenuButton extends StatelessWidget {
         (index) => PopupMenuItem<MenuOption>(
           value: MenuOption.values[index],
           child: KTextMedium(
-            menuItemLabel(items[index]),
+            menuItemLabel(
+              items[index],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Future<void> _showDeleteDialog(BuildContext context) {
+  Future<void> _showDeleteDialog(
+    BuildContext context, {
+    required int dreamId,
+  }) {
     return KShowDialog.alertDialog(
       context,
       title: UiValues.deleteDreamTitle,
@@ -127,8 +136,10 @@ class _MenuButton extends StatelessWidget {
       onCancel: () => Navigator.pop(context),
       textOnCancel: UiValues.cancel,
       onAcept: () {
-        Navigator.pop(context);
-        // Código para eliminar el sueño
+        Modular.get<dream_bloc.DreamBloc>().add(
+          dream_bloc.DeleteDreamEvent(dreamId),
+        );
+        Modular.to.pushReplacementNamed(Routes.home);
       },
       textOnAcept: UiValues.delete,
     );

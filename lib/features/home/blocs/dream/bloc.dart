@@ -49,14 +49,13 @@ class DreamBloc extends Bloc<Event, State> {
 
     try {
       final oldDreams = state.model.dreams;
-      debugPrint('_onAddDreamEvent: ${oldDreams.length}');
 
       final saveOnStorage =
           await _localStorageRepository.create(event.dreamEntity);
 
       if (saveOnStorage) {
         final dreams = [event.dreamEntity, ...oldDreams];
-        debugPrint('_onAddDreamEvent: ${dreams.length}');
+
         emit(
           DreamsLoaded(
             state.model.copyWith(dreams: dreams),
@@ -73,5 +72,31 @@ class DreamBloc extends Bloc<Event, State> {
   }
 
   FutureOr<void> _onUpdateDreamEvent(UpdateDreamEvent event, Emitter emit) {}
-  FutureOr<void> _onDeleteDreamEvent(DeleteDreamEvent event, Emitter emit) {}
+
+  FutureOr<void> _onDeleteDreamEvent(
+      DeleteDreamEvent event, Emitter emit) async {
+    emit(LoadingState(state.model));
+
+    try {
+      final oldDreams = state.model.dreams;
+      final success = await _localStorageRepository.delete(event.id);
+      if (success) {
+        final dreams = oldDreams
+            .where((dreamEntity) => dreamEntity.isarId != event.id)
+            .toList();
+
+        emit(
+          DreamsLoaded(
+            state.model.copyWith(dreams: dreams),
+          ),
+        );
+      }
+    } catch (e) {
+      emit(
+        ErrorState(
+          state.model.copyWith(error: '$e'),
+        ),
+      );
+    }
+  }
 }

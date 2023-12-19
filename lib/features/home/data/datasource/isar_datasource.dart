@@ -64,7 +64,6 @@ class IsarDatasource extends LocalStorageDatasource {
   Future<bool> delete(int id) async {
     try {
       final isar = await _db;
-
       final success = await isar.writeTxn(() async {
         return await isar.dreamEntitys.delete(id);
       });

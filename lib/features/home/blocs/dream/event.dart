@@ -22,4 +22,11 @@ class AddDreamEvent extends Event {
 
 class UpdateDreamEvent extends Event {}
 
-class DeleteDreamEvent extends Event {}
+class DeleteDreamEvent extends Event {
+  const DeleteDreamEvent(this.id);
+
+  final int id;
+
+  @override
+  List<Object> get props => [id];
+}
