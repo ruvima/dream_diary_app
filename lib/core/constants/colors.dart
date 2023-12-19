@@ -57,14 +57,14 @@ class AppColors {
   /// Color: Dark Red
   static const Color lightOnErrorContainer = Color(0xFF410002);
 
-  /// Color: Honeydew
-  static const Color lightBackground = Color(0xFFEFFFFD);
+  /// Color: Ghost white
+  static const Color lightBackground = Color(0xFFF8F8FF);
 
   /// Color: Eerie Black
   static const Color lightOnBackground = Color(0xFF1D1B1E);
 
-  /// Color: Baby Blue Eyes
-  static const Color lightSurface = Color(0xFFD7E9F7);
+  /// Color: Lavender (web)
+  static const Color lightSurface = Color(0xFFE6E6FA);
 
   /// Color: Eerie Black
   static const Color lightOnSurface = Color(0xFF1D1B1E);

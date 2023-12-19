@@ -7,12 +7,15 @@ class KFilterChip extends StatelessWidget {
     super.key,
     required this.label,
     required this.onSelected,
+    required this.selected,
   });
   final Function(bool)? onSelected;
   final String label;
+  final bool selected;
   @override
   Widget build(BuildContext context) {
     return FilterChip(
+      selected: selected,
       padding: EdgeInsets.zero,
       backgroundColor: Theme.of(context).colorScheme.surface,
       label: KTextMedium(label),

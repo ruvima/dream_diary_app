@@ -39,7 +39,7 @@ class _ModalSheet extends ModalRoute {
   String? get barrierLabel => null;
 
   @override
-  bool get maintainState => true;
+  bool get maintainState => false;
 
   @override
   Widget buildPage(

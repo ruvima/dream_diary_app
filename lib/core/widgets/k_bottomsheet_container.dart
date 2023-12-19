@@ -6,11 +6,11 @@ class KBottomSheetContainer extends StatelessWidget {
   const KBottomSheetContainer({
     super.key,
     required this.child,
-    this.label,
+    required this.label,
   });
 
   final Widget child;
-  final String? label;
+  final String label;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +37,7 @@ class KBottomSheetContainer extends StatelessWidget {
                   gapW4,
                   Expanded(
                     child: KTextLarge(
-                      label ?? 'Laberinto Enigmatico',
+                      label,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

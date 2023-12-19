@@ -17,6 +17,7 @@ class KTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.textInputAction,
     this.validator,
+    this.suffixIcon,
   });
 
   final bool obscureText;
@@ -31,11 +32,13 @@ class KTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final ValueChanged<String>? onChanged;
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
     return TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction,
+      onTapOutside: (_) => FocusScope.of(context).unfocus(),
       controller: controller,
       obscureText: obscureText,
       validator: validator,
@@ -51,6 +54,7 @@ class KTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
+        suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
         filled: true,
         fillColor: theme.surface,

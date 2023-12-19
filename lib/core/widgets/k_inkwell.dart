@@ -15,8 +15,8 @@ class KInkwell extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(borderRadius),
-      splashColor: Theme.of(context).colorScheme.primary,
-      highlightColor: Theme.of(context).colorScheme.primary,
+      splashColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+      highlightColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
       onTap: onTap,
       child: child,
     );

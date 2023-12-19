@@ -14,7 +14,7 @@ class KCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
+      color: Theme.of(context).colorScheme.surface,
       borderRadius: const BorderRadius.all(
         Radius.circular(KSizes.p12),
       ),
