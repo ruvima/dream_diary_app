@@ -1,17 +1,30 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../core/shared/domain/domain.dart';
 import '../analysis/module.dart';
+import '../form/module.dart';
 import '../search/module.dart';
 import '../tools/module.dart';
-import 'data/repositories/dream_repository_impl.dart';
+import 'blocs/dream/bloc.dart';
+import 'data/repositories/local_storage_repository_impl.dart';
 import 'domain/domain.dart';
-import 'screens/base_screen.dart';
-import 'screens/home_screen.dart';
+import 'presentation/screens/base_screen.dart';
+import 'presentation/screens/home_screen.dart';
+import 'presentation/widgets/dream_details.dart';
 
 class HomeModule extends Module {
   @override
   void binds(Injector i) {
-    i.addSingleton<DreamRepository>(() => DreamRepositoryImpl());
+    i.addSingleton<LocalStorageRepository>(
+      () => LocalStorageRepositoryImpl(),
+    );
+    i.addSingleton<DreamBloc>(
+      () => DreamBloc(
+        localStorageRepository: i.get<LocalStorageRepository>(),
+      )..add(
+          LoadDreamsEvent(),
+        ),
+    );
   }
 
   @override
@@ -22,25 +35,37 @@ class HomeModule extends Module {
       children: [
         ModuleRoute(
           '/home',
-          transition: TransitionType.downToUp,
+          transition: TransitionType.noTransition,
           module: _HomeModule(),
         ),
         ModuleRoute(
           '/analysis',
-          transition: TransitionType.downToUp,
+          transition: TransitionType.noTransition,
           module: AnalysisModule(),
         ),
         ModuleRoute(
           '/search',
-          transition: TransitionType.downToUp,
+          transition: TransitionType.noTransition,
           module: SearchModule(),
         ),
         ModuleRoute(
           '/tools',
-          transition: TransitionType.downToUp,
+          transition: TransitionType.noTransition,
           module: ToolsModule(),
         ),
       ],
+    );
+
+    r.module(
+      '/form',
+      module: FormModule(),
+    );
+    r.child(
+      '/dream_details',
+      transition: TransitionType.rightToLeft,
+      child: (_) => DreamDetailsScreen(
+        dream: r.args.data as DreamEntity,
+      ),
     );
   }
 }
