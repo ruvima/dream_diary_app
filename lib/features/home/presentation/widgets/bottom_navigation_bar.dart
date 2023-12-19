@@ -33,7 +33,7 @@ class _BottomNavigationBar extends StatelessWidget {
             _NavigationItem(
               activeIcon: Icons.build,
               inactiveIcon: Icons.build_outlined,
-              label: UiValues.searchLabel,
+              label: UiValues.toolsLabel,
             ),
           ],
           currentIndex: model.currentIndex,

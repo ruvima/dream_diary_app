@@ -18,6 +18,7 @@ class UiValues {
   static final String analysisLabel = S.current.analysisLabel;
   static final String searchLabel = S.current.searchLabel;
   static final String settingsLabel = S.current.settingsLabel;
+  static final String toolsLabel = S.current.toolsLabel;
 
   static final String dreamTitleLabel = S.current.dreamTitleLabel;
   static final String dreamDescriptionLabel = S.current.dreamDescriptionLabel;

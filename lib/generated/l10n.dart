@@ -170,6 +170,16 @@ class S {
     );
   }
 
+  /// `Tools`
+  String get toolsLabel {
+    return Intl.message(
+      'Tools',
+      name: 'toolsLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Settings`
   String get settingsLabel {
     return Intl.message(

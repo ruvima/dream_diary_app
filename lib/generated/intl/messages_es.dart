@@ -71,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "suggestionsLabel":
             MessageLookupByLibrary.simpleMessage("Sugerencias:"),
         "tagsLabel": MessageLookupByLibrary.simpleMessage("Tags:"),
+        "toolsLabel": MessageLookupByLibrary.simpleMessage("Herramientas"),
         "yourEmotionsLabel": MessageLookupByLibrary.simpleMessage("Emociones:")
       };
 }
