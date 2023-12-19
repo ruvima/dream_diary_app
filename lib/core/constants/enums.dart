@@ -21,3 +21,8 @@ enum DreamType {
   const DreamType(this.dreamTypeName);
   final String dreamTypeName;
 }
+
+enum MenuOption {
+  edit,
+  delete,
+}

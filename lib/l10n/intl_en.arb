@@ -26,5 +26,7 @@
   "suggestionsLabel": "Suggestions:",
   "feelingsHint": "How are you feeling?",
   "addPersonHint": "Add a person",
-  "addTagHint": "Add a tag"
+  "addTagHint": "Add a tag",
+  "delete": "Delete",
+  "edit": "Edit"
 }

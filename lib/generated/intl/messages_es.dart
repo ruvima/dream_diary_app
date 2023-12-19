@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Agrega una persona"),
         "addTagHint": MessageLookupByLibrary.simpleMessage("Agrega un tag"),
         "analysisLabel": MessageLookupByLibrary.simpleMessage("Análisis"),
+        "delete": MessageLookupByLibrary.simpleMessage("Eliminar"),
         "dreamClarityLabel": MessageLookupByLibrary.simpleMessage("Claridad:"),
         "dreamDescriptionHint":
             MessageLookupByLibrary.simpleMessage("¿De qué trata tu sueño?"),
@@ -38,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dreamTitleLabel": MessageLookupByLibrary.simpleMessage("Título:"),
         "dreamTypeLabel":
             MessageLookupByLibrary.simpleMessage("Tipo de sueño:"),
+        "edit": MessageLookupByLibrary.simpleMessage("Editar"),
         "emailLabel":
             MessageLookupByLibrary.simpleMessage("Correo electrónico:"),
         "emotionLabel": MessageLookupByLibrary.simpleMessage("Emoción:"),

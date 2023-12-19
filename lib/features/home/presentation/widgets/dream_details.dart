@@ -18,13 +18,18 @@ class DreamDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: colors.background,
         title: Text(UiValues.dreamDetailsTitle),
+        actions: const [
+          _MenuButton(),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: TextSize.s16),
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(KSizes.p12),
+            ),
             color: colors.surface,
           ),
           child: Column(
@@ -76,6 +81,55 @@ class DreamDetailsScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _MenuButton extends StatelessWidget {
+  const _MenuButton();
+
+  @override
+  Widget build(BuildContext context) {
+    final items = [MenuOption.edit, MenuOption.delete];
+
+    String menuItemLabel(MenuOption menuOption) {
+      return menuOption == MenuOption.edit
+          ? UiValues.edit
+          : menuOption == MenuOption.delete
+              ? UiValues.delete
+              : '';
+    }
+
+    return PopupMenuButton<MenuOption>(
+      onSelected: (menuOption) {
+        if (menuOption == MenuOption.edit) {
+        } else if (menuOption == MenuOption.delete) {
+          _showDeleteDialog(context);
+        }
+      },
+      itemBuilder: (_) => List.generate(
+        items.length,
+        (index) => PopupMenuItem<MenuOption>(
+          value: MenuOption.values[index],
+          child: KTextMedium(
+            menuItemLabel(items[index]),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showDeleteDialog(BuildContext context) {
+    return KShowDialog.alertDialog(
+      context,
+      title: 'Borrar Sueño',
+      content: 'Estas seguro?',
+      onCancel: () => Navigator.pop(context),
+      textOnCancel: 'Cancelar',
+      onAcept: () {
+        Navigator.pop(context);
+      },
+      textOnAcept: 'Borrar',
     );
   }
 }
