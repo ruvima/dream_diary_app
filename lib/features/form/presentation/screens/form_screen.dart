@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -97,7 +99,7 @@ class _Date extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return KInkwell(
-      onTap: () {},
+      onTap: () => _datePicker(context),
       child: Padding(
         padding: const EdgeInsets.only(
           top: KSizes.p4,
@@ -119,6 +121,21 @@ class _Date extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  FutureOr<void> _datePicker(BuildContext context) async {
+    final selectedDate = await showDatePicker(
+      context: context,
+      initialDate: date,
+      firstDate: DateTime(1990, 1, 01),
+      lastDate: DateTime.now(),
+    );
+
+    if (selectedDate != null) {
+      Modular.get<form_bloc.FormBloc>().add(
+        form_bloc.DateChangedEvent(selectedDate),
+      );
+    }
   }
 }
 
