@@ -54,7 +54,8 @@ class DreamBloc extends Bloc<Event, State> {
           await _localStorageRepository.create(event.dreamEntity);
 
       if (saveOnStorage) {
-        final dreams = [event.dreamEntity, ...oldDreams];
+        final dreams = [event.dreamEntity, ...oldDreams]
+          ..sort((a, b) => b.date.compareTo(a.date));
 
         emit(
           DreamsLoaded(
