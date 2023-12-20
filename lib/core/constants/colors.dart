@@ -61,7 +61,7 @@ class AppColors {
   static const Color lightBackground = Color(0xFFF8F8FF);
 
   /// Color: Eerie Black
-  static const Color lightOnBackground = Color(0xFF1D1B1E);
+  static const Color lightOnBackground = Color(0xFF000000);
 
   /// Color: Lavender (web)
   static const Color lightSurface = Color(0xFFE6E6FA);
@@ -100,11 +100,10 @@ class AppColors {
   static const Color lightScrim = Color(0xFF000000);
 
   // Dark Colors ----------------------------------------------
-  /// Color: Light Lavender
-  static const Color darkPrimary = Color(0xFFD7BAFF);
+  static const Color darkPrimary = Color(0xFF2B62EE);
 
   /// Color: Dark Blue Violet
-  static const Color darkOnPrimary = Color(0xFF3F1B6E);
+  static const Color darkOnPrimary = Color(0xFFFFFEFF);
 
   /// Color: Byzantine
   static const Color darkPrimaryContainer = Color(0xFF563586);
@@ -119,7 +118,7 @@ class AppColors {
   static const Color darkOnSecondary = Color(0xFF352D40);
 
   /// Color: Rifle Green
-  static const Color darkSecondaryContainer = Color(0xFF4C4357);
+  static const Color darkSecondaryContainer = Color(0xFF32127A);
 
   /// Color: Light Lavender
   static const Color darkOnSecondaryContainer = Color(0xFFEBDDF7);
@@ -148,14 +147,12 @@ class AppColors {
   /// Color: Raisin Black
   static const Color darkOnErrorContainer = Color(0xFFFFDAD6);
 
-  /// Color: Charcoal
-  static const Color darkBackground = Color(0xFF232931);
+  static const Color darkBackground = Color(0xFF081131);
 
   /// Color: Light Gray
-  static const Color darkOnBackground = Color(0xFFEEEEEE);
+  static const Color darkOnBackground = Color(0xFFFFFFFF);
 
-  /// Color: Black Coral
-  static const Color darkSurface = Color(0xFF393E46);
+  static const Color darkSurface = Color(0xFF212946);
 
   /// Color: Light Gray
   static const Color darkOnSurface = Color(0xFFEEEEEE);

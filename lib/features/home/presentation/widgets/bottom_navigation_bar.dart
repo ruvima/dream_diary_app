@@ -171,7 +171,7 @@ class _NavIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primary = Theme.of(context).colorScheme.primary;
+    final colors = Theme.of(context).colorScheme;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -182,12 +182,21 @@ class _NavIcon extends StatelessWidget {
                 ? navItem.activeIcon
                 : navItem.inactiveIcon ?? navItem.activeIcon,
             size: navItem.label != null ? 27 : 40,
+            color: isActive
+                ? colors.primary
+                : colors.onBackground.withOpacity(
+                    0.7,
+                  ),
           ),
         ),
         if (navItem.label != null)
           KTextSmall(
             navItem.label ?? '',
-            color: primary,
+            color: isActive
+                ? colors.primary
+                : colors.onBackground.withOpacity(
+                    0.7,
+                  ),
           ),
       ],
     );
