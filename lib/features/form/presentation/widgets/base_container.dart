@@ -48,9 +48,6 @@ class _BaseContainer extends StatelessWidget {
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: KSizes.p16,
-                ),
                 child: child,
               ),
             ),

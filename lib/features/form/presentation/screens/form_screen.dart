@@ -52,25 +52,19 @@ class _FormView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              KTextMedium(UiValues.dreamTitleLabel,
-                  fontWeight: FontWeight.w600),
+              _Label(UiValues.dreamTitleLabel),
               gapH4,
               const _TitleFormField(),
               gapH12,
-              KTextMedium(UiValues.dreamDescriptionLabel,
-                  fontWeight: FontWeight.w600),
+              _Label(UiValues.dreamDescriptionLabel),
               gapH4,
               const _DescriptionFormField(),
               gapH12,
-              KTextMedium(UiValues.dreamTitleLabel,
-                  fontWeight: FontWeight.w600),
+              _Label(UiValues.dreamTypeLabel),
               gapH4,
               _DreamTypes(model.dreamTypes),
               gapH4,
-              KTextMedium(
-                UiValues.dreamClarityLabel,
-                fontWeight: FontWeight.w600,
-              ),
+              _Label(UiValues.dreamClarityLabel),
               _Clarity(model.clarity),
               _ItemsBox(
                 title: UiValues.emotionLabel,
@@ -100,6 +94,23 @@ class _FormView extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _Label extends StatelessWidget {
+  const _Label(this.label);
+  final String label;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: KSizes.p16,
+      ),
+      child: KTextMedium(
+        label,
+        fontWeight: FontWeight.w600,
+      ),
     );
   }
 }
@@ -178,15 +189,18 @@ class _TitleFormField extends StatelessWidget with FormMixin {
 
   @override
   Widget build(BuildContext context) {
-    return KTextFormField(
-      hint: UiValues.dreamTitleHint,
-      onChanged: (title) {
-        if (title.isNotEmpty) {
-          Modular.get<form_bloc.FormBloc>().add(
-            form_bloc.TitleChangedEvent(title.trim()),
-          );
-        }
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: KSizes.p16),
+      child: KTextFormField(
+        hint: UiValues.dreamTitleHint,
+        onChanged: (title) {
+          if (title.isNotEmpty) {
+            Modular.get<form_bloc.FormBloc>().add(
+              form_bloc.TitleChangedEvent(title.trim()),
+            );
+          }
+        },
+      ),
     );
   }
 }
@@ -196,17 +210,20 @@ class _DescriptionFormField extends StatelessWidget with FormMixin {
 
   @override
   Widget build(BuildContext context) {
-    return KTextFormField(
-      hint: UiValues.dreamDescriptionHint,
-      maxLines: 8,
-      onChanged: (desc) {
-        if (desc.isNotEmpty) {
-          Modular.get<form_bloc.FormBloc>().add(
-            form_bloc.DescriptionChangedEvent(desc.trim()),
-          );
-        }
-      },
-      validator: notEmptyValidator,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: KSizes.p16),
+      child: KTextFormField(
+        hint: UiValues.dreamDescriptionHint,
+        maxLines: 8,
+        onChanged: (desc) {
+          if (desc.isNotEmpty) {
+            Modular.get<form_bloc.FormBloc>().add(
+              form_bloc.DescriptionChangedEvent(desc.trim()),
+            );
+          }
+        },
+        validator: notEmptyValidator,
+      ),
     );
   }
 }
