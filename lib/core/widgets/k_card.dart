@@ -7,16 +7,18 @@ class KCard extends StatelessWidget {
     super.key,
     required this.child,
     this.alignment,
+    this.color,
   });
-  final Widget child;
   final AlignmentGeometry? alignment;
+  final Color? color;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Theme.of(context).colorScheme.surface,
+      color: color ?? Theme.of(context).colorScheme.surface,
       borderRadius: const BorderRadius.all(
-        Radius.circular(KSizes.p12),
+        Radius.circular(KSizes.p16),
       ),
       child: child,
     );

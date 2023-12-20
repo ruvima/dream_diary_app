@@ -44,10 +44,9 @@ class DreamCard extends StatelessWidget {
                   vertical: true,
                 ),
                 gapH12,
-                _Emotion(
-                    emotion: dream.emotions.isEmpty
-                        ? 'empty'.hardcoded
-                        : dream.emotions.first),
+                _Date(
+                  dateTime: dream.date,
+                ),
               ],
             ],
           ),
@@ -57,12 +56,12 @@ class DreamCard extends StatelessWidget {
   }
 }
 
-class _Emotion extends StatelessWidget {
-  const _Emotion({
-    required this.emotion,
+class _Date extends StatelessWidget {
+  const _Date({
+    required this.dateTime,
   });
 
-  final String emotion;
+  final DateTime dateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +69,7 @@ class _Emotion extends StatelessWidget {
       opacity: 0.5,
       child: RotatedBox(
         quarterTurns: 3,
-        child: KTextMedium(emotion),
+        child: KTextMedium(DateFormatter.shortDate(dateTime)),
       ),
     );
   }

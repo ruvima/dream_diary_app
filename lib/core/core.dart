@@ -14,6 +14,7 @@ export 'widgets/k_card.dart';
 export 'widgets/k_chip.dart';
 export 'widgets/k_divider.dart';
 export 'widgets/k_filter_chip.dart';
+export 'widgets/k_glass_card.dart';
 export 'widgets/k_icon.dart';
 export 'widgets/k_icon_button.dart';
 export 'widgets/k_inkwell.dart';

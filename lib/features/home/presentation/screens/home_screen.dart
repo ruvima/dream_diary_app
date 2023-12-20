@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../core/shared/domain/domain.dart';
 import '../../../../core/core.dart';
-import '../../../../l10n/string_hardcoded.dart';
 import '../../blocs/dream/bloc.dart' as dream_bloc;
 
 part '../widgets/dream_card.dart';
@@ -39,6 +38,7 @@ class _DreamsView extends StatelessWidget {
           return const _DreamCardSkeleton();
         }
         return CustomScrollView(
+          physics: const BouncingScrollPhysics(),
           slivers: [
             const _Appbar(),
             SliverList.builder(
