@@ -31,9 +31,9 @@ class _BottomNavigationBar extends StatelessWidget {
               label: UiValues.searchLabel,
             ),
             _NavigationItem(
-              activeIcon: Icons.build,
-              inactiveIcon: Icons.build_outlined,
-              label: UiValues.toolsLabel,
+              activeIcon: Icons.tune,
+              inactiveIcon: Icons.tune_outlined,
+              label: UiValues.settingsLabel,
             ),
           ],
           currentIndex: model.currentIndex,
@@ -49,7 +49,7 @@ class _BottomNavigationBar extends StatelessWidget {
       nav.NavigationAction.analysis.index: Routes.analysis,
       nav.NavigationAction.form.index: Routes.form,
       nav.NavigationAction.search.index: Routes.search,
-      nav.NavigationAction.tools.index: Routes.tools,
+      nav.NavigationAction.setting.index: Routes.setting,
     };
 
     final String? nextRoute = routes[nextIndex];

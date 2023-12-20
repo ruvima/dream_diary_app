@@ -4,7 +4,7 @@ import '../../core/shared/domain/domain.dart';
 import '../analysis/module.dart';
 import '../form/module.dart';
 import '../search/module.dart';
-import '../tools/module.dart';
+import '../setting/module.dart';
 import 'blocs/dream/bloc.dart';
 import 'data/repositories/local_storage_repository_impl.dart';
 import 'domain/domain.dart';
@@ -49,9 +49,9 @@ class HomeModule extends Module {
           module: SearchModule(),
         ),
         ModuleRoute(
-          '/tools',
+          '/settings',
           transition: TransitionType.noTransition,
-          module: ToolsModule(),
+          module: SettingsModule(),
         ),
       ],
     );

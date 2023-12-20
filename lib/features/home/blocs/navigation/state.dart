@@ -5,7 +5,7 @@ enum NavigationAction {
   analysis(1),
   form(2),
   search(3),
-  tools(4);
+  setting(4);
 
   const NavigationAction(this.position);
 

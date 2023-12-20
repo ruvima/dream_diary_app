@@ -12,5 +12,5 @@ class Routes {
 
   static const String analysis = '/home/analysis/';
   static const String search = '/home/search/';
-  static const String tools = '/home/tools/';
+  static const String setting = '/home/settings/';
 }
