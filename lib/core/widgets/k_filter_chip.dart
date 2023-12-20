@@ -15,6 +15,7 @@ class KFilterChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FilterChip(
+      showCheckmark: false,
       selected: selected,
       padding: EdgeInsets.zero,
       backgroundColor: Theme.of(context).colorScheme.surface,
