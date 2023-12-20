@@ -34,6 +34,7 @@ class Model extends Equatable {
     this.dreamTypes = const [],
     this.emotions = const [],
     this.people = const [],
+    this.places = const [],
     this.tags = const [],
     this.title = '',
   })  : id = uuid ?? const Uuid().v4(),
@@ -44,10 +45,26 @@ class Model extends Equatable {
   final List<String> dreamTypes;
   final List<String> emotions;
   final List<String> people;
+  final List<String> places;
   final List<String> tags;
   final String description;
   final String id;
   final String title;
+
+  DreamEntity toEntity() {
+    return DreamEntity(
+      clarity: clarity,
+      date: date,
+      description: description,
+      dreamTypes: dreamTypes,
+      emotions: emotions,
+      id: id,
+      people: people,
+      places: places,
+      tags: tags,
+      title: title,
+    );
+  }
 
   @override
   List<Object> get props {
@@ -57,6 +74,7 @@ class Model extends Equatable {
       dreamTypes,
       emotions,
       people,
+      places,
       tags,
       description,
       id,
@@ -70,6 +88,7 @@ class Model extends Equatable {
     List<String>? dreamTypes,
     List<String>? emotions,
     List<String>? people,
+    List<String>? places,
     List<String>? tags,
     String? description,
     String? id,
@@ -81,23 +100,11 @@ class Model extends Equatable {
       dreamTypes: dreamTypes ?? this.dreamTypes,
       emotions: emotions ?? this.emotions,
       people: people ?? this.people,
+      places: places ?? this.places,
       tags: tags ?? this.tags,
       description: description ?? this.description,
       uuid: id ?? this.id,
       title: title ?? this.title,
     );
-  }
-
-  DreamEntity toEntity() {
-    return DreamEntity(
-        date: date,
-        clarity: clarity,
-        dreamTypes: dreamTypes,
-        emotions: emotions,
-        people: people,
-        tags: tags,
-        description: description,
-        id: id,
-        title: title);
   }
 }

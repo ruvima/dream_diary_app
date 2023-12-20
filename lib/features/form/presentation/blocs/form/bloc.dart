@@ -26,6 +26,8 @@ class FormBloc extends Bloc<Event, State> {
 
     on<PeopleChangedEvent>(_onPeopleChanged);
 
+    on<PlaceChangedEvent>(_onPlaceChanged);
+
     on<TagsChangedEvent>(_onTagsChanged);
 
     on<DescriptionChangedEvent>(_onDescriptionChanged);
@@ -108,6 +110,22 @@ class FormBloc extends Bloc<Event, State> {
     emit(
       FormChangedState(
         state.model.copyWith(people: people),
+      ),
+    );
+  }
+
+  void _onPlaceChanged(PlaceChangedEvent event, Emitter<State> emit) {
+    List<String> places = List.from(state.model.places);
+
+    if (places.contains(event.place)) {
+      places = places.where((person) => person != event.place).toList();
+    } else {
+      places = [event.place, ...places];
+    }
+
+    emit(
+      FormChangedState(
+        state.model.copyWith(places: places),
       ),
     );
   }

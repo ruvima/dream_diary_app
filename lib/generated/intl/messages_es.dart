@@ -61,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordLabel": MessageLookupByLibrary.simpleMessage("Contraseña:"),
         "peopleInDreamLabel":
             MessageLookupByLibrary.simpleMessage("Personas en el sueño:"),
+        "placesLabel": MessageLookupByLibrary.simpleMessage("Lugares:"),
         "registerNow": MessageLookupByLibrary.simpleMessage(
             "¿No tienes una cuenta aún? ¡Regístrate ahora!"),
         "searchLabel": MessageLookupByLibrary.simpleMessage("Búsqueda"),

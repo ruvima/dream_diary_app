@@ -73,6 +73,13 @@ class DreamDetailsScreen extends StatelessWidget {
               _WrappedItems(dream.people),
               gapH12,
               KTextMedium(
+                UiValues.placesLabel,
+                fontWeight: FontWeight.w600,
+              ),
+              gapH4,
+              _WrappedItems(dream.places),
+              gapH12,
+              KTextMedium(
                 UiValues.tagsLabel,
                 fontWeight: FontWeight.w600,
               ),

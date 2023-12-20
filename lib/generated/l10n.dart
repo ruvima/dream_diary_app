@@ -260,6 +260,16 @@ class S {
     );
   }
 
+  /// `Places:`
+  String get placesLabel {
+    return Intl.message(
+      'Places:',
+      name: 'placesLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Give a title to your dream`
   String get dreamTitleHint {
     return Intl.message(

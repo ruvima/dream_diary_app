@@ -54,6 +54,15 @@ class PeopleChangedEvent extends Event {
   List<Object> get props => [person];
 }
 
+class PlaceChangedEvent extends Event {
+  final String place;
+
+  const PlaceChangedEvent(this.place);
+
+  @override
+  List<Object> get props => [place];
+}
+
 class TagsChangedEvent extends Event {
   final String tag;
 

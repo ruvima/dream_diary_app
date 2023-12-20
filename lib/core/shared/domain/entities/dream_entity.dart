@@ -11,6 +11,7 @@ class DreamEntity {
   final List<String> dreamTypes;
   final List<String> emotions;
   final List<String> people;
+  final List<String> places;
   final List<String> tags;
   final String description;
   final String id;
@@ -23,6 +24,7 @@ class DreamEntity {
     required this.emotions,
     required this.id,
     required this.people,
+    required this.places,
     required this.tags,
     required this.title,
   });

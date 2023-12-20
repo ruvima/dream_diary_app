@@ -10,6 +10,7 @@ enum SelectType {
   emotion,
   people,
   tags,
+  places,
 }
 
 class SelectScreen extends StatelessWidget {
@@ -42,17 +43,12 @@ class _SelectView extends StatelessWidget {
       bloc: Modular.get<form_bloc.FormBloc>(),
       builder: (context, state) {
         final model = state.model;
-        final list = selectType == SelectType.emotion
-            ? model.emotions
-            : selectType == SelectType.people
-                ? model.people
-                : model.tags;
 
-        final mockList = selectType == SelectType.emotion
-            ? _commonEmotions
-            : selectType == SelectType.people
-                ? _commonPersons
-                : _commonTags;
+        final list = _getList(selectType, model);
+
+        final mockList = _getSuggestions(selectType);
+
+        final label = _getLabel(selectType);
 
         return SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: TextSize.s16),
@@ -60,7 +56,7 @@ class _SelectView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               KTextMedium(
-                UiValues.yourEmotionsLabel,
+                label,
                 fontWeight: FontWeight.w600,
               ),
               gapH4,
@@ -96,6 +92,45 @@ class _SelectView extends StatelessWidget {
         );
       },
     );
+  }
+
+  List<String> _getList(SelectType type, form_bloc.Model model) {
+    switch (type) {
+      case SelectType.emotion:
+        return model.emotions;
+      case SelectType.people:
+        return model.people;
+      case SelectType.places:
+        return model.places;
+      default:
+        return model.tags;
+    }
+  }
+
+  List<String> _getSuggestions(SelectType type) {
+    switch (type) {
+      case SelectType.emotion:
+        return _commonEmotions;
+      case SelectType.people:
+        return _commonPersons;
+      case SelectType.places:
+        return _commonPlaces;
+      default:
+        return _commonTags;
+    }
+  }
+
+  String _getLabel(SelectType type) {
+    switch (type) {
+      case SelectType.emotion:
+        return UiValues.emotionLabel;
+      case SelectType.people:
+        return UiValues.peopleInDreamLabel;
+      case SelectType.places:
+        return UiValues.placesLabel;
+      default:
+        return UiValues.tagsLabel;
+    }
   }
 }
 
@@ -157,13 +192,17 @@ void _updateFormBloc(SelectType selectType, String item) {
         form_bloc.PeopleChangedEvent(item),
       );
       break;
+    case SelectType.places:
+      Modular.get<form_bloc.FormBloc>().add(
+        form_bloc.PlaceChangedEvent(item),
+      );
+      break;
     case SelectType.tags:
       Modular.get<form_bloc.FormBloc>().add(
         form_bloc.TagsChangedEvent(item),
       );
       break;
     default:
-      // Manejar cualquier otro caso si es necesario
       break;
   }
 }
@@ -226,4 +265,21 @@ List<String> _commonTags = [
   'Transformación',
   'Despedida',
   'Reencuentro',
+];
+List<String> _commonPlaces = [
+  'Casa familiar',
+  'Trabajo o escuela',
+  'Calles familiares',
+  'Playa',
+  'Montañas',
+  'Parque',
+  'Centro comercial',
+  'Bosque',
+  'Aeropuerto',
+  'Restaurante',
+  'Estadio o auditorio',
+  'Hospital',
+  'Cielo estrellado',
+  'Estación de tren',
+  'Ciudad',
 ];

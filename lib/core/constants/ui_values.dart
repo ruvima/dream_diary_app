@@ -27,6 +27,7 @@ class UiValues {
   static final String peopleInDreamLabel = S.current.peopleInDreamLabel;
   static final String tagsLabel = S.current.tagsLabel;
   static final String emotionLabel = S.current.emotionLabel;
+  static final String placesLabel = S.current.placesLabel;
   static final String delete = S.current.delete;
   static final String edit = S.current.edit;
   static final String cancel = S.current.cancel;

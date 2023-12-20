@@ -85,6 +85,12 @@ class _FormView extends StatelessWidget {
               ),
               gapH4,
               _ItemsBox(
+                title: UiValues.placesLabel,
+                list: model.places,
+                selectType: SelectType.places,
+              ),
+              gapH4,
+              _ItemsBox(
                 title: UiValues.tagsLabel,
                 list: model.tags,
                 selectType: SelectType.tags,
