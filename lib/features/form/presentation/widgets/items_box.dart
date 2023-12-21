@@ -25,12 +25,11 @@ class _ItemsBox extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
               KIconButton(
-                icon: Icons.edit,
+                icon: Icons.add_circle_outlined,
                 onPressed: () => Modular.to.pushNamed(
                   Routes.selectView,
                   arguments: selectType,
                 ),
-                compact: true,
               ),
             ],
           ),
