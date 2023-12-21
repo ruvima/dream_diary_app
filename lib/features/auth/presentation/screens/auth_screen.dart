@@ -119,8 +119,9 @@ class _RegisterIcon extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: KSizes.p12),
       decoration: BoxDecoration(
+        border: Border.all(color: colors.surface),
         borderRadius: BorderRadius.circular(KSizes.p12),
-        color: colors.surface,
+        color: Colors.white,
       ),
       width: 50,
       height: 50,
