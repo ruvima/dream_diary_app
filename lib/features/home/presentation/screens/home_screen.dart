@@ -43,11 +43,27 @@ class _DreamsView extends StatelessWidget {
             const _Appbar(),
             SliverList.builder(
               itemCount: model.dreams.length,
-              itemBuilder: (_, i) {
+              itemBuilder: (_, index) {
+                final dream = model.dreams[index];
+                final prevDream = index > 0 ? model.dreams[index - 1] : null;
+
+                final showMonth = shouldShowMonth(dream.date, prevDream?.date);
+
                 return Padding(
-                  padding: const EdgeInsets.all(KSizes.p12),
-                  child: DreamCard(
-                    dream: model.dreams[i],
+                  padding: const EdgeInsets.symmetric(horizontal: KSizes.p16)
+                      .copyWith(
+                    bottom: KSizes.p16,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (showMonth)
+                        KHeadline6(
+                          DateFormatter.modularMonth(dream.date),
+                        ),
+                      DreamCard(dream: dream),
+                    ],
                   ),
                 );
               },
@@ -56,6 +72,10 @@ class _DreamsView extends StatelessWidget {
         );
       },
     );
+  }
+
+  bool shouldShowMonth(DateTime current, DateTime? previous) {
+    return current.month != previous?.month || current.year != previous?.year;
   }
 }
 
@@ -66,8 +86,7 @@ class _Appbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar.medium(
       backgroundColor: Theme.of(context).colorScheme.background,
-      centerTitle: true,
-      title: Text(UiValues.myDreams),
+      title: KHeadline4(UiValues.myDreams),
       actions: [
         KIconButton(
           onPressed: () {

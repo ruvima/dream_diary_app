@@ -10,14 +10,14 @@ class DreamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return KCard(
+    return KModernCard(
       child: KInkwell(
         onTap: () => Modular.to.pushNamed(
           Routes.dreamDetails,
           arguments: dream,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(KSizes.p12),
+          padding: const EdgeInsets.all(KSizes.p12).copyWith(right: KSizes.p4),
           child: Row(
             children: [
               Expanded(
@@ -39,15 +39,10 @@ class DreamCard extends StatelessWidget {
                   ],
                 ),
               ),
-              ...[
-                const KDivider(
-                  vertical: true,
-                ),
-                gapH12,
-                _Date(
-                  dateTime: dream.date,
-                ),
-              ],
+              gapW4,
+              _Date(
+                dateTime: dream.date,
+              ),
             ],
           ),
         ),
@@ -65,11 +60,16 @@ class _Date extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     return Opacity(
-      opacity: 0.5,
+      opacity: 0.7,
       child: RotatedBox(
         quarterTurns: 3,
-        child: KTextMedium(DateFormatter.shortDate(dateTime)),
+        child: KTextMedium(
+          DateFormatter.modularDay(dateTime),
+          color: colors.onPrimary,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

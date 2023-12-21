@@ -21,6 +21,7 @@ export 'widgets/k_icon.dart';
 export 'widgets/k_icon_button.dart';
 export 'widgets/k_inkwell.dart';
 export 'widgets/k_logo.dart';
+export 'widgets/k_modern_card.dart';
 export 'widgets/k_primary_button.dart';
 export 'widgets/k_skeleton.dart';
 export 'widgets/k_slider.dart';
