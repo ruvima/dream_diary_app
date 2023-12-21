@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addTagHint": MessageLookupByLibrary.simpleMessage("Add a tag"),
         "analysisLabel": MessageLookupByLibrary.simpleMessage("Analysis"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "darkModeLabel": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "deleteDreamContent": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to permanently delete this dream? This action cannot be undone."),
@@ -45,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "emailLabel": MessageLookupByLibrary.simpleMessage("Email:"),
         "emotionLabel": MessageLookupByLibrary.simpleMessage("Emotion:"),
+        "english": MessageLookupByLibrary.simpleMessage("English"),
         "enterEmailHint":
             MessageLookupByLibrary.simpleMessage("Enter your email"),
         "enterPasswordHint":
@@ -54,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "homeLabel": MessageLookupByLibrary.simpleMessage("Home"),
+        "languageLabel": MessageLookupByLibrary.simpleMessage("Language"),
         "myDreams": MessageLookupByLibrary.simpleMessage("My Dreams"),
         "passwordLabel": MessageLookupByLibrary.simpleMessage("Password:"),
         "peopleInDreamLabel":
@@ -65,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingsLabel": MessageLookupByLibrary.simpleMessage("Settings"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signInWith": MessageLookupByLibrary.simpleMessage("Sign in with:"),
+        "spanish": MessageLookupByLibrary.simpleMessage("Spanish"),
         "suggestionsLabel":
             MessageLookupByLibrary.simpleMessage("Suggestions:"),
         "tagsLabel": MessageLookupByLibrary.simpleMessage("Tags:"),

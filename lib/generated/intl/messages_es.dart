@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addTagHint": MessageLookupByLibrary.simpleMessage("Agrega un tag"),
         "analysisLabel": MessageLookupByLibrary.simpleMessage("Análisis"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "darkModeLabel": MessageLookupByLibrary.simpleMessage("Modo Oscuro"),
         "delete": MessageLookupByLibrary.simpleMessage("Eliminar"),
         "deleteDreamContent": MessageLookupByLibrary.simpleMessage(
             "¿Estás seguro de que deseas eliminar permanentemente este sueño? Esta acción no se puede deshacer."),
@@ -48,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailLabel":
             MessageLookupByLibrary.simpleMessage("Correo electrónico:"),
         "emotionLabel": MessageLookupByLibrary.simpleMessage("Emoción:"),
+        "english": MessageLookupByLibrary.simpleMessage("Inglés"),
         "enterEmailHint": MessageLookupByLibrary.simpleMessage(
             "Ingresa tu correo electrónico"),
         "enterPasswordHint":
@@ -57,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("¿Olvidaste tu contraseña?"),
         "homeLabel": MessageLookupByLibrary.simpleMessage("Inicio"),
+        "languageLabel": MessageLookupByLibrary.simpleMessage("Idioma"),
         "myDreams": MessageLookupByLibrary.simpleMessage("Mis sueños"),
         "passwordLabel": MessageLookupByLibrary.simpleMessage("Contraseña:"),
         "peopleInDreamLabel":
@@ -69,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signIn": MessageLookupByLibrary.simpleMessage("Iniciar Sesión"),
         "signInWith":
             MessageLookupByLibrary.simpleMessage("Iniciar sesión con:"),
+        "spanish": MessageLookupByLibrary.simpleMessage("Español"),
         "suggestionsLabel":
             MessageLookupByLibrary.simpleMessage("Sugerencias:"),
         "tagsLabel": MessageLookupByLibrary.simpleMessage("Tags:"),

@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'presentation/screens/tools_screens.dart';
+import 'presentation/screens/settings_screens.dart';
 
 class SettingsModule extends Module {
   @override

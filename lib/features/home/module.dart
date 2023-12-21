@@ -4,7 +4,7 @@ import '../../core/shared/domain/domain.dart';
 import '../analysis/module.dart';
 import '../form/module.dart';
 import '../search/module.dart';
-import '../setting/module.dart';
+import '../settings/module.dart';
 import 'blocs/dream/bloc.dart';
 import 'data/repositories/local_storage_repository_impl.dart';
 import 'domain/domain.dart';

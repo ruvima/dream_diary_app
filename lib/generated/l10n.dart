@@ -399,6 +399,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Dark Mode`
+  String get darkModeLabel {
+    return Intl.message(
+      'Dark Mode',
+      name: 'darkModeLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get languageLabel {
+    return Intl.message(
+      'Language',
+      name: 'languageLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spanish`
+  String get spanish {
+    return Intl.message(
+      'Spanish',
+      name: 'spanish',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

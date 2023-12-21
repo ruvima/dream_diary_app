@@ -26,3 +26,11 @@ enum MenuOption {
   edit,
   delete,
 }
+
+enum LanguageCode {
+  english('en'),
+  spanish('es');
+
+  const LanguageCode(this.languageCode);
+  final String languageCode;
+}

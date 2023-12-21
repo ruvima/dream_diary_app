@@ -33,5 +33,9 @@
   "edit": "Edit",
   "cancel": "Cancel",
   "deleteDreamTitle": "Delete Dream",
-  "deleteDreamContent": "Are you sure you want to permanently delete this dream? This action cannot be undone."
+  "deleteDreamContent": "Are you sure you want to permanently delete this dream? This action cannot be undone.",
+  "darkModeLabel": "Dark Mode",
+  "languageLabel": "Language",
+  "english": "English",
+  "spanish": "Spanish"
 }

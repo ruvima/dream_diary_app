@@ -5,39 +5,46 @@ class _BottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<nav.NavigationBloc, nav.State>(
-      buildWhen: (_, state) => state is nav.NavigationState,
+    return BlocBuilder<preferences_bloc.PreferencesBloc,
+        preferences_bloc.State>(
+      buildWhen: (_, state) => state is preferences_bloc.LanguageChangeState,
+      bloc: Modular.get<preferences_bloc.PreferencesBloc>(),
       builder: (context, state) {
-        final model = state.model;
-        return _NavigationContainer(
-          onChanged: (i) => _onTap(i, model.currentIndex),
-          items: [
-            _NavigationItem(
-              activeIcon: Icons.home,
-              inactiveIcon: Icons.home_outlined,
-              label: UiValues.homeLabel,
-            ),
-            _NavigationItem(
-              activeIcon: Icons.insert_chart,
-              inactiveIcon: Icons.insert_chart_outlined_outlined,
-              label: UiValues.analysisLabel,
-            ),
-            _NavigationItem(
-              activeIcon: Icons.add_circle_outline_outlined,
-            ),
-            _NavigationItem(
-              activeIcon: Icons.find_in_page,
-              inactiveIcon: Icons.find_in_page_outlined,
-              label: UiValues.searchLabel,
-            ),
-            _NavigationItem(
-              activeIcon: Icons.tune,
-              inactiveIcon: Icons.tune_outlined,
-              label: UiValues.settingsLabel,
-            ),
-          ],
-          currentIndex: model.currentIndex,
-          previousIndex: model.previousIndex,
+        return BlocBuilder<nav.NavigationBloc, nav.State>(
+          buildWhen: (_, state) => state is nav.NavigationState,
+          builder: (context, state) {
+            final model = state.model;
+            return _NavigationContainer(
+              onChanged: (i) => _onTap(i, model.currentIndex),
+              items: [
+                _NavigationItem(
+                  activeIcon: Icons.home,
+                  inactiveIcon: Icons.home_outlined,
+                  label: UiValues.homeLabel,
+                ),
+                _NavigationItem(
+                  activeIcon: Icons.insert_chart,
+                  inactiveIcon: Icons.insert_chart_outlined_outlined,
+                  label: UiValues.analysisLabel,
+                ),
+                _NavigationItem(
+                  activeIcon: Icons.add_circle_outline_outlined,
+                ),
+                _NavigationItem(
+                  activeIcon: Icons.find_in_page,
+                  inactiveIcon: Icons.find_in_page_outlined,
+                  label: UiValues.searchLabel,
+                ),
+                _NavigationItem(
+                  activeIcon: Icons.tune,
+                  inactiveIcon: Icons.tune_outlined,
+                  label: UiValues.settingsLabel,
+                ),
+              ],
+              currentIndex: model.currentIndex,
+              previousIndex: model.previousIndex,
+            );
+          },
         );
       },
     );
