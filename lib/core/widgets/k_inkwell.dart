@@ -8,7 +8,7 @@ class KInkwell extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.child,
-    this.borderRadius = 12,
+    this.borderRadius = 16,
   });
 
   @override

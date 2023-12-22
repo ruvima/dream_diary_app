@@ -21,18 +21,12 @@ class KModernCard extends StatelessWidget {
     final borderadius = BorderRadius.circular(KSizes.p16);
     final colors = Theme.of(context).colorScheme;
     return Material(
+      color: Colors.transparent,
       borderRadius: borderadius,
       child: Container(
         width: width,
         height: height,
         decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: colors.primary,
-              blurRadius: 0.5,
-              offset: const Offset(0, 0.2),
-            )
-          ],
           borderRadius: borderadius,
           border: Border.all(
             color: colors.onSurface.withOpacity(0.05),
@@ -42,7 +36,7 @@ class KModernCard extends StatelessWidget {
             end: Alignment.centerRight,
             stops: const [0.85, 0.85],
             colors: [
-              colors.surface,
+              colors.surface.withOpacity(0.7),
               colors.primary,
             ],
           ),

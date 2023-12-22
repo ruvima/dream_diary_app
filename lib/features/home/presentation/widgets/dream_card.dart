@@ -10,12 +10,12 @@ class DreamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return KModernCard(
-      child: KInkwell(
-        onTap: () => Modular.to.pushNamed(
-          Routes.dreamDetails,
-          arguments: dream.id,
-        ),
+    return KInkwell(
+      onTap: () => Modular.to.pushNamed(
+        Routes.dreamDetails,
+        arguments: dream.id,
+      ),
+      child: KModernCard(
         child: Padding(
           padding: const EdgeInsets.all(KSizes.p12).copyWith(right: KSizes.p4),
           child: Row(
