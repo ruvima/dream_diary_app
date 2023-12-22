@@ -61,19 +61,19 @@ class _BottomNavigationBar extends StatelessWidget {
 
     final String? nextRoute = routes[nextIndex];
 
-    // if (nextRoute != null) {
-    //   Modular.to.navigate(nextRoute);
-    // }
-
     if (nextRoute != null &&
         nextIndex != currentIndex &&
         nextRoute != Routes.form) {
       Modular.to.navigate(nextRoute);
     } else if (nextRoute == Routes.form) {
-      Modular.to.pushNamed(nextRoute!);
-      // VisorModal.show(
-      //   child: const DreamFormScreen(),
-      // );
+      // final Map<FormArgs, dynamic> args = {
+      //   FormArgs.dreamEntity: null,
+      //   FormArgs.formType: FormType.edit,
+      // };
+      Modular.to.pushNamed(
+        nextRoute!,
+        arguments: FormArgs(formType: FormType.create),
+      );
     }
   }
 }

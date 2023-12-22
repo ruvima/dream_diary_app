@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../core/shared/presentation/bloc/preferences/preferences_bloc.dart'
+import '../../core/shared/bloc/preferences/preferences_bloc.dart'
     as preferences_bloc;
 import '../../generated/l10n.dart';
 import '../theme/app_theme.dart';

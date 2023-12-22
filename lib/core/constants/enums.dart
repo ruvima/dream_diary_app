@@ -34,3 +34,8 @@ enum LanguageCode {
   const LanguageCode(this.languageCode);
   final String languageCode;
 }
+
+enum FormType {
+  edit,
+  create,
+}

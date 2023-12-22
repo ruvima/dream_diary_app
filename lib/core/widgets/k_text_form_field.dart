@@ -18,6 +18,7 @@ class KTextFormField extends StatelessWidget {
     this.textInputAction,
     this.validator,
     this.suffixIcon,
+    this.initialValue,
   });
 
   final bool obscureText;
@@ -33,6 +34,7 @@ class KTextFormField extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final String? initialValue;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;

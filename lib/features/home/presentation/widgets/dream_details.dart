@@ -1,100 +1,116 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../core/core.dart';
 import '../../../../core/shared/domain/domain.dart';
+import '../../../../core/shared/models/form_args.dart';
 import '../../blocs/dream/bloc.dart' as dream_bloc;
 
 class DreamDetailsScreen extends StatelessWidget {
   const DreamDetailsScreen({
     super.key,
-    required this.dream,
+    required this.dreamId,
   });
 
-  final DreamEntity dream;
+  final String dreamId;
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: colors.background,
-        title: Text(UiValues.dreamDetailsTitle),
-        actions: [
-          _MenuButton(dreamId: dream.isarId),
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: TextSize.s16),
-        child: KCard(
-          child: Padding(
-            padding: const EdgeInsets.all(KSizes.p8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: KTextMedium(
-                    DateFormatter.fullDate(dream.date),
-                    fontWeight: FontWeight.w600,
-                  ),
+    return BlocBuilder<dream_bloc.DreamBloc, dream_bloc.State>(
+      bloc: Modular.get<dream_bloc.DreamBloc>(),
+      buildWhen: (_, state) => state is dream_bloc.DreamsLoaded,
+      builder: (_, state) {
+        final dream = state.model.dreams.firstWhere(
+          (dream) => dream.id == dreamId,
+        );
+        if (state is dream_bloc.LoadingState) {
+          return const CircularProgressScaffold();
+        } else if (state is dream_bloc.ErrorState) {
+          return ErrorScaffold(message: state.model.error);
+        }
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: colors.background,
+            title: Text(UiValues.dreamDetailsTitle),
+            actions: [
+              _MenuButton(dream: dream),
+            ],
+          ),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: TextSize.s16),
+            child: KCard(
+              child: Padding(
+                padding: const EdgeInsets.all(KSizes.p8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: KTextMedium(
+                        DateFormatter.fullDate(dream.date),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    KTextMedium(
+                      UiValues.dreamTitleLabel,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    gapH4,
+                    KHeadline6(dream.title),
+                    gapH12,
+                    KTextMedium(UiValues.dreamDescriptionLabel,
+                        fontWeight: FontWeight.w600),
+                    gapH4,
+                    KTextLarge(dream.description),
+                    gapH12,
+                    KTextMedium(UiValues.dreamClarityLabel,
+                        fontWeight: FontWeight.w600),
+                    gapH4,
+                    _DreamClarity(dream.clarity),
+                    gapH12,
+                    KTextMedium(UiValues.dreamTypeLabel,
+                        fontWeight: FontWeight.w600),
+                    gapH4,
+                    _WrappedItems(dream.dreamTypes),
+                    gapH12,
+                    KTextMedium(
+                      UiValues.peopleInDreamLabel,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    gapH4,
+                    _WrappedItems(dream.people),
+                    gapH12,
+                    KTextMedium(
+                      UiValues.placesLabel,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    gapH4,
+                    _WrappedItems(dream.places),
+                    gapH12,
+                    KTextMedium(
+                      UiValues.tagsLabel,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    gapH4,
+                    _WrappedItems(dream.tags),
+                    gapH12,
+                  ],
                 ),
-                KTextMedium(
-                  UiValues.dreamTitleLabel,
-                  fontWeight: FontWeight.w600,
-                ),
-                gapH4,
-                KHeadline6(dream.title),
-                gapH12,
-                KTextMedium(UiValues.dreamDescriptionLabel,
-                    fontWeight: FontWeight.w600),
-                gapH4,
-                KTextLarge(dream.description),
-                gapH12,
-                KTextMedium(UiValues.dreamClarityLabel,
-                    fontWeight: FontWeight.w600),
-                gapH4,
-                _DreamClarity(dream.clarity),
-                gapH12,
-                KTextMedium(UiValues.dreamTypeLabel,
-                    fontWeight: FontWeight.w600),
-                gapH4,
-                _WrappedItems(dream.dreamTypes),
-                gapH12,
-                KTextMedium(
-                  UiValues.peopleInDreamLabel,
-                  fontWeight: FontWeight.w600,
-                ),
-                gapH4,
-                _WrappedItems(dream.people),
-                gapH12,
-                KTextMedium(
-                  UiValues.placesLabel,
-                  fontWeight: FontWeight.w600,
-                ),
-                gapH4,
-                _WrappedItems(dream.places),
-                gapH12,
-                KTextMedium(
-                  UiValues.tagsLabel,
-                  fontWeight: FontWeight.w600,
-                ),
-                gapH4,
-                _WrappedItems(dream.tags),
-                gapH12,
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
 
 class _MenuButton extends StatelessWidget {
-  const _MenuButton({required this.dreamId});
+  const _MenuButton({required this.dream});
 
-  final int dreamId;
+  final DreamEntity dream;
 
   @override
   Widget build(BuildContext context) {
@@ -111,8 +127,15 @@ class _MenuButton extends StatelessWidget {
     return PopupMenuButton<MenuOption>(
       onSelected: (menuOption) {
         if (menuOption == MenuOption.edit) {
+          Modular.to.pushNamed(
+            Routes.form,
+            arguments: FormArgs(
+              formType: FormType.edit,
+              dream: dream,
+            ),
+          );
         } else if (menuOption == MenuOption.delete) {
-          _showDeleteDialog(context, dreamId: dreamId);
+          _showDeleteDialog(context, dreamId: dream.isarId);
         }
       },
       itemBuilder: (_) => List.generate(

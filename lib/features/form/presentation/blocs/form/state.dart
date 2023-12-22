@@ -17,6 +17,10 @@ class LoadingState extends State {
   const LoadingState(super.model);
 }
 
+class ErrorState extends State {
+  const ErrorState(super.model);
+}
+
 class FormSavedState extends State {
   const FormSavedState(super.model);
 }
@@ -37,6 +41,9 @@ class Model extends Equatable {
     this.places = const [],
     this.tags = const [],
     this.title = '',
+    this.formType = FormType.create,
+    this.dreamEntity,
+    this.error = '',
   })  : id = uuid ?? const Uuid().v4(),
         date = dateTime ?? DateTime.now();
 
@@ -50,6 +57,9 @@ class Model extends Equatable {
   final String description;
   final String id;
   final String title;
+  final FormType formType;
+  final DreamEntity? dreamEntity;
+  final String error;
 
   DreamEntity toEntity() {
     return DreamEntity(
@@ -67,7 +77,7 @@ class Model extends Equatable {
   }
 
   @override
-  List<Object> get props {
+  List<Object?> get props {
     return [
       date,
       clarity,
@@ -79,6 +89,8 @@ class Model extends Equatable {
       description,
       id,
       title,
+      formType,
+      dreamEntity,
     ];
   }
 
@@ -93,6 +105,8 @@ class Model extends Equatable {
     String? description,
     String? id,
     String? title,
+    FormType? formType,
+    DreamEntity? dreamEntity,
   }) {
     return Model(
       dateTime: date ?? this.date,
@@ -105,6 +119,8 @@ class Model extends Equatable {
       description: description ?? this.description,
       uuid: id ?? this.id,
       title: title ?? this.title,
+      formType: formType ?? this.formType,
+      dreamEntity: dreamEntity ?? this.dreamEntity,
     );
   }
 }

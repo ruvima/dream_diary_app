@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core.dart';
-import '../../../data/services/key_value_storage_service.dart';
+import '../../../core.dart';
+import '../../services/key_value_storage_service.dart';
 
 part 'preferences_event.dart';
 part 'preferences_state.dart';
@@ -27,8 +27,7 @@ class PreferencesBloc extends Bloc<Event, State> {
       final languageCode = await _keyValueStorageService.getValue<String>(
         SharedPrefKeys.language,
       );
-      print(isDarkMode);
-      print(languageCode);
+
       if (isDarkMode != null || languageCode != null) {
         emit(
           PreferenceChangeState(

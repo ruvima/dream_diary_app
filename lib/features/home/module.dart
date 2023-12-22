@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../core/shared/domain/domain.dart';
 import '../analysis/module.dart';
 import '../form/module.dart';
 import '../search/module.dart';
@@ -64,7 +63,7 @@ class HomeModule extends Module {
       '/dream_details',
       transition: TransitionType.rightToLeft,
       child: (_) => DreamDetailsScreen(
-        dream: r.args.data as DreamEntity,
+        dreamId: r.args.data as String,
       ),
     );
   }

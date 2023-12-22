@@ -14,7 +14,9 @@ part '../widgets/base_container.dart';
 part '../widgets/items_box.dart';
 
 class FormScreen extends StatelessWidget {
-  const FormScreen({super.key});
+  const FormScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,6 @@ class FormScreen extends StatelessWidget {
 
 class _FormView extends StatelessWidget {
   const _FormView();
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<form_bloc.FormBloc, form_bloc.State>(
@@ -38,61 +39,69 @@ class _FormView extends StatelessWidget {
       bloc: Modular.get<form_bloc.FormBloc>(),
       builder: (_, state) {
         final model = state.model;
-        return _BaseContainer(
-          topWidget: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _Date(model.date),
-              const Spacer(),
-              _SaveButton(
-                isLoading: state is! form_bloc.FormChangedState,
-              ),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _Label(UiValues.dreamTitleLabel),
-              gapH4,
-              const _TitleFormField(),
-              gapH12,
-              _Label(UiValues.dreamDescriptionLabel),
-              gapH4,
-              const _DescriptionFormField(),
-              gapH12,
-              _Label(UiValues.dreamTypeLabel),
-              gapH4,
-              _DreamTypes(model.dreamTypes),
-              gapH4,
-              _Label(UiValues.dreamClarityLabel),
-              _Clarity(model.clarity),
-              _ItemsBox(
-                title: UiValues.emotionLabel,
-                list: model.emotions,
-                selectType: SelectType.emotion,
-              ),
-              gapH4,
-              _ItemsBox(
-                title: UiValues.peopleInDreamLabel,
-                list: model.people,
-                selectType: SelectType.people,
-              ),
-              gapH4,
-              _ItemsBox(
-                title: UiValues.placesLabel,
-                list: model.places,
-                selectType: SelectType.places,
-              ),
-              gapH4,
-              _ItemsBox(
-                title: UiValues.tagsLabel,
-                list: model.tags,
-                selectType: SelectType.tags,
-              ),
-              gapH12,
-            ],
-          ),
-        );
+
+        if (state is form_bloc.LoadingState) {
+          return const CircularProgressScaffold();
+        } else if (state is form_bloc.ErrorState) {
+          return ErrorScaffold(message: state.model.error);
+        } else if (state is form_bloc.FormChangedState) {
+          return _BaseContainer(
+            topWidget: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _Date(model.date),
+                const Spacer(),
+                _SaveButton(
+                  disabled: state.model.description.isEmpty,
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _Label(UiValues.dreamTitleLabel),
+                gapH4,
+                _TitleFormField(model.title),
+                gapH12,
+                _Label(UiValues.dreamDescriptionLabel),
+                gapH4,
+                _DescriptionFormField(model.description),
+                gapH12,
+                _Label(UiValues.dreamTypeLabel),
+                gapH4,
+                _DreamTypes(model.dreamTypes),
+                gapH4,
+                _Label(UiValues.dreamClarityLabel),
+                _Clarity(model.clarity),
+                _ItemsBox(
+                  title: UiValues.emotionLabel,
+                  list: model.emotions,
+                  selectType: SelectType.emotion,
+                ),
+                gapH4,
+                _ItemsBox(
+                  title: UiValues.peopleInDreamLabel,
+                  list: model.people,
+                  selectType: SelectType.people,
+                ),
+                gapH4,
+                _ItemsBox(
+                  title: UiValues.placesLabel,
+                  list: model.places,
+                  selectType: SelectType.places,
+                ),
+                gapH4,
+                _ItemsBox(
+                  title: UiValues.tagsLabel,
+                  list: model.tags,
+                  selectType: SelectType.tags,
+                ),
+                gapH12,
+              ],
+            ),
+          );
+        }
+        return const SizedBox.shrink();
       },
     );
   }
@@ -164,13 +173,13 @@ class _Date extends StatelessWidget {
 }
 
 class _SaveButton extends StatelessWidget {
-  const _SaveButton({required this.isLoading});
-  final bool isLoading;
+  const _SaveButton({required this.disabled});
+  final bool disabled;
   @override
   Widget build(BuildContext context) {
     return KPrimaryButton(
       isSmall: true,
-      onPressed: isLoading
+      onPressed: disabled
           ? null
           : () {
               if (Form.of(context).validate()) {
@@ -184,14 +193,36 @@ class _SaveButton extends StatelessWidget {
   }
 }
 
-class _TitleFormField extends StatelessWidget with FormMixin {
-  const _TitleFormField();
+class _TitleFormField extends StatefulWidget with FormMixin {
+  const _TitleFormField(this.initialText);
+
+  final String initialText;
+
+  @override
+  State<_TitleFormField> createState() => _TitleFormFieldState();
+}
+
+class _TitleFormFieldState extends State<_TitleFormField> {
+  late TextEditingController _titleController;
+
+  @override
+  void initState() {
+    super.initState();
+    _titleController = TextEditingController(text: widget.initialText);
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: KSizes.p16),
       child: KTextFormField(
+        controller: _titleController,
         hint: UiValues.dreamTitleHint,
         onChanged: (title) {
           if (title.isNotEmpty) {
@@ -205,14 +236,36 @@ class _TitleFormField extends StatelessWidget with FormMixin {
   }
 }
 
-class _DescriptionFormField extends StatelessWidget with FormMixin {
-  const _DescriptionFormField();
+class _DescriptionFormField extends StatefulWidget with FormMixin {
+  const _DescriptionFormField(this.initialText);
+  final String initialText;
+  @override
+  State<_DescriptionFormField> createState() => _DescriptionFormFieldState();
+}
+
+class _DescriptionFormFieldState extends State<_DescriptionFormField> {
+  late TextEditingController _descriptionController;
+
+  @override
+  void initState() {
+    super.initState();
+    _descriptionController = TextEditingController(text: widget.initialText);
+  }
+
+  @override
+  void dispose() {
+    _descriptionController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    print('Initial Text: ${widget.initialText}');
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: KSizes.p16),
       child: KTextFormField(
+        controller: _descriptionController,
         hint: UiValues.dreamDescriptionHint,
         maxLines: 8,
         onChanged: (desc) {
@@ -222,7 +275,7 @@ class _DescriptionFormField extends StatelessWidget with FormMixin {
             );
           }
         },
-        validator: notEmptyValidator,
+        validator: widget.notEmptyValidator,
       ),
     );
   }

@@ -14,7 +14,7 @@ class DreamCard extends StatelessWidget {
       child: KInkwell(
         onTap: () => Modular.to.pushNamed(
           Routes.dreamDetails,
-          arguments: dream,
+          arguments: dream.id,
         ),
         child: Padding(
           padding: const EdgeInsets.all(KSizes.p12).copyWith(right: KSizes.p4),

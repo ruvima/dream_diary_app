@@ -20,7 +20,16 @@ class AddDreamEvent extends Event {
   List<Object> get props => [dreamEntity];
 }
 
-class UpdateDreamEvent extends Event {}
+class UpdateDreamEvent extends Event {
+  const UpdateDreamEvent({
+    required this.dreamEntity,
+  });
+
+  final DreamEntity dreamEntity;
+
+  @override
+  List<Object> get props => [dreamEntity];
+}
 
 class DeleteDreamEvent extends Event {
   const DeleteDreamEvent(this.id);

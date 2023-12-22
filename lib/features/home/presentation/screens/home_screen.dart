@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final localStorageRepository = Modular.get<LocalStorageRepository>();
     return const _DreamsView();
   }
 }
@@ -30,9 +29,7 @@ class _DreamsView extends StatelessWidget {
         final model = state.model;
 
         if (state is dream_bloc.ErrorState) {
-          return Center(
-            child: Text(state.model.error),
-          );
+          return ErrorBody(message: state.model.error);
         }
         if (state is dream_bloc.LoadingState) {
           return const _DreamCardSkeleton();

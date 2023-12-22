@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/shared/domain/domain.dart';
@@ -27,7 +26,6 @@ class DreamBloc extends Bloc<Event, State> {
     emit(LoadingState(state.model));
 
     try {
-      debugPrint('_onLoadDreamEvent: ${state.model.dreams.length}');
       final dreams = await _localStorageRepository.getDreams();
 
       emit(
@@ -72,7 +70,36 @@ class DreamBloc extends Bloc<Event, State> {
     }
   }
 
-  FutureOr<void> _onUpdateDreamEvent(UpdateDreamEvent event, Emitter emit) {}
+  FutureOr<void> _onUpdateDreamEvent(
+      UpdateDreamEvent event, Emitter emit) async {
+    emit(LoadingState(state.model));
+
+    try {
+      final existingDreamIndex =
+          state.model.dreams.indexWhere((d) => d.id == event.dreamEntity.id);
+
+      if (existingDreamIndex != -1) {
+        final updatedDreams = state.model.dreams;
+        updatedDreams[existingDreamIndex] = event.dreamEntity;
+
+        final updated = await _localStorageRepository.update(event.dreamEntity);
+
+        if (updated) {
+          emit(
+            DreamsLoaded(
+              state.model.copyWith(dreams: updatedDreams),
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      emit(
+        ErrorState(
+          state.model.copyWith(error: '$e'),
+        ),
+      );
+    }
+  }
 
   FutureOr<void> _onDeleteDreamEvent(
       DeleteDreamEvent event, Emitter emit) async {

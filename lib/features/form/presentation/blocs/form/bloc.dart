@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../../../core/constants/enums.dart';
 import '../../../../../core/shared/domain/domain.dart';
 import '../../../../home/blocs/dream/bloc.dart' as dream_bloc;
 
@@ -15,6 +16,10 @@ class FormBloc extends Bloc<Event, State> {
       : _dreamBloc = dreamBloc,
         super(InitialState(Model())) {
     on<FormSavedEvent>(_formSavedEvent);
+
+    on<EnterFormEvent>(_onEnterFormEvent);
+
+    on<FormTypeChangedEvent>(_onFormTypeChanged);
 
     on<DateChangedEvent>(_onDateChanged);
 
@@ -35,15 +40,51 @@ class FormBloc extends Bloc<Event, State> {
     on<TitleChangedEvent>(_onTitleChanged);
   }
 
+  void _onEnterFormEvent(EnterFormEvent event, Emitter<State> emit) {
+    final dream = event.dreamEntity;
+    if (dream != null) {
+      emit(
+        FormChangedState(
+          state.model.copyWith(
+            date: dream.date,
+            clarity: dream.clarity,
+            dreamTypes: dream.dreamTypes,
+            emotions: dream.emotions,
+            people: dream.emotions,
+            places: dream.places,
+            description: dream.description,
+            id: dream.id,
+            tags: dream.tags,
+            title: dream.title,
+          ),
+        ),
+      );
+    }
+  }
+
+  void _onFormTypeChanged(FormTypeChangedEvent event, Emitter<State> emit) {
+    emit(
+      FormChangedState(
+        state.model.copyWith(formType: event.formType),
+      ),
+    );
+  }
+
   Future<void> _formSavedEvent(
       FormSavedEvent event, Emitter<State> emit) async {
     emit(LoadingState(state.model));
 
     final dreamEntity = state.model.toEntity();
 
-    _dreamBloc.add(
-      dream_bloc.AddDreamEvent(dreamEntity: dreamEntity),
-    );
+    if (state.model.formType == FormType.edit) {
+      _dreamBloc.add(
+        dream_bloc.UpdateDreamEvent(dreamEntity: dreamEntity),
+      );
+    } else if (state.model.formType == FormType.create) {
+      _dreamBloc.add(
+        dream_bloc.AddDreamEvent(dreamEntity: dreamEntity),
+      );
+    }
     emit(FormSavedState(state.model));
   }
 

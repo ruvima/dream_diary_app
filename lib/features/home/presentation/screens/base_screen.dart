@@ -4,8 +4,9 @@ import 'package:flutter_modular/flutter_modular.dart'
     hide ModularWatchExtension;
 
 import '../../../../core/core.dart';
-import '../../../../core/shared/presentation/bloc/preferences/preferences_bloc.dart'
+import '../../../../core/shared/bloc/preferences/preferences_bloc.dart'
     as preferences_bloc;
+import '../../../../core/shared/models/form_args.dart';
 import '../../blocs/navigation/bloc.dart' as nav;
 
 part '../widgets/bottom_navigation_bar.dart';

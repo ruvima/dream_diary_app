@@ -4,10 +4,31 @@ abstract class Event extends Equatable {
   const Event();
 
   @override
+  List<Object?> get props => [];
+}
+
+class FormSavedEvent extends Event {
+  @override
   List<Object> get props => [];
 }
 
-class FormSavedEvent extends Event {}
+class FormTypeChangedEvent extends Event {
+  const FormTypeChangedEvent(this.formType);
+
+  final FormType formType;
+
+  @override
+  List<Object> get props => [formType];
+}
+
+class EnterFormEvent extends Event {
+  const EnterFormEvent({this.dreamEntity});
+
+  final DreamEntity? dreamEntity;
+
+  @override
+  List<Object?> get props => [dreamEntity];
+}
 
 class DateChangedEvent extends Event {
   final DateTime date;

@@ -1,9 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../core/shared/data/services/key_value_storage_service.dart';
-import '../../core/shared/data/services/key_value_storage_service_impl.dart';
-import '../../core/shared/presentation/bloc/preferences/preferences_bloc.dart'
+import '../../core/shared/bloc/preferences/preferences_bloc.dart'
     as preferences_bloc;
+import '../../core/shared/services/key_value_storage_service.dart';
+import '../../core/shared/services/key_value_storage_service_impl.dart';
 import '../../features/auth/module.dart';
 import '../../features/home/module.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
