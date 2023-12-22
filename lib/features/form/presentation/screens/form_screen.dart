@@ -260,8 +260,6 @@ class _DescriptionFormFieldState extends State<_DescriptionFormField> {
 
   @override
   Widget build(BuildContext context) {
-    print('Initial Text: ${widget.initialText}');
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: KSizes.p16),
       child: KTextFormField(

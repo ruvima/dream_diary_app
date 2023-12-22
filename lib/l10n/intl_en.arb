@@ -37,5 +37,8 @@
   "darkModeLabel": "Dark Mode",
   "languageLabel": "Language",
   "english": "English",
-  "spanish": "Spanish"
+  "spanish": "Spanish",
+  "closeFormTitle": "Close Form?",
+  "closeFormContent": "If you close the form, you'll lose any unsaved changes. Are you sure you want to close it?",
+  "acceptButton": "Accept"
 }

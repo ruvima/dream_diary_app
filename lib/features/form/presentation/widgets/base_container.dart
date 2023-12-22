@@ -33,9 +33,7 @@ class _BaseContainer extends StatelessWidget {
                   ),
                   size: 28,
                   icon: Icons.close,
-                  onPressed: () {
-                    Modular.to.pop();
-                  },
+                  onPressed: () => _showAlert(context),
                 ),
                 if (topWidget != null)
                   Expanded(
@@ -55,5 +53,23 @@ class _BaseContainer extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _showAlert(BuildContext context) async {
+    final close = await KShowDialog.alertDialog<bool>(
+      context,
+      title: UiValues.closeFormTitle,
+      content: UiValues.closeFormContent,
+      onCancel: () => Navigator.of(context).pop(false),
+      textOnCancel: UiValues.cancel,
+      onAcept: () {
+        Navigator.of(context).pop(true);
+      },
+      textOnAcept: UiValues.acceptButton,
+    );
+
+    if (close ?? false) {
+      Modular.to.pop();
+    }
   }
 }

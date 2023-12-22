@@ -22,10 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "acceptButton": MessageLookupByLibrary.simpleMessage("Accept"),
         "addPersonHint": MessageLookupByLibrary.simpleMessage("Add a person"),
         "addTagHint": MessageLookupByLibrary.simpleMessage("Add a tag"),
         "analysisLabel": MessageLookupByLibrary.simpleMessage("Analysis"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "closeFormContent": MessageLookupByLibrary.simpleMessage(
+            "If you close the form, you\'ll lose any unsaved changes. Are you sure you want to close it?"),
+        "closeFormTitle": MessageLookupByLibrary.simpleMessage("Close Form?"),
         "darkModeLabel": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "deleteDreamContent": MessageLookupByLibrary.simpleMessage(

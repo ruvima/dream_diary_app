@@ -49,4 +49,8 @@ class UiValues {
   static String get languageLabel => S.current.languageLabel;
   static String get english => S.current.english;
   static String get spanish => S.current.spanish;
+
+  static String get closeFormTitle => S.current.closeFormTitle;
+  static String get closeFormContent => S.current.closeFormContent;
+  static String get acceptButton => S.current.acceptButton;
 }

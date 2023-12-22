@@ -439,6 +439,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Close Form?`
+  String get closeFormTitle {
+    return Intl.message(
+      'Close Form?',
+      name: 'closeFormTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you close the form, you'll lose any unsaved changes. Are you sure you want to close it?`
+  String get closeFormContent {
+    return Intl.message(
+      'If you close the form, you\'ll lose any unsaved changes. Are you sure you want to close it?',
+      name: 'closeFormContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept`
+  String get acceptButton {
+    return Intl.message(
+      'Accept',
+      name: 'acceptButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

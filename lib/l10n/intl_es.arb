@@ -37,5 +37,8 @@
   "darkModeLabel": "Modo Oscuro",
   "languageLabel": "Idioma",
   "english": "Inglés",
-  "spanish": "Español"
+  "spanish": "Español",
+  "closeFormTitle": "¿Cerrar formulario?",
+  "closeFormContent": "Si cierras el formulario, perderás los cambios no guardados. ¿Estás seguro de que deseas cerrarlo?",
+  "acceptButton": "Aceptar"
 }
