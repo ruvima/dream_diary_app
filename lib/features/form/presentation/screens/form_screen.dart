@@ -8,7 +8,6 @@ import '../../../../core/core.dart';
 import '../../../../core/helper/form_mixin.dart';
 import '../blocs/form/bloc.dart' as form_bloc;
 import '../widgets/user_selected_list.dart';
-import 'select_screen.dart';
 
 part '../widgets/base_container.dart';
 part '../widgets/items_box.dart';

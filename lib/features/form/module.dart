@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../core/core.dart';
 import '../../core/shared/models/form_args.dart';
 import '../home/blocs/dream/bloc.dart' as dream_bloc;
 import 'presentation/blocs/form/bloc.dart' as form_bloc;

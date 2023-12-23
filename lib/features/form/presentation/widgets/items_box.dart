@@ -33,7 +33,10 @@ class _ItemsBox extends StatelessWidget {
               ),
             ],
           ),
-          UserSelectedList(list: list),
+          UserSelectedList(
+            list: list,
+            selectType: selectType,
+          ),
         ],
       ),
     );

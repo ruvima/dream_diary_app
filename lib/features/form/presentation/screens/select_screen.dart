@@ -6,13 +6,6 @@ import '../../../../core/core.dart';
 import '../blocs/form/bloc.dart' as form_bloc;
 import '../widgets/user_selected_list.dart';
 
-enum SelectType {
-  emotion,
-  people,
-  tags,
-  places,
-}
-
 class SelectScreen extends StatelessWidget {
   const SelectScreen({super.key, required this.selectType});
   final SelectType selectType;
@@ -43,6 +36,7 @@ class _SelectView extends StatelessWidget {
       bloc: Modular.get<form_bloc.FormBloc>(),
       builder: (context, state) {
         final model = state.model;
+        print(model.emotions);
 
         final list = _getList(selectType, model);
 
@@ -60,7 +54,10 @@ class _SelectView extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
               gapH4,
-              UserSelectedList(list: list),
+              UserSelectedList(
+                list: list,
+                selectType: selectType,
+              ),
               gapH16,
               KTextMedium(
                 UiValues.suggestionsLabel,
@@ -78,7 +75,8 @@ class _SelectView extends StatelessWidget {
 
                       return KFilterChip(
                         label: item,
-                        onSelected: (_) {
+                        onSelected: (selected) {
+                          print(selected);
                           _updateFormBloc(selectType, item);
                         },
                         selected: selected,

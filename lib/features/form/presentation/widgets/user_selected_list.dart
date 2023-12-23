@@ -8,10 +8,11 @@ class UserSelectedList extends StatelessWidget {
   const UserSelectedList({
     super.key,
     required this.list,
+    required this.selectType,
   });
 
   final List<String> list;
-
+  final SelectType selectType;
   @override
   Widget build(BuildContext context) {
     return KWrap(
@@ -23,15 +24,38 @@ class UserSelectedList extends StatelessWidget {
 
           return KFilterChip(
             label: item,
-            onSelected: (_) {
-              Modular.get<form_bloc.FormBloc>().add(
-                form_bloc.EmotionsChangedEvent(item),
-              );
-            },
+            onSelected: (_) => _updateFormBloc(selectType, item),
             selected: selected,
           );
         },
       ),
     );
+  }
+
+  void _updateFormBloc(SelectType selectType, String item) {
+    switch (selectType) {
+      case SelectType.emotion:
+        Modular.get<form_bloc.FormBloc>().add(
+          form_bloc.EmotionsChangedEvent(item),
+        );
+        break;
+      case SelectType.people:
+        Modular.get<form_bloc.FormBloc>().add(
+          form_bloc.PeopleChangedEvent(item),
+        );
+        break;
+      case SelectType.places:
+        Modular.get<form_bloc.FormBloc>().add(
+          form_bloc.PlaceChangedEvent(item),
+        );
+        break;
+      case SelectType.tags:
+        Modular.get<form_bloc.FormBloc>().add(
+          form_bloc.TagsChangedEvent(item),
+        );
+        break;
+      default:
+        break;
+    }
   }
 }

@@ -39,3 +39,10 @@ enum FormType {
   edit,
   create,
 }
+
+enum SelectType {
+  emotion,
+  people,
+  tags,
+  places,
+}
