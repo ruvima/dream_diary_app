@@ -13,49 +13,53 @@ class _BaseContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Material(
-      color: theme.colorScheme.background,
-      borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(14.0),
-        topRight: Radius.circular(14.0),
-      ),
-      child: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                KIconButton(
-                  compact: true,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: KSizes.p8,
-                  ),
-                  size: 28,
-                  icon: Icons.close,
-                  onPressed: () => _showAlert(context),
-                ),
-                if (topWidget != null)
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: KSizes.p16),
-                      child: topWidget ?? const SizedBox.shrink(),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (_) => _showAlert(context),
+      child: Material(
+        color: theme.colorScheme.background,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(14.0),
+          topRight: Radius.circular(14.0),
+        ),
+        child: SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  KIconButton(
+                    compact: true,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: KSizes.p8,
                     ),
-                  )
-              ],
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: child,
+                    size: 28,
+                    icon: Icons.close,
+                    onPressed: () => _showAlert(context),
+                  ),
+                  if (topWidget != null)
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: KSizes.p16),
+                        child: topWidget ?? const SizedBox.shrink(),
+                      ),
+                    )
+                ],
               ),
-            ),
-          ],
+              Expanded(
+                child: SingleChildScrollView(
+                  child: child,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Future<void> _showAlert(BuildContext context) async {
+  FutureOr<bool> _showAlert(BuildContext context) async {
     final close = await KShowDialog.alertDialog<bool>(
       context,
       title: UiValues.closeFormTitle,
@@ -71,5 +75,6 @@ class _BaseContainer extends StatelessWidget {
     if (close ?? false) {
       Modular.to.pop();
     }
+    return close ?? false;
   }
 }
