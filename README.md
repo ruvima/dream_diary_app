@@ -4,7 +4,7 @@ Mobile app to keep a dream journal using Flutter
 ## Description
 This app allows users to record and organize their dreams. Users can create entries with dream details, categorize them, search by keyword, and view insights.  
 
-## Technical Aspects: 🚧 currently under construction 🚧
+## Currently under construction 🚧
 <img src="https://i.imgur.com/3jxdxrJ.jpg" 
      width="405" 
      height="900" /> <img src="https://i.imgur.com/LNL8Rp4.jpg" 
@@ -14,7 +14,7 @@ This app allows users to record and organize their dreams. Users can create entr
      height="900" />  <img src="https://i.imgur.com/7PFMVdw.jpg" 
      width="405" 
      height="900" /> 
-
+## Technical Aspects: 
 * Flutter with Dart
 
 * State Management: Flutter Bloc  
