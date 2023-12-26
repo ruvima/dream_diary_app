@@ -4,17 +4,25 @@ import 'package:uuid/uuid.dart';
 
 import '../../../../../core/constants/enums.dart';
 import '../../../../../core/shared/domain/domain.dart';
-import '../../../../home/blocs/dream/bloc.dart' as dream_bloc;
+import '../../../domain/usecases/form_usecases.dart';
 
 part 'event.dart';
 part 'state.dart';
 
 class FormBloc extends Bloc<Event, State> {
-  final dream_bloc.DreamBloc _dreamBloc;
+  final CreateDream _createDream;
+  final UpdateDream _updateDream;
 
-  FormBloc({required dream_bloc.DreamBloc dreamBloc})
-      : _dreamBloc = dreamBloc,
-        super(InitialState(Model())) {
+  FormBloc({
+    required CreateDream createDream,
+    required UpdateDream updateDream,
+  })  : _createDream = createDream,
+        _updateDream = updateDream,
+        super(
+          InitialState(
+            Model(),
+          ),
+        ) {
     on<FormSavedEvent>(_formSavedEvent);
 
     on<EnterFormEvent>(_onEnterFormEvent);
@@ -74,18 +82,30 @@ class FormBloc extends Bloc<Event, State> {
       FormSavedEvent event, Emitter<State> emit) async {
     emit(LoadingState(state.model));
 
-    final dreamEntity = state.model.toEntity();
+    try {
+      final dreamEntity = state.model.toEntity();
 
-    if (state.model.formType == FormType.edit) {
-      _dreamBloc.add(
-        dream_bloc.UpdateDreamEvent(dreamEntity: dreamEntity),
-      );
-    } else if (state.model.formType == FormType.create) {
-      _dreamBloc.add(
-        dream_bloc.AddDreamEvent(dreamEntity: dreamEntity),
-      );
+      if (state.model.formType == FormType.edit) {
+        await _updateDream.execute(dreamEntity);
+      } else if (state.model.formType == FormType.create) {
+        await _createDream.execute(dreamEntity);
+      }
+      emit(FormSavedState(state.model));
+    } catch (e) {
+      if (e is DatabaseFailure) {
+        emit(
+          ErrorState(
+            state.model.copyWith(error: e.message),
+          ),
+        );
+      } else {
+        emit(
+          ErrorState(
+            state.model.copyWith(error: '$e'),
+          ),
+        );
+      }
     }
-    emit(FormSavedState(state.model));
   }
 
   void _onDateChanged(DateChangedEvent event, Emitter<State> emit) {

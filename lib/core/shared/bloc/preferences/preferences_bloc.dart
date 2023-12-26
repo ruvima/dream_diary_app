@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core.dart';
-import '../../services/key_value_storage_service.dart';
+import '../../local/shared_pref/key_value_storage_service.dart';
 
 part 'preferences_event.dart';
 part 'preferences_state.dart';

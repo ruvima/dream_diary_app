@@ -7,28 +7,17 @@ abstract class Event extends Equatable {
   List<Object> get props => [];
 }
 
-class LoadDreamsEvent extends Event {}
+class InitEvenet extends Event {}
 
-class AddDreamEvent extends Event {
-  const AddDreamEvent({
-    required this.dreamEntity,
+class LoadDreamsEvent extends Event {
+  const LoadDreamsEvent({
+    required this.dreams,
   });
 
-  final DreamEntity dreamEntity;
+  final List<DreamEntity> dreams;
 
   @override
-  List<Object> get props => [dreamEntity];
-}
-
-class UpdateDreamEvent extends Event {
-  const UpdateDreamEvent({
-    required this.dreamEntity,
-  });
-
-  final DreamEntity dreamEntity;
-
-  @override
-  List<Object> get props => [dreamEntity];
+  List<Object> get props => [dreams];
 }
 
 class DeleteDreamEvent extends Event {

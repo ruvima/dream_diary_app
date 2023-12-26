@@ -86,11 +86,7 @@ class _Appbar extends StatelessWidget {
       title: KHeadline4(UiValues.myDreams),
       actions: [
         KIconButton(
-          onPressed: () {
-            Modular.get<dream_bloc.DreamBloc>().add(
-              dream_bloc.LoadDreamsEvent(),
-            );
-          },
+          onPressed: () {},
           icon: Icons.search,
         ),
       ],

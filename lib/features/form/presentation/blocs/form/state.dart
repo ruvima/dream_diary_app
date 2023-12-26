@@ -107,6 +107,7 @@ class Model extends Equatable {
     String? title,
     FormType? formType,
     DreamEntity? dreamEntity,
+    String? error,
   }) {
     return Model(
       dateTime: date ?? this.date,
@@ -121,6 +122,7 @@ class Model extends Equatable {
       title: title ?? this.title,
       formType: formType ?? this.formType,
       dreamEntity: dreamEntity ?? this.dreamEntity,
+      error: error ?? this.error,
     );
   }
 }
