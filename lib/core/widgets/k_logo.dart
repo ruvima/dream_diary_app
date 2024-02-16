@@ -10,17 +10,10 @@ class KLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: size,
-      child: Container(
-        padding: const EdgeInsets.all(TextSize.s32),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary,
-          shape: BoxShape.circle,
-        ),
-        child: Image.asset(
-          KAssets.logo,
-          fit: BoxFit.cover,
-          color: Theme.of(context).colorScheme.onPrimary,
-        ),
+      child: Image.asset(
+        KAssets.logo,
+        fit: BoxFit.cover,
+        color: Theme.of(context).colorScheme.onPrimary,
       ),
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../core/core.dart';
-import '../../../../l10n/string_hardcoded.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -31,19 +31,32 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: TextSize.s16),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    final colors = Theme.of(context).colorScheme;
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle(
+        statusBarColor: colors.background,
+        systemNavigationBarColor: colors.background,
+      ),
+      child: Material(
+        color: colors.background,
+        child: const SafeArea(
+          child: Stack(
             children: [
-              const SizedBox.shrink(),
-              const KLogo(),
-              Text(
-                'v1.0.0'.hardcoded,
-                style: Theme.of(context).textTheme.titleMedium,
+              Positioned.fill(
+                child: Center(
+                  child: KLogo(
+                    size: 94,
+                  ),
+                ),
+              ),
+              Positioned.fill(
+                bottom: 50,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: KTextLarge(
+                    'v1.0.0 b1 ',
+                  ),
+                ),
               ),
             ],
           ),

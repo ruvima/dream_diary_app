@@ -9,8 +9,8 @@
     </item>
 
     <item
-        android:width="94dp"
-        android:height="94dp"
+        android:width="54dp"
+        android:height="54dp"
         android:gravity="center" >
             
         <bitmap 
