@@ -2,7 +2,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../core/core.dart';
 import '../../core/shared/models/form_args.dart';
-import '../home/domain/domain.dart';
 import '../home/module_export.dart';
 import 'presentation/blocs/form/bloc.dart' as form_bloc;
 import 'presentation/screens/form_screen.dart';
@@ -15,11 +14,12 @@ class FormModule extends Module {
       ];
   @override
   void binds(i) {
-    i.addSingleton<form_bloc.FormBloc>(
-      () => form_bloc.FormBloc(
-        createDream: i.get<CreateDreamUsecase>(),
-        updateDream: i.get<UpdateDreamUsecase>(),
-      ),
+    i.addLazySingleton<form_bloc.FormBloc>(
+      () {
+        final formArgs = i.args.data as FormArgs;
+
+        return form_bloc.FormBloc(dreamEntity: formArgs.dream);
+      },
       config: BindConfig(
         onDispose: (formBloc) => formBloc.close(),
       ),
@@ -37,19 +37,9 @@ class FormModule extends Module {
       child: (_) {
         final formArgs = r.args.data as FormArgs;
 
-        Modular.get<form_bloc.FormBloc>().add(
-          form_bloc.FormTypeChangedEvent(
-            formArgs.formType,
-          ),
+        return FormScreen(
+          dreamEntity: formArgs.dream,
         );
-
-        Modular.get<form_bloc.FormBloc>().add(
-          form_bloc.EnterFormEvent(
-            dreamEntity: formArgs.dream,
-          ),
-        );
-
-        return const FormScreen();
       },
     );
     r.child(

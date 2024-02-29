@@ -72,7 +72,7 @@ class _BottomNavigationBar extends StatelessWidget {
       // };
       Modular.to.pushNamed(
         nextRoute!,
-        arguments: FormArgs(formType: FormType.create),
+        arguments: FormArgs(),
       );
     }
   }

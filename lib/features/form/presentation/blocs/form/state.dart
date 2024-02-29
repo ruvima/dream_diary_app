@@ -32,20 +32,14 @@ class FormChangedState extends State {
 class Model extends Equatable {
   Model({
     DateTime? dateTime,
-    String? uuid,
     this.clarity = 0.0,
-    this.description = '',
     this.dreamTypes = const [],
     this.emotions = const [],
     this.people = const [],
     this.places = const [],
     this.tags = const [],
-    this.title = '',
-    this.formType = FormType.create,
-    this.dreamEntity,
     this.error = '',
-  })  : id = uuid ?? const Uuid().v4(),
-        date = dateTime ?? DateTime.now();
+  }) : date = dateTime ?? DateTime.now();
 
   final DateTime date;
   final double clarity;
@@ -54,27 +48,8 @@ class Model extends Equatable {
   final List<String> people;
   final List<String> places;
   final List<String> tags;
-  final String description;
-  final String id;
-  final String title;
-  final FormType formType;
-  final DreamEntity? dreamEntity;
-  final String error;
 
-  DreamEntity toEntity() {
-    return DreamEntity(
-      clarity: clarity,
-      date: date,
-      description: description,
-      dreamTypes: dreamTypes,
-      emotions: emotions,
-      id: id,
-      people: people,
-      places: places,
-      tags: tags,
-      title: title,
-    );
-  }
+  final String error;
 
   @override
   List<Object?> get props {
@@ -86,11 +61,6 @@ class Model extends Equatable {
       people,
       places,
       tags,
-      description,
-      id,
-      title,
-      formType,
-      dreamEntity,
     ];
   }
 
@@ -102,11 +72,6 @@ class Model extends Equatable {
     List<String>? people,
     List<String>? places,
     List<String>? tags,
-    String? description,
-    String? id,
-    String? title,
-    FormType? formType,
-    DreamEntity? dreamEntity,
     String? error,
   }) {
     return Model(
@@ -117,11 +82,6 @@ class Model extends Equatable {
       people: people ?? this.people,
       places: places ?? this.places,
       tags: tags ?? this.tags,
-      description: description ?? this.description,
-      uuid: id ?? this.id,
-      title: title ?? this.title,
-      formType: formType ?? this.formType,
-      dreamEntity: dreamEntity ?? this.dreamEntity,
       error: error ?? this.error,
     );
   }

@@ -2,11 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_modular/flutter_modular.dart'
+    hide ModularWatchExtension;
 
 import '../../../../core/core.dart';
 import '../../../../core/helper/form_mixin.dart';
+import '../../../home/domain/domain.dart';
 import '../blocs/form/bloc.dart' as form_bloc;
+import '../blocs/save/bloc.dart' as save_bloc;
 import '../widgets/user_selected_list.dart';
 
 part '../widgets/base_container.dart';
@@ -15,26 +18,25 @@ part '../widgets/items_box.dart';
 class FormScreen extends StatelessWidget {
   const FormScreen({
     super.key,
+    this.dreamEntity,
   });
+
+  final DreamEntity? dreamEntity;
 
   @override
   Widget build(BuildContext context) {
-    return const Form(
-      child: _FormView(),
+    return Form(
+      child: _FormView(dreamEntity),
     );
   }
 }
 
 class _FormView extends StatelessWidget {
-  const _FormView();
+  const _FormView(this.dreamEntity);
+  final DreamEntity? dreamEntity;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<form_bloc.FormBloc, form_bloc.State>(
-      listener: (context, state) {
-        if (state is form_bloc.FormSavedState) {
-          Modular.to.pop();
-        }
-      },
+    return BlocBuilder<form_bloc.FormBloc, form_bloc.State>(
       bloc: Modular.get<form_bloc.FormBloc>(),
       builder: (_, state) {
         final model = state.model;
@@ -43,64 +45,63 @@ class _FormView extends StatelessWidget {
           return const CircularProgressScaffold();
         } else if (state is form_bloc.ErrorState) {
           return ErrorScaffold(message: state.model.error);
-        } else if (state is form_bloc.FormChangedState) {
-          return _BaseContainer(
-            topWidget: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _Date(model.date),
-                const Spacer(),
-                _SaveButton(
-                  disabled: state.model.description.isEmpty,
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _Label(UiValues.dreamTitleLabel),
-                gapH4,
-                _TitleFormField(model.title),
-                gapH12,
-                _Label(UiValues.dreamDescriptionLabel),
-                gapH4,
-                _DescriptionFormField(model.description),
-                gapH12,
-                _Label(UiValues.dreamTypeLabel),
-                gapH4,
-                _DreamTypes(model.dreamTypes),
-                gapH4,
-                _Label(UiValues.dreamClarityLabel),
-                _Clarity(model.clarity),
-                _ItemsBox(
-                  title: UiValues.emotionLabel,
-                  list: model.emotions,
-                  selectType: SelectType.emotion,
-                ),
-                gapH4,
-                _ItemsBox(
-                  title: UiValues.peopleInDreamLabel,
-                  list: model.people,
-                  selectType: SelectType.people,
-                ),
-                gapH4,
-                _ItemsBox(
-                  title: UiValues.placesLabel,
-                  list: model.places,
-                  selectType: SelectType.places,
-                ),
-                gapH4,
-                _ItemsBox(
-                  title: UiValues.tagsLabel,
-                  list: model.tags,
-                  selectType: SelectType.tags,
-                ),
-                gapH12,
-              ],
-            ),
-          );
         }
-        return const SizedBox.shrink();
+        return _BaseContainer(
+          topWidget: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _Date(model.date),
+              const Spacer(),
+              _SaveButton(
+                disabled: false,
+                dreamEntity: dreamEntity,
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _Label(UiValues.dreamTitleLabel),
+              gapH4,
+              const _TitleFormField(),
+              gapH12,
+              _Label(UiValues.dreamDescriptionLabel),
+              gapH4,
+              const _DescriptionFormField(),
+              gapH12,
+              _Label(UiValues.dreamTypeLabel),
+              gapH4,
+              _DreamTypes(model.dreamTypes),
+              gapH4,
+              _Label(UiValues.dreamClarityLabel),
+              _Clarity(model.clarity),
+              _ItemsBox(
+                title: UiValues.emotionLabel,
+                list: model.emotions,
+                selectType: SelectType.emotion,
+              ),
+              gapH4,
+              _ItemsBox(
+                title: UiValues.peopleInDreamLabel,
+                list: model.people,
+                selectType: SelectType.people,
+              ),
+              gapH4,
+              _ItemsBox(
+                title: UiValues.placesLabel,
+                list: model.places,
+                selectType: SelectType.places,
+              ),
+              gapH4,
+              _ItemsBox(
+                title: UiValues.tagsLabel,
+                list: model.tags,
+                selectType: SelectType.tags,
+              ),
+              gapH12,
+            ],
+          ),
+        );
       },
     );
   }
@@ -165,114 +166,43 @@ class _Date extends StatelessWidget {
 
     if (selectedDate != null) {
       Modular.get<form_bloc.FormBloc>().add(
-        form_bloc.DateChangedEvent(selectedDate),
+        form_bloc.EditFormEvent(
+          date: selectedDate,
+        ),
       );
     }
   }
 }
 
-class _SaveButton extends StatelessWidget {
-  const _SaveButton({required this.disabled});
-  final bool disabled;
-  @override
-  Widget build(BuildContext context) {
-    return KPrimaryButton(
-      isSmall: true,
-      onPressed: disabled
-          ? null
-          : () {
-              if (Form.of(context).validate()) {
-                Modular.get<form_bloc.FormBloc>()
-                    .add(form_bloc.FormSavedEvent());
-              }
-            },
-      height: 30,
-      text: 'Guardar',
-    );
-  }
-}
-
-class _TitleFormField extends StatefulWidget with FormMixin {
-  const _TitleFormField(this.initialText);
-
-  final String initialText;
-
-  @override
-  State<_TitleFormField> createState() => _TitleFormFieldState();
-}
-
-class _TitleFormFieldState extends State<_TitleFormField> {
-  late TextEditingController _titleController;
-
-  @override
-  void initState() {
-    super.initState();
-    _titleController = TextEditingController(text: widget.initialText);
-  }
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    super.dispose();
-  }
+class _TitleFormField extends StatelessWidget with FormMixin {
+  const _TitleFormField();
 
   @override
   Widget build(BuildContext context) {
+    final readFormBloc = Modular.get<form_bloc.FormBloc>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: KSizes.p16),
       child: KTextFormField(
-        controller: _titleController,
+        controller: readFormBloc.titleController,
         hint: UiValues.dreamTitleHint,
-        onChanged: (title) {
-          if (title.isNotEmpty) {
-            Modular.get<form_bloc.FormBloc>().add(
-              form_bloc.TitleChangedEvent(title.trim()),
-            );
-          }
-        },
       ),
     );
   }
 }
 
-class _DescriptionFormField extends StatefulWidget with FormMixin {
-  const _DescriptionFormField(this.initialText);
-  final String initialText;
-  @override
-  State<_DescriptionFormField> createState() => _DescriptionFormFieldState();
-}
-
-class _DescriptionFormFieldState extends State<_DescriptionFormField> {
-  late TextEditingController _descriptionController;
-
-  @override
-  void initState() {
-    super.initState();
-    _descriptionController = TextEditingController(text: widget.initialText);
-  }
-
-  @override
-  void dispose() {
-    _descriptionController.dispose();
-    super.dispose();
-  }
+class _DescriptionFormField extends StatelessWidget with FormMixin {
+  const _DescriptionFormField();
 
   @override
   Widget build(BuildContext context) {
+    final readFormBloc = Modular.get<form_bloc.FormBloc>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: KSizes.p16),
       child: KTextFormField(
-        controller: _descriptionController,
+        controller: readFormBloc.descController,
         hint: UiValues.dreamDescriptionHint,
         maxLines: 8,
-        onChanged: (desc) {
-          if (desc.isNotEmpty) {
-            Modular.get<form_bloc.FormBloc>().add(
-              form_bloc.DescriptionChangedEvent(desc.trim()),
-            );
-          }
-        },
-        validator: widget.notEmptyValidator,
+        validator: notEmptyValidator,
       ),
     );
   }
@@ -302,7 +232,9 @@ class _DreamTypes extends StatelessWidget {
                 label: dreamType.dreamTypeName,
                 onSelected: (_) {
                   Modular.get<form_bloc.FormBloc>().add(
-                    form_bloc.DreamTypesChangedEvent(dreamType.dreamTypeName),
+                    form_bloc.EditFormEvent(
+                      dreamType: dreamType.dreamTypeName,
+                    ),
                   );
                 },
               ),
@@ -329,7 +261,9 @@ class _Clarity extends StatelessWidget {
             value: clarity,
             onChanged: (clarity) {
               Modular.get<form_bloc.FormBloc>().add(
-                form_bloc.ClarityChangedEvent(clarity),
+                form_bloc.EditFormEvent(
+                  clarity: clarity,
+                ),
               );
             },
           ),
@@ -339,6 +273,65 @@ class _Clarity extends StatelessWidget {
           fontWeight: FontWeight.w600,
         ),
       ],
+    );
+  }
+}
+
+class _SaveButton extends StatelessWidget {
+  const _SaveButton({
+    required this.disabled,
+    required this.dreamEntity,
+  });
+  final bool disabled;
+  final DreamEntity? dreamEntity;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => save_bloc.SaveDreamBloc(),
+      child: Builder(builder: (context) {
+        return BlocListener<save_bloc.SaveDreamBloc, save_bloc.State>(
+          listener: (context, state) {
+            if (state is save_bloc.LoadedState) {
+              Modular.to.pop();
+            }
+          },
+          child: KPrimaryButton(
+            isSmall: true,
+            onPressed: disabled
+                ? null
+                : () {
+                    if (Form.of(context).validate()) {
+                      final readFormBloc = Modular.get<form_bloc.FormBloc>();
+                      final form = readFormBloc.state.model;
+
+                      final dream = DreamEntity(
+                        id: dreamEntity?.id,
+                        clarity: form.clarity,
+                        date: form.date,
+                        description: readFormBloc.description,
+                        dreamTypes: form.dreamTypes,
+                        emotions: form.emotions,
+                        people: form.people,
+                        places: form.places,
+                        tags: form.tags,
+                        title: readFormBloc.title,
+                      );
+                      context.read<save_bloc.SaveDreamBloc>().add(
+                            save_bloc.FormSavedEvent(
+                              dreamEntity: dream,
+                              formType: dreamEntity != null
+                                  ? FormType.edit
+                                  : FormType.create,
+                            ),
+                          );
+                    }
+                  },
+            height: 30,
+            text: 'Guardar',
+          ),
+        );
+      }),
     );
   }
 }

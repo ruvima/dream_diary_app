@@ -13,7 +13,7 @@ class DreamDetailsScreen extends StatelessWidget {
     required this.dreamId,
   });
 
-  final String dreamId;
+  final int dreamId;
 
   @override
   Widget build(BuildContext context) {
@@ -130,12 +130,11 @@ class _MenuButton extends StatelessWidget {
           Modular.to.pushNamed(
             Routes.form,
             arguments: FormArgs(
-              formType: FormType.edit,
               dream: dream,
             ),
           );
         } else if (menuOption == MenuOption.delete) {
-          _showDeleteDialog(context, dreamId: dream.isarId);
+          _showDeleteDialog(context, dreamId: dream.id ?? -1);
         }
       },
       itemBuilder: (_) => List.generate(

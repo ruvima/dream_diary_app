@@ -36,22 +36,22 @@ class UserSelectedList extends StatelessWidget {
     switch (selectType) {
       case SelectType.emotion:
         Modular.get<form_bloc.FormBloc>().add(
-          form_bloc.EmotionsChangedEvent(item),
+          form_bloc.EditFormEvent(emotion: item),
         );
         break;
       case SelectType.people:
         Modular.get<form_bloc.FormBloc>().add(
-          form_bloc.PeopleChangedEvent(item),
+          form_bloc.EditFormEvent(person: item),
         );
         break;
       case SelectType.places:
         Modular.get<form_bloc.FormBloc>().add(
-          form_bloc.PlaceChangedEvent(item),
+          form_bloc.EditFormEvent(place: item),
         );
         break;
       case SelectType.tags:
         Modular.get<form_bloc.FormBloc>().add(
-          form_bloc.TagsChangedEvent(item),
+          form_bloc.EditFormEvent(tag: item),
         );
         break;
       default:

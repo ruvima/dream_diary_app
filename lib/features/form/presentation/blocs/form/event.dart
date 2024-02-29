@@ -7,106 +7,53 @@ abstract class Event extends Equatable {
   List<Object?> get props => [];
 }
 
-class FormSavedEvent extends Event {
+class EditFormEvent extends Event {
+  const EditFormEvent({
+    this.date,
+    this.clarity,
+    this.dreamType,
+    this.emotion,
+    this.person,
+    this.place,
+    this.tag,
+  });
+
+  final DateTime? date;
+  final double? clarity;
+  final String? dreamType;
+  final String? emotion;
+  final String? person;
+  final String? place;
+  final String? tag;
+
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [
+        date,
+        clarity,
+        dreamType,
+        emotion,
+        person,
+        place,
+        tag,
+      ];
 }
 
-class FormTypeChangedEvent extends Event {
-  const FormTypeChangedEvent(this.formType);
+class InitialValuesEvent extends Event {
+  const InitialValuesEvent({
+    required this.date,
+    required this.clarity,
+    required this.dreamTypes,
+    required this.emotions,
+    required this.people,
+    required this.places,
+    required this.tags,
+  });
 
-  final FormType formType;
-
-  @override
-  List<Object> get props => [formType];
-}
-
-class EnterFormEvent extends Event {
-  const EnterFormEvent({this.dreamEntity});
-
-  final DreamEntity? dreamEntity;
-
-  @override
-  List<Object?> get props => [dreamEntity];
-}
-
-class DateChangedEvent extends Event {
   final DateTime date;
-
-  const DateChangedEvent(this.date);
-
-  @override
-  List<Object> get props => [date];
-}
-
-class ClarityChangedEvent extends Event {
   final double clarity;
-
-  const ClarityChangedEvent(this.clarity);
-
-  @override
-  List<Object> get props => [clarity];
-}
-
-class DreamTypesChangedEvent extends Event {
-  final String dreamType;
-
-  const DreamTypesChangedEvent(this.dreamType);
-
-  @override
-  List<Object> get props => [dreamType];
-}
-
-class EmotionsChangedEvent extends Event {
-  final String emotion;
-
-  const EmotionsChangedEvent(this.emotion);
-
-  @override
-  List<Object> get props => [emotion];
-}
-
-class PeopleChangedEvent extends Event {
-  final String person;
-
-  const PeopleChangedEvent(this.person);
-
-  @override
-  List<Object> get props => [person];
-}
-
-class PlaceChangedEvent extends Event {
-  final String place;
-
-  const PlaceChangedEvent(this.place);
-
-  @override
-  List<Object> get props => [place];
-}
-
-class TagsChangedEvent extends Event {
-  final String tag;
-
-  const TagsChangedEvent(this.tag);
-
-  @override
-  List<Object> get props => [tag];
-}
-
-class DescriptionChangedEvent extends Event {
-  final String description;
-
-  const DescriptionChangedEvent(this.description);
-
-  @override
-  List<Object> get props => [description];
-}
-
-class TitleChangedEvent extends Event {
-  final String title;
-
-  const TitleChangedEvent(this.title);
-
-  @override
-  List<Object> get props => [title];
+  final List<String> dreamTypes;
+  final List<String> emotions;
+  final List<String> people;
+  final List<String> places;
+  final List<String> tags;
 }
