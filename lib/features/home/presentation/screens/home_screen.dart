@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../../core/shared/domain/domain.dart';
 import '../../../../core/core.dart';
+import '../../domain/domain.dart';
 import '../blocs/dream/bloc.dart' as dream_bloc;
 
 part '../widgets/dream_card.dart';

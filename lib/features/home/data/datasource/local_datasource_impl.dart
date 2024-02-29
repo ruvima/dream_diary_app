@@ -1,8 +1,8 @@
 import 'package:isar/isar.dart';
 
-import '../../../../core/shared/domain/domain.dart';
-import '../../../../core/shared/local/isar_db/local_db.dart';
-import '../../domain/datasource/dreams_datasource.dart';
+import '../../../../core/core.dart';
+import '../../domain/domain.dart';
+import '../../domain/entities/dream_entity.dart';
 
 class LocalDatasourceImpl implements IDreamsDatasource {
   const LocalDatasourceImpl({

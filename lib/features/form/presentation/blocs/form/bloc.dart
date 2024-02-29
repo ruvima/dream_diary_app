@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../../core/constants/enums.dart';
-import '../../../../../core/shared/domain/domain.dart';
+import '../../../../../core/shared/errors/failures/failures.dart';
 import '../../../../home/domain/domain.dart';
 
 part 'event.dart';

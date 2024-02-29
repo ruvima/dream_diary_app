@@ -1,4 +1,4 @@
-import '../../../../core/shared/domain/domain.dart';
+import '../domain.dart';
 
 abstract class IDreamsRepository {
   Future<void> create(DreamEntity dream);

@@ -1,8 +1,7 @@
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../../domain/domain.dart';
-import 'local_db.dart';
+import '../../../core.dart';
 
 class IsarDB extends LocalDb {
   IsarDB();

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/shared/domain/domain.dart';
+import '../../../../../core/shared/errors/failures/failures.dart';
 import '../../../domain/domain.dart';
 
 part 'event.dart';

@@ -1,5 +1,5 @@
+import '../../../features/home/domain/domain.dart';
 import '../../core.dart';
-import '../domain/domain.dart';
 
 class FormArgs {
   final DreamEntity? dream;

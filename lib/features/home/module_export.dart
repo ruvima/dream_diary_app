@@ -1,10 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../core/shared/domain/domain.dart';
 import '../../core/shared/local/isar_db/local_db.dart';
-import 'data/datasource/local_datasource_impl.dart';
-import 'data/repositories/dream_repository_impl.dart';
+import 'data/data.dart';
 import 'domain/domain.dart';
+import 'domain/entities/dream_entity.dart';
 
 class HomeModuleExport extends Module {
   @override

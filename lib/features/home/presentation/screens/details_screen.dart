@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../core/core.dart';
-import '../../../../core/shared/domain/domain.dart';
 import '../../../../core/shared/models/form_args.dart';
+import '../../domain/domain.dart';
 import '../blocs/dream/bloc.dart' as dream_bloc;
 
 class DreamDetailsScreen extends StatelessWidget {
