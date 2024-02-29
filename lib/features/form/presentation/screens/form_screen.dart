@@ -293,7 +293,8 @@ class _SaveButton extends StatelessWidget {
         return BlocListener<save_bloc.SaveDreamBloc, save_bloc.State>(
           listener: (context, state) {
             if (state is save_bloc.LoadedState) {
-              Modular.to.pop();
+              final dream = getDreamEntity();
+              Modular.to.pop(dream);
             }
           },
           child: KPrimaryButton(
@@ -302,21 +303,7 @@ class _SaveButton extends StatelessWidget {
                 ? null
                 : () {
                     if (Form.of(context).validate()) {
-                      final readFormBloc = Modular.get<form_bloc.FormBloc>();
-                      final form = readFormBloc.state.model;
-
-                      final dream = DreamEntity(
-                        id: dreamEntity?.id,
-                        clarity: form.clarity,
-                        date: form.date,
-                        description: readFormBloc.description,
-                        dreamTypes: form.dreamTypes,
-                        emotions: form.emotions,
-                        people: form.people,
-                        places: form.places,
-                        tags: form.tags,
-                        title: readFormBloc.title,
-                      );
+                      final dream = getDreamEntity();
                       context.read<save_bloc.SaveDreamBloc>().add(
                             save_bloc.FormSavedEvent(
                               dreamEntity: dream,
@@ -332,6 +319,24 @@ class _SaveButton extends StatelessWidget {
           ),
         );
       }),
+    );
+  }
+
+  DreamEntity getDreamEntity() {
+    final readFormBloc = Modular.get<form_bloc.FormBloc>();
+    final form = readFormBloc.state.model;
+
+    return DreamEntity(
+      id: dreamEntity?.id,
+      clarity: form.clarity,
+      date: form.date,
+      description: readFormBloc.description,
+      dreamTypes: form.dreamTypes,
+      emotions: form.emotions,
+      people: form.people,
+      places: form.places,
+      tags: form.tags,
+      title: readFormBloc.title,
     );
   }
 }
