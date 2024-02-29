@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../core/shared/domain/domain.dart';
 import '../../../../core/core.dart';
-import '../../blocs/dream/bloc.dart' as dream_bloc;
+import '../blocs/dream/bloc.dart' as dream_bloc;
 
 part '../widgets/dream_card.dart';
 part '../widgets/dream_card_skeleton.dart';

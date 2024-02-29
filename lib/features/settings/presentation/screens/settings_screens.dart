@@ -16,14 +16,12 @@ class SettingsScreen extends StatelessWidget {
     return BlocBuilder<preferences_bloc.PreferencesBloc,
         preferences_bloc.State>(
       bloc: bloc,
-      buildWhen: (_, state) =>
-          state is preferences_bloc.LanguageChangeState ||
-          state is preferences_bloc.PreferenceChangeState,
+      buildWhen: (_, state) => state is preferences_bloc.LoadedState,
       builder: (context, state) {
         final model = state.model;
 
         return SingleChildScrollView(
-          padding: const EdgeInsets.all(KSizes.p16),
+          padding: const EdgeInsets.symmetric(horizontal: KSizes.p16),
           child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

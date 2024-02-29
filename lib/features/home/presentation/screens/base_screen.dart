@@ -7,7 +7,7 @@ import '../../../../core/core.dart';
 import '../../../../core/shared/bloc/preferences/preferences_bloc.dart'
     as preferences_bloc;
 import '../../../../core/shared/models/form_args.dart';
-import '../../blocs/navigation/bloc.dart' as nav;
+import '../blocs/navigation/bloc.dart' as nav;
 
 part '../widgets/bottom_navigation_bar.dart';
 

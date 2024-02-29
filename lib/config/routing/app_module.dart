@@ -14,7 +14,7 @@ import '../../features/tutorial/module.dart';
 class AppModule extends Module {
   @override
   void binds(i) {
-    i.addLazySingleton<LocalDb>(() => InitDbImpl());
+    i.addLazySingleton<LocalDb>(() => IsarDB());
     i.addSingleton<KeyValueStorageService>(
       () => KeyValueStorageServiceImpl(),
     );

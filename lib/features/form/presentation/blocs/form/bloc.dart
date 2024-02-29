@@ -4,18 +4,15 @@ import 'package:uuid/uuid.dart';
 
 import '../../../../../core/constants/enums.dart';
 import '../../../../../core/shared/domain/domain.dart';
-import '../../../domain/usecases/form_usecases.dart';
+import '../../../../home/domain/domain.dart';
 
 part 'event.dart';
 part 'state.dart';
 
 class FormBloc extends Bloc<Event, State> {
-  final CreateDream _createDream;
-  final UpdateDream _updateDream;
-
   FormBloc({
-    required CreateDream createDream,
-    required UpdateDream updateDream,
+    required CreateDreamUsecase createDream,
+    required UpdateDreamUsecase updateDream,
   })  : _createDream = createDream,
         _updateDream = updateDream,
         super(
@@ -47,6 +44,9 @@ class FormBloc extends Bloc<Event, State> {
 
     on<TitleChangedEvent>(_onTitleChanged);
   }
+
+  final CreateDreamUsecase _createDream;
+  final UpdateDreamUsecase _updateDream;
 
   void _onEnterFormEvent(EnterFormEvent event, Emitter<State> emit) {
     final dream = event.dreamEntity;

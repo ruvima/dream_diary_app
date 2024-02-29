@@ -12,12 +12,16 @@ final class InitialState extends State {
   const InitialState(super.model);
 }
 
-final class PreferenceChangeState extends State {
-  const PreferenceChangeState(super.model);
+final class LoadingState extends State {
+  const LoadingState(super.model);
 }
 
-final class LanguageChangeState extends State {
-  const LanguageChangeState(super.model);
+final class LoadedState extends State {
+  const LoadedState(super.model);
+}
+
+final class ErrorState extends State {
+  const ErrorState(super.model);
 }
 
 class Model extends Equatable {

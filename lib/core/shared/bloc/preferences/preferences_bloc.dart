@@ -20,27 +20,23 @@ class PreferencesBloc extends Bloc<Event, State> {
   final KeyValueStorageService _keyValueStorageService;
 
   Future<void> _onLoadingPrefs(LoadingPrefsEvent event, Emitter emit) async {
-    try {
-      final isDarkMode = await _keyValueStorageService.getValue<bool>(
-        SharedPrefKeys.isDarkMode,
-      );
-      final languageCode = await _keyValueStorageService.getValue<String>(
-        SharedPrefKeys.language,
-      );
+    final isDarkMode = await _keyValueStorageService.getValue<bool>(
+      SharedPrefKeys.isDarkMode,
+    );
+    final languageCode = await _keyValueStorageService.getValue<String>(
+      SharedPrefKeys.language,
+    );
 
-      if (isDarkMode != null || languageCode != null) {
-        emit(
-          PreferenceChangeState(
-            state.model.copyWith(
-              isDarkMode: isDarkMode ?? state.model.isDarkMode,
-              languageCode: languageCode ?? state.model.languageCode,
-            ),
-          ),
-        );
-      }
-    } catch (e) {
-      throw Exception('Error loading preferences: $e');
-    }
+    await Future.delayed(const Duration(seconds: 4));
+
+    emit(
+      LoadedState(
+        state.model.copyWith(
+          isDarkMode: isDarkMode ?? state.model.isDarkMode,
+          languageCode: languageCode ?? state.model.languageCode,
+        ),
+      ),
+    );
   }
 
   Future<void> _onThemeModeChanged(
@@ -51,7 +47,7 @@ class PreferencesBloc extends Bloc<Event, State> {
     );
 
     emit(
-      PreferenceChangeState(
+      LoadedState(
         state.model.copyWith(isDarkMode: event.isDarkMode),
       ),
     );
@@ -65,7 +61,7 @@ class PreferencesBloc extends Bloc<Event, State> {
     );
 
     emit(
-      LanguageChangeState(
+      LoadedState(
         state.model.copyWith(languageCode: event.languageCode),
       ),
     );

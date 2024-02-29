@@ -20,7 +20,6 @@ class AppWidget extends StatelessWidget {
       // buildWhen: (_, state) => state is preferences_bloc.PreferenceChangeState,
       builder: (context, state) {
         final model = state.model;
-        print(model.languageCode);
         return MaterialApp.router(
           title: 'Dream Diary App',
           theme: AppTheme.lightTheme,

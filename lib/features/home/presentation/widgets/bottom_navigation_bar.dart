@@ -7,7 +7,7 @@ class _BottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<preferences_bloc.PreferencesBloc,
         preferences_bloc.State>(
-      buildWhen: (_, state) => state is preferences_bloc.LanguageChangeState,
+      buildWhen: (_, state) => state is preferences_bloc.LoadedState,
       bloc: Modular.get<preferences_bloc.PreferencesBloc>(),
       builder: (context, state) {
         return BlocBuilder<nav.NavigationBloc, nav.State>(

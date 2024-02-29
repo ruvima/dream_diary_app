@@ -3,21 +3,21 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/shared/domain/domain.dart';
-import '../../domain/usecases/dream_usecases.dart';
+import '../../../../../core/shared/domain/domain.dart';
+import '../../../domain/domain.dart';
 
 part 'event.dart';
 part 'state.dart';
 
 class DreamBloc extends Bloc<Event, State> {
-  final FetchDreams _fetchDreams;
-  final DeleteDream _deleteDream;
+  final GetDreamsUsecase _fetchDreams;
+  final DeleteDreamUsecase _deleteDream;
 
   late StreamSubscription _dreamsSubscription;
 
   DreamBloc({
-    required FetchDreams fetchDreams,
-    required DeleteDream deleteDream,
+    required GetDreamsUsecase fetchDreams,
+    required DeleteDreamUsecase deleteDream,
   })  : _fetchDreams = fetchDreams,
         _deleteDream = deleteDream,
         super(const InitialState(Model())) {
