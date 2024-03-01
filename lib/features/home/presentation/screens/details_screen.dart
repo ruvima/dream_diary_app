@@ -6,8 +6,8 @@ import 'package:flutter_modular/flutter_modular.dart'
 import '../../../../core/core.dart';
 import '../../../../core/shared/models/form_args.dart';
 import '../../domain/domain.dart';
+import '../blocs/delete/bloc.dart' as delete_bloc;
 import '../blocs/details/bloc.dart' as details_bloc;
-import '../blocs/dream/bloc.dart' as dream_bloc;
 
 class DreamDetailsScreen extends StatelessWidget {
   const DreamDetailsScreen({
@@ -19,13 +19,20 @@ class DreamDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => details_bloc.DetailsBloc()
-        ..add(
-          details_bloc.AddDreamEvent(
-            dreamEntity: dreamEntity,
-          ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => details_bloc.DetailsBloc()
+            ..add(
+              details_bloc.AddDreamEvent(
+                dreamEntity: dreamEntity,
+              ),
+            ),
         ),
+        BlocProvider(
+          create: (_) => delete_bloc.DeleteDreamBloc(),
+        ),
+      ],
       child: const _DetailsView(),
     );
   }
@@ -185,8 +192,8 @@ class _MenuButton extends StatelessWidget {
       onCancel: () => Navigator.pop(context),
       textOnCancel: UiValues.cancel,
       onAcept: () {
-        context.read<dream_bloc.DreamBloc>().add(
-              dream_bloc.DeleteDreamEvent(dreamId),
+        context.read<delete_bloc.DeleteDreamBloc>().add(
+              delete_bloc.DeleteDreamEvent(dreamId),
             );
         Modular.to.pushReplacementNamed(Routes.home);
       },

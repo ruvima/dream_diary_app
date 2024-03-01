@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_modular/flutter_modular.dart'
+    hide ModularWatchExtension;
 
 import '../../../../core/core.dart';
 import '../../domain/domain.dart';
-import '../blocs/dream/bloc.dart' as dream_bloc;
+import '../blocs/list/bloc.dart' as dream_bloc;
+import '../blocs/search/bloc.dart' as search_bloc;
 
 part '../widgets/dream_card.dart';
 part '../widgets/dream_card_skeleton.dart';
@@ -14,7 +16,19 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _DreamsView();
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => search_bloc.SearchBloc(),
+        ),
+        BlocProvider(
+          create: (context) => dream_bloc.DreamBloc(
+            searchBloc: context.read<search_bloc.SearchBloc>(),
+          ),
+        ),
+      ],
+      child: const _DreamsView(),
+    );
   }
 }
 
@@ -24,7 +38,6 @@ class _DreamsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<dream_bloc.DreamBloc, dream_bloc.State>(
-      bloc: Modular.get<dream_bloc.DreamBloc>(),
       builder: (context, state) {
         final model = state.model;
 
@@ -81,15 +94,39 @@ class _Appbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar.medium(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      title: KHeadline4(UiValues.myDreams),
-      actions: [
-        KIconButton(
-          onPressed: () {},
-          icon: Icons.search,
-        ),
-      ],
+    return BlocBuilder<search_bloc.SearchBloc, search_bloc.State>(
+      builder: (_, state) {
+        final showTextField = state.model.showTextField;
+        return SliverAppBar.medium(
+          backgroundColor: Theme.of(context).colorScheme.background,
+          title: showTextField
+              ? KTextFormField(
+                  hint: 'Enter a Keyword',
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                  ),
+                  onChanged: (text) {
+                    context.read<search_bloc.SearchBloc>().add(
+                          search_bloc.SearchEvent(searchTerm: text),
+                        );
+                  },
+                )
+              : KHeadline4(UiValues.myDreams),
+          actions: [
+            KIconButton(
+              onPressed: () {
+                context.read<search_bloc.SearchBloc>().add(
+                      search_bloc.SearchEvent(
+                        showTextField: !showTextField,
+                        searchTerm: '',
+                      ),
+                    );
+              },
+              icon: showTextField ? Icons.search_off : Icons.search,
+            ),
+          ],
+        );
+      },
     );
   }
 }

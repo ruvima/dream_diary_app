@@ -1,5 +1,4 @@
 import '../domain.dart';
-import '../entities/dream_entity.dart';
 
 class GetDreamsUsecase {
   const GetDreamsUsecase({
@@ -8,5 +7,6 @@ class GetDreamsUsecase {
 
   final IDreamsRepository _iIDreamsRepository;
 
-  Stream<List<DreamEntity>> execute() => _iIDreamsRepository.getDreams();
+  Stream<List<DreamEntity>> execute({String? searchTerm}) =>
+      _iIDreamsRepository.getDreams(searchTerm);
 }

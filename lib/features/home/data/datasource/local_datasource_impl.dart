@@ -21,12 +21,25 @@ class LocalDatasourceImpl implements IDreamsDatasource {
   }
 
   @override
-  Stream<List<DreamEntity>> getDreams() async* {
+  Stream<List<DreamEntity>> getDreams(String? searchTerm) async* {
     try {
       final isar = await _db.getDb();
 
       yield* isar.dreamEntitys
           .where()
+          .optional(
+            searchTerm != null && searchTerm.isNotEmpty,
+            (q) => q
+                .filter()
+                .titleContains(
+                  searchTerm!,
+                  caseSensitive: false,
+                )
+                .descriptionContains(
+                  searchTerm,
+                  caseSensitive: false,
+                ),
+          )
           .sortByDateDesc()
           .watch(fireImmediately: true);
     } on IsarError catch (e) {

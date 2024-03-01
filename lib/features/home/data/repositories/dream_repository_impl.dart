@@ -14,8 +14,8 @@ class DreamRepositoryImpl implements IDreamsRepository {
   }
 
   @override
-  Stream<List<DreamEntity>> getDreams() {
-    return _datasource.getDreams();
+  Stream<List<DreamEntity>> getDreams(String? searchTerm) {
+    return _datasource.getDreams(searchTerm);
   }
 
   @override
