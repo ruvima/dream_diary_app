@@ -9,11 +9,15 @@ import '../models/suggestions_model.dart';
 class SuggestionsDatasourceImpl implements ISuggestionsRepositoty {
   @override
   Future<SuggestionsEntity> suggestions(SelectType type) async {
-    final jsonString = await _loadAsset(type);
+    try {
+      final jsonString = await _loadAsset(type);
 
-    final json = jsonDecode(jsonString);
-    final suggestions = SuggestionsModel.fromJson(json);
-    return suggestions;
+      final json = jsonDecode(jsonString);
+      final suggestions = SuggestionsModel.fromJson(json);
+      return suggestions;
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   Future<String> _loadAsset(SelectType type) async {
