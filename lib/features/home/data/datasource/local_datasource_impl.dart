@@ -35,6 +35,7 @@ class LocalDatasourceImpl implements IDreamsDatasource {
                   searchTerm!,
                   caseSensitive: false,
                 )
+                .or()
                 .descriptionContains(
                   searchTerm,
                   caseSensitive: false,
