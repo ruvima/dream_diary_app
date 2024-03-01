@@ -1,0 +1,36 @@
+{
+  "eng": [
+    "Family home",
+    "Work or school",
+    "Familiar streets",
+    "Beach",
+    "Mountains",
+    "Park",
+    "Mall",
+    "Forest",
+    "Airport",
+    "Restaurant",
+    "Stadium or auditorium",
+    "Hospital",
+    "Starry sky",
+    "Train station",
+    "City"
+  ],
+  "es": [
+    "Casa familiar",
+    "Trabajo o escuela",
+    "Calles familiares",
+    "Playa",
+    "Montañas",
+    "Parque",
+    "Centro comercial",
+    "Bosque",
+    "Aeropuerto",
+    "Restaurante",
+    "Estadio o auditorio",
+    "Hospital",
+    "Cielo estrellado",
+    "Estación de tren",
+    "Ciudad"
+  ]
+}

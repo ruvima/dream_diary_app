@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../core/core.dart';
+import '../../../../core/shared/bloc/preferences/preferences_bloc.dart'
+    as pref_bloc;
 import '../blocs/form/bloc.dart' as form_bloc;
+import '../blocs/suggestions/bloc.dart' as suggestions_bloc;
 import '../widgets/user_selected_list.dart';
 
 class SelectScreen extends StatelessWidget {
@@ -14,14 +17,20 @@ class SelectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: colors.background,
-        title: _WriteCustomTextField(
-          selectType: selectType,
+    return BlocProvider(
+      create: (_) => suggestions_bloc.SuggestionsBloc()
+        ..add(
+          suggestions_bloc.GetSuggestions(selectType),
         ),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: colors.background,
+          title: _WriteCustomTextField(
+            selectType: selectType,
+          ),
+        ),
+        body: _SelectView(selectType),
       ),
-      body: _SelectView(selectType),
     );
   }
 }
@@ -36,11 +45,8 @@ class _SelectView extends StatelessWidget {
       bloc: Modular.get<form_bloc.FormBloc>(),
       builder: (context, state) {
         final model = state.model;
-        print(model.emotions);
 
         final list = _getList(selectType, model);
-
-        final mockList = _getSuggestions(selectType);
 
         final label = _getLabel(selectType);
 
@@ -64,25 +70,9 @@ class _SelectView extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
               gapH4,
-              SizedBox(
-                width: double.infinity,
-                child: KWrap(
-                  children: List.generate(
-                    mockList.length,
-                    (index) {
-                      final item = mockList[index];
-                      final selected = list.contains(item);
-
-                      return KFilterChip(
-                        label: item,
-                        onSelected: (selected) {
-                          _updateFormBloc(selectType, item);
-                        },
-                        selected: selected,
-                      );
-                    },
-                  ),
-                ),
+              _Sugestions(
+                list: list,
+                selectType: selectType,
               ),
             ],
           ),
@@ -104,19 +94,6 @@ class _SelectView extends StatelessWidget {
     }
   }
 
-  List<String> _getSuggestions(SelectType type) {
-    switch (type) {
-      case SelectType.emotion:
-        return _commonEmotions;
-      case SelectType.people:
-        return _commonPersons;
-      case SelectType.places:
-        return _commonPlaces;
-      default:
-        return _commonTags;
-    }
-  }
-
   String _getLabel(SelectType type) {
     switch (type) {
       case SelectType.emotion:
@@ -128,6 +105,48 @@ class _SelectView extends StatelessWidget {
       default:
         return UiValues.tagsLabel;
     }
+  }
+}
+
+class _Sugestions extends StatelessWidget {
+  const _Sugestions({
+    required this.list,
+    required this.selectType,
+  });
+
+  final List<String> list;
+  final SelectType selectType;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<suggestions_bloc.SuggestionsBloc,
+        suggestions_bloc.State>(
+      builder: (_, state) {
+        final code =
+            Modular.get<pref_bloc.PreferencesBloc>().state.model.languageCode;
+        final suggestions = state.model.getSuggestions(code);
+        return SizedBox(
+          width: double.infinity,
+          child: KWrap(
+            children: List.generate(
+              suggestions.length,
+              (index) {
+                final item = suggestions[index];
+                final selected = list.contains(item);
+
+                return KFilterChip(
+                  label: item,
+                  onSelected: (selected) {
+                    _updateFormBloc(selectType, item);
+                  },
+                  selected: selected,
+                );
+              },
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -203,80 +222,3 @@ void _updateFormBloc(SelectType selectType, String item) {
       break;
   }
 }
-
-List<String> _commonEmotions = [
-  'Feliz',
-  'Emocionado',
-  'Triste',
-  'Asustado',
-  'Sorprendido',
-  'Confundido',
-  'Enamorado',
-  'Agradecido',
-  'Esperanzado',
-  'Ansioso',
-  'Enojado',
-  'Alegre',
-  'En Paz',
-  'Empático',
-  'Curioso',
-  'Calmado',
-  'Culpable',
-  'Avergonzado',
-  'Admirado',
-  'Abrumado',
-];
-
-List<String> _commonPersons = [
-  'Amigos',
-  'Familiares',
-  'Desconocidos',
-  'Figuras históricas',
-  'Animales',
-  'Monstruos',
-  'Héroes',
-  'Villanos',
-  'Niños',
-  'Ancianos',
-  'Personajes de películas',
-  'Seres míticos',
-  'Extraterrestres',
-  'Superhéroes',
-  'Yo mismo',
-  'Sherk',
-];
-
-List<String> _commonTags = [
-  'Aventura',
-  'Romance',
-  'Misterio',
-  'Fantasía',
-  'Terror',
-  'Ciencia ficción',
-  'Viaje en el tiempo',
-  'Naturaleza',
-  'Magia',
-  'Exploración',
-  'Desafíos',
-  'Logros',
-  'Transformación',
-  'Despedida',
-  'Reencuentro',
-];
-List<String> _commonPlaces = [
-  'Casa familiar',
-  'Trabajo o escuela',
-  'Calles familiares',
-  'Playa',
-  'Montañas',
-  'Parque',
-  'Centro comercial',
-  'Bosque',
-  'Aeropuerto',
-  'Restaurante',
-  'Estadio o auditorio',
-  'Hospital',
-  'Cielo estrellado',
-  'Estación de tren',
-  'Ciudad',
-];

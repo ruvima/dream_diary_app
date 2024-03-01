@@ -6,6 +6,7 @@ export 'constants/routes.dart';
 export 'constants/shared_pref_keys.dart';
 export 'constants/text_sizes.dart';
 export 'constants/ui_values.dart';
+export 'data/endpoints.dart';
 export 'helper/datetime_formater.dart';
 export 'helper/dialogs.dart';
 export 'shared/components/circular_progress_scaffold.dart';

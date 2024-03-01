@@ -1,0 +1,36 @@
+{
+  "eng": [
+    "Adventure",
+    "Romance",
+    "Mystery",
+    "Fantasy",
+    "Horror",
+    "Science fiction",
+    "Time travel",
+    "Nature",
+    "Magic",
+    "Exploration",
+    "Challenges",
+    "Achievements",
+    "Transformation",
+    "Farewell",
+    "Reunion"
+  ],
+  "es": [
+    "Aventura",
+    "Romance",
+    "Misterio",
+    "Fantasía",
+    "Terror",
+    "Ciencia ficción",
+    "Viaje en el tiempo",
+    "Naturaleza",
+    "Magia",
+    "Exploración",
+    "Desafíos",
+    "Logros",
+    "Transformación",
+    "Despedida",
+    "Reencuentro"
+  ]
+}

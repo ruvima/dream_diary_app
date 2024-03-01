@@ -39,6 +39,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/data/
 
 flutter_intl:
   enabled: true
