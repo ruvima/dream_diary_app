@@ -19,6 +19,22 @@ class DreamBloc extends Bloc<Event, State> {
   })  : _fetchDreams = fetchDreams ?? Modular.get<GetDreamsUsecase>(),
         super(const InitialState(Model())) {
     on<LoadDreamsEvent>(_onLoadDreamEvent);
+    on<LoadingEvent>(_onLoadingEvent);
+    init();
+  }
+  late StreamSubscription _dreamsSubscription;
+  late StreamSubscription _searchSubscription;
+  final SearchBloc searchBloc;
+
+  final GetDreamsUsecase _fetchDreams;
+
+  void init() {
+    add(LoadingEvent());
+    _dreamsSubscription = _fetchDreams.execute().listen(
+      (dreams) {
+        add(LoadDreamsEvent(dreams: dreams));
+      },
+    );
     _searchSubscription = searchBloc.stream.listen((event) {
       _fetchDreams.execute(searchTerm: event.model.searchTerm).listen(
         (dreams) {
@@ -26,18 +42,7 @@ class DreamBloc extends Bloc<Event, State> {
         },
       );
     });
-
-    _dreamsSubscription = _fetchDreams.execute().listen(
-      (dreams) {
-        add(LoadDreamsEvent(dreams: dreams));
-      },
-    );
   }
-  late StreamSubscription _dreamsSubscription;
-  late StreamSubscription _searchSubscription;
-  final SearchBloc searchBloc;
-
-  final GetDreamsUsecase _fetchDreams;
 
   void _onLoadDreamEvent(LoadDreamsEvent event, Emitter emit) async {
     emit(LoadingState(state.model));
@@ -52,6 +57,10 @@ class DreamBloc extends Bloc<Event, State> {
         ),
       );
     }
+  }
+
+  void _onLoadingEvent(LoadingEvent event, Emitter emit) async {
+    emit(LoadingState(state.model));
   }
 
   @override

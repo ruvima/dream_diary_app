@@ -17,3 +17,5 @@ class LoadDreamsEvent extends Event {
   @override
   List<Object> get props => [dreams];
 }
+
+class LoadingEvent extends Event {}
