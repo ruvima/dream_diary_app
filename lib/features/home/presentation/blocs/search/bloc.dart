@@ -11,7 +11,6 @@ class SearchBloc extends Bloc<Event, State> {
   }
 
   void _onSearchEvent(SearchEvent event, Emitter emit) {
-    print(state.model.searchTerm);
     emit(
       LoadedState(
         state.model.copyWith(

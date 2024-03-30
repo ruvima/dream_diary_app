@@ -22,7 +22,6 @@ class DreamBloc extends Bloc<Event, State> {
     on<LoadingEvent>(_onLoadingEvent);
     init();
   }
-  late StreamSubscription _dreamsSubscription;
   late StreamSubscription _searchSubscription;
   final SearchBloc searchBloc;
 
@@ -30,11 +29,7 @@ class DreamBloc extends Bloc<Event, State> {
 
   void init() {
     add(LoadingEvent());
-    _dreamsSubscription = _fetchDreams.execute().listen(
-      (dreams) {
-        add(LoadDreamsEvent(dreams: dreams));
-      },
-    );
+
     _searchSubscription = searchBloc.stream.listen((event) {
       _fetchDreams.execute(searchTerm: event.model.searchTerm).listen(
         (dreams) {
@@ -65,7 +60,6 @@ class DreamBloc extends Bloc<Event, State> {
 
   @override
   Future<void> close() async {
-    await _dreamsSubscription.cancel();
     await _searchSubscription.cancel();
     super.close();
   }

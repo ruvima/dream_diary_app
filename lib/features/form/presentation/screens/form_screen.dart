@@ -7,6 +7,8 @@ import 'package:flutter_modular/flutter_modular.dart'
 
 import '../../../../core/core.dart';
 import '../../../../core/helper/form_mixin.dart';
+import '../../../../core/shared/bloc/preferences/preferences_bloc.dart'
+    as prefs_bloc;
 import '../../../home/domain/domain.dart';
 import '../blocs/form/bloc.dart' as form_bloc;
 import '../blocs/save/bloc.dart' as save_bloc;
@@ -215,6 +217,9 @@ class _DreamTypes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final languageCode =
+        Modular.get<prefs_bloc.PreferencesBloc>().state.model.languageCode;
+
     return SizedBox(
       height: 60,
       child: ListView(
@@ -222,18 +227,21 @@ class _DreamTypes extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: List.generate(
           DreamType.values.length,
-          (index) {
-            final dreamType = DreamType.values[index];
-            final selected = dreamTypes.contains(dreamType.dreamTypeName);
+          (i) {
+            final dreamType = DreamType.values[i];
+            final type =
+                languageCode == 'es' ? dreamType.nameEs : dreamType.name;
+
+            final selected = dreamTypes.contains(type);
             return Padding(
               padding: const EdgeInsets.only(left: KSizes.p12),
               child: KFilterChip(
                 selected: selected,
-                label: dreamType.dreamTypeName,
+                label: type,
                 onSelected: (_) {
                   Modular.get<form_bloc.FormBloc>().add(
                     form_bloc.EditFormEvent(
-                      dreamType: dreamType.dreamTypeName,
+                      dreamType: type,
                     ),
                   );
                 },

@@ -1,3 +1,4 @@
+import '../../../../core/core.dart';
 import '../../domain/domain.dart';
 import '../datasource/local_datasource_impl.dart';
 
@@ -16,6 +17,13 @@ class DreamRepositoryImpl implements IDreamsRepository {
   @override
   Stream<List<DreamEntity>> getDreams(String? searchTerm) {
     return _datasource.getDreams(searchTerm);
+  }
+
+  @override
+  Stream<List<DreamEntity>> getFilteredDreams(FilterRequestModel param) {
+    return _datasource.getFilteredDreams(
+      param,
+    );
   }
 
   @override

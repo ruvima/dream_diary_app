@@ -19,7 +19,10 @@ class HomeScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => search_bloc.SearchBloc(),
+          create: (_) => search_bloc.SearchBloc()
+            ..add(
+              search_bloc.SearchEvent(),
+            ),
         ),
         BlocProvider(
           create: (context) => dream_bloc.DreamBloc(

@@ -39,5 +39,10 @@ class HomeModuleExport extends Module {
         iIDreamsRepository: i.get<IDreamsRepository>(),
       ),
     );
+    i.addLazySingleton<GetFilteredDreamsUsecase>(
+      () => GetFilteredDreamsUsecase(
+        iIDreamsRepository: i.get<IDreamsRepository>(),
+      ),
+    );
   }
 }

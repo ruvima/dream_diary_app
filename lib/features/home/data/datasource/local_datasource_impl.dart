@@ -67,4 +67,41 @@ class LocalDatasourceImpl implements IDreamsDatasource {
           ),
     );
   }
+
+  @override
+  Stream<List<DreamEntity>> getFilteredDreams(FilterRequestModel param) async* {
+    final now = DateTime.now();
+    final days = calculateDays(param.timeRange);
+    try {
+      final isar = await _db.getDb();
+
+      yield* isar.dreamEntitys
+          .where()
+          .optional(
+            days != 0,
+            (q) => q.filter().dateBetween(
+                  now.subtract(
+                    Duration(days: days),
+                  ),
+                  now,
+                ),
+          )
+          .sortByDateDesc()
+          .watch(fireImmediately: true);
+    } on IsarError catch (e) {
+      throw DatabaseException(e.message);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+}
+
+int calculateDays(TimeRange? timeRange) {
+  return timeRange != null
+      ? timeRange == TimeRange.thirtyDays
+          ? 30
+          : timeRange == TimeRange.oneYear
+              ? 360
+              : 0
+      : 0;
 }
