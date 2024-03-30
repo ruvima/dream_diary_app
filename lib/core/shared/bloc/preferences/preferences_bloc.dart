@@ -27,8 +27,6 @@ class PreferencesBloc extends Bloc<Event, State> {
       SharedPrefKeys.language,
     );
 
-    await Future.delayed(const Duration(seconds: 4));
-
     emit(
       LoadedState(
         state.model.copyWith(
